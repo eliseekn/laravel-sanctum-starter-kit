@@ -1,5 +1,5 @@
 # Laravel Sanctum Starter Kit
-An opinionated Laravel stater kit for API development with Sanctum.
+An opinionated Laravel stater kit for RESTful API development with Sanctum.
 
 ## Requirements
 - Laravel ^9.35.1

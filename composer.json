@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "eliseekn/laravel-sanctum-starter-kit",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "An opinionated Laravel stater kit for RESTful API development with Sanctum.",
+    "keywords": ["laravel", "sanctum", "api", "rest"],
     "license": "MIT",
     "require": {
         "php": "^8.1.10",
