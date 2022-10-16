@@ -8,8 +8,20 @@ use Illuminate\Http\JsonResponse;
 
 final class LogoutUseCase
 {
-    public function handle(User $user): JsonResponse
+    public function handle(array $data): JsonResponse
     {
+        $user = User::query()
+            ->where('email', $data['email'])
+            ->first();
+
+        if (!$user) {
+            return response()
+                ->json([
+                    'status' => 'error',
+                    'message' => 'User not found'
+                ], 404);
+        }
+
         $user->tokens()->delete();
 
         return response()->json([

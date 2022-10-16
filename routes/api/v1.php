@@ -8,4 +8,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', LoginController::class);
 Route::post('/register', RegisterController::class);
-Route::get('/logout/{user}', LogoutController::class);
+Route::post('/logout', LogoutController::class);
