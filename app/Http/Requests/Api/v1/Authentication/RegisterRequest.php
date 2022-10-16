@@ -3,11 +3,9 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Api\v1\Authentication;
 
-use App\Enums\UserRole;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rule;
 
 class RegisterRequest extends FormRequest
 {
@@ -21,7 +19,6 @@ class RegisterRequest extends FormRequest
         return [
             'email' => ['required', 'email'],
             'password' => 'required',
-            'role' => ['required', Rule::in(UserRole::getValues())],
             'name' => 'required'
         ];
     }
