@@ -10,7 +10,10 @@ final class RegisterUseCase
 {
     public function handle(array $data): JsonResponse
     {
-        User::factory()->create($data);
+        $data['password'] = bcrypt($data['password']);
+
+        $user = User::factory()->create($data);
+        $user->sendEmailVerificationNotification();
 
         return response()->json([
             'status' => 'success',

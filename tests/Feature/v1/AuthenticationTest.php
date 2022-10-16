@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Tests\Feature\v1;
 
+use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\Feature\AbstractTestCase;
 
@@ -28,6 +31,8 @@ final class AuthenticationTest extends AbstractTestCase
 
     public function test_as_an_unregistered_user_i_can_register(): void
     {
+        Notification::fake();
+
         $user = $this->makeUser([
             'password' => 'password'
         ]);
@@ -40,6 +45,11 @@ final class AuthenticationTest extends AbstractTestCase
                     ->where('message', 'User has been registered successfully.')
                     ->etc()
             );
+
+        Notification::assertSentTo(
+            User::query()->first(),
+            VerifyEmail::class
+        );
 
         $this->assertDatabaseHas('users', [
             'email' => $user->getAttribute('email')]
