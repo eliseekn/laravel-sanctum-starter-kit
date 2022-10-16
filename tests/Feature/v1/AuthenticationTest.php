@@ -74,10 +74,25 @@ final class AuthenticationTest extends AbstractTestCase
             );
     }
 
-    public function test_as_a_registered_user_i_can_reset_password(): void
+    public function test_as_a_registered_user_i_can_verify_email(): void
     {
-        $user = $this->createUser();
-
 
     }
+
+//    public function test_as_a_registered_user_i_can_reset_password(): void
+//    {
+//        $user = $this->createUser();
+//
+//        $this
+//            ->actingAs($user, 'sanctum')
+//            ->postJson('/api/v1/logout', [
+//                'email' => $user->getAttribute('email')
+//            ])
+//            ->assertJson(fn (AssertableJson $json) =>
+//                $json
+//                    ->where('status', 'success')
+//                    ->where('message', 'User logged out successfully.')
+//                    ->etc()
+//            );
+//    }
 }

@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +29,25 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        VerifyEmail::createUrlUsing(function ($notifiable) {
+            $url = env('EMAIL_VERIFICATION_URL', 'http://localhost');
+
+            $verifyUrl = URL::temporarySignedRoute(
+                'verification.verify',
+                now()->addMinutes(Config::get('auth.verification.expire', 60)), [
+                    'id' => $notifiable->getKey(),
+                    'hash' => sha1($notifiable->getEmailForVerification()),
+                ]
+            );
+
+            return $url . '?verify_url=' . urlencode($verifyUrl);
+        });
+
+        VerifyEmail::toMailUsing(
+            fn ($notifiable, $url) => (new MailMessage)
+                ->subject('Verify Email Address')
+                ->line('Click the button below to verify your email address.')
+                ->action('Verify Email Address', $url)
+        );
     }
 }
