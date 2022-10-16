@@ -23,6 +23,7 @@ final class AuthenticationTest extends AbstractTestCase
             ->assertJson(fn (AssertableJson $json) =>
                 $json
                     ->where('status', 'success')
+                    ->where('message', 'User logged in successfully.')
                     ->where('user', $user->attributesToArray())
                     ->has('token')
                     ->etc()
@@ -54,5 +55,20 @@ final class AuthenticationTest extends AbstractTestCase
         $this->assertDatabaseHas('users', [
             'email' => $user->getAttribute('email')]
         );
+    }
+
+    public function test_as_an_authenticated_user_i_can_log_out(): void
+    {
+        $user = $this->createUser();
+
+        $this
+            ->actingAs($user, 'sanctum')
+            ->getJson('/api/v1/logout/' . $user->getAttribute('id'))
+            ->assertJson(fn (AssertableJson $json) =>
+                $json
+                    ->where('status', 'success')
+                    ->where('message', 'User logged out successfully.')
+                    ->etc()
+            );
     }
 }

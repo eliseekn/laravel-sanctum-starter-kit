@@ -27,6 +27,7 @@ final class LoginUseCase
         return response()
             ->json([
                 'status' => 'success',
+                'message' => 'User logged in successfully.',
                 'token' => $user->createToken(Str::random(15))->plainTextToken,
                 'user' => $user
             ]);
