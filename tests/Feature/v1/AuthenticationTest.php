@@ -42,7 +42,7 @@ final class AuthenticationTest extends AbstractTestCase
             ->assertJson(fn (AssertableJson $json) =>
                 $json
                     ->where('status', 'success')
-                    ->where('message', 'User has been registered successfully.')
+                    ->where('message', 'User registered successfully.')
                     ->etc()
             );
 

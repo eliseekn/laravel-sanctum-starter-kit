@@ -17,7 +17,7 @@ final class RegisterUseCase
 
         return response()->json([
             'status' => 'success',
-            'message' => 'User has been registered successfully.'
+            'message' => 'User registered successfully.'
         ]);
     }
 }
