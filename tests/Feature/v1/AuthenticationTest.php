@@ -25,4 +25,24 @@ final class AuthenticationTest extends AbstractTestCase
                     ->etc()
             );
     }
+
+    public function test_as_an_unregistered_user_i_can_register(): void
+    {
+        $user = $this->makeUser([
+            'password' => 'password'
+        ]);
+
+        $this
+            ->postJson('/api/v1/register', $user->getAttributes())
+            ->assertJson(fn (AssertableJson $json) =>
+                $json
+                    ->where('status', 'success')
+                    ->where('message', 'User has been registered successfully.')
+                    ->etc()
+            );
+
+        $this->assertDatabaseHas('users', [
+            'email' => $user->getAttribute('email')]
+        );
+    }
 }

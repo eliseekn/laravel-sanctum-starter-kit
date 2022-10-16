@@ -1,5 +1,7 @@
 <?php
+declare(strict_types=1);
 
+namespace Tests\Unit;
 
 use App\Enums\UserRole;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +18,7 @@ class UserRoleTest extends TestCase
         $this->assertEquals('user', UserRole::USER->value);
     }
 
-    public function test_roles_values_is_correct(): void
+    public function test_get_values_method_is_correct(): void
     {
         $this->assertEquals([
             'admin',
