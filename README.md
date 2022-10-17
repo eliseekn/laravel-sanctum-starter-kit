@@ -7,6 +7,6 @@ An opinionated Laravel stater kit for RESTful API development with Sanctum.
 
 ## Features
 - Authentication
-- Registration with email confirmation
+- Registration with email verification
 - Password reset
 - User CRUD actions
