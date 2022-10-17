@@ -6,8 +6,10 @@ use App\Http\Controllers\Api\v1\Authentication\LogoutController;
 use App\Http\Controllers\Api\v1\Authentication\RegisterController;
 use App\Http\Controllers\Api\v1\Authentication\ResetPasswordController;
 use App\Http\Controllers\Api\v1\Authentication\VerifyEmailController;
+use App\Http\Controllers\Api\v1\UserController;
 use Illuminate\Support\Facades\Route;
 
+//Authentication routes
 Route::post('/login', LoginController::class);
 Route::post('/register', RegisterController::class);
 Route::post('/logout', LogoutController::class);
@@ -23,3 +25,6 @@ Route::prefix('password')
         Route::post('/reset-notification', [ResetPasswordController::class, 'notify']);
         Route::post('/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
     });
+
+//User routes
+Route::prefix('v1')->resource('users', UserController::class);

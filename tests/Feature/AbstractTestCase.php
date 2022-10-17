@@ -18,7 +18,11 @@ abstract class AbstractTestCase extends TestCase
 
     public function createUser(array $attributes = []): User
     {
-        $user = $this->makeUser($attributes);
+        $user = $this->makeUser(
+            array_merge(
+                $attributes, ['email_verified_at' => now()]
+            )
+        );
         $user->save();
 
         return $user;
