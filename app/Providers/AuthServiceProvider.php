@@ -30,9 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         VerifyEmail::createUrlUsing(function ($notifiable) {
-            $url = env('EMAIL_VERIFICATION_URL', 'http://localhost');
-
-            $verifyUrl = URL::temporarySignedRoute(
+            $url = URL::temporarySignedRoute(
                 'verification.verify',
                 now()->addMinutes(Config::get('auth.verification.expire', 60)), [
                     'id' => $notifiable->getKey(),
@@ -40,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
                 ]
             );
 
-            return $url . '?verify_url=' . urlencode($verifyUrl);
+            return env('EMAIL_VERIFICATION_URL', 'http://localhost/email/verification') . '?verify_url=' . urlencode($url);
         });
 
         VerifyEmail::toMailUsing(

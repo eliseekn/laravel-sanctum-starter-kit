@@ -13,6 +13,6 @@ Route::post('/logout', LogoutController::class);
 
 Route::prefix('email')
     ->group(function () {
-        Route::get('/verify/{id}/{hash}', [VerifyEmailController::class, 'verify']);
+        Route::get('/verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])->name('verification.verify');
         Route::post('/verification-notification', [VerifyEmailController::class, 'notify']);
     });
