@@ -74,9 +74,28 @@ final class AuthenticationTest extends AbstractTestCase
             );
     }
 
-    public function test_as_a_registered_user_i_can_verify_email(): void
+    public function test_as_a_registered_user_i_can_request_email_verification_link(): void
     {
+        Notification::fake();
 
+        $user = $this->createUser();
+
+        $this
+            ->actingAs($user, 'sanctum')
+            ->postJson('/api/v1/email/verification-notification', [
+                'email' => $user->getAttribute('email')
+            ])
+            ->assertJson(fn (AssertableJson $json) =>
+                $json
+                    ->where('status', 'success')
+                    ->where('message', 'Email verification notification sent successfully.')
+                    ->etc()
+            );
+
+        Notification::assertSentTo(
+            User::query()->first(),
+            VerifyEmail::class
+        );
     }
 
 //    public function test_as_a_registered_user_i_can_reset_password(): void
