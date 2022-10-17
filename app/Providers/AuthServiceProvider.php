@@ -7,6 +7,7 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -37,7 +38,11 @@ class AuthServiceProvider extends ServiceProvider
                 ]
             );
 
-            return env('EMAIL_VERIFICATION_URL', 'http://localhost/email/verification') . '?verify_url=' . urlencode($url);
+            return env('FRONT_END_URL', 'http://localhost') . '/email-verification?url=' . urlencode($url);
         });
+
+        ResetPassword::createUrlUsing(
+            fn ($user, string $token) => env('FRONT_END_URL', 'http://localhost') . '/reset-password?token=' . $token
+        );
     }
 }

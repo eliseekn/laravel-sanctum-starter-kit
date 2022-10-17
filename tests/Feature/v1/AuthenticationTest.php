@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Tests\Feature\v1;
 
 use App\Models\User;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -98,20 +99,27 @@ final class AuthenticationTest extends AbstractTestCase
         );
     }
 
-//    public function test_as_a_registered_user_i_can_reset_password(): void
-//    {
-//        $user = $this->createUser();
-//
-//        $this
-//            ->actingAs($user, 'sanctum')
-//            ->postJson('/api/v1/logout', [
-//                'email' => $user->getAttribute('email')
-//            ])
-//            ->assertJson(fn (AssertableJson $json) =>
-//                $json
-//                    ->where('status', 'success')
-//                    ->where('message', 'User logged out successfully.')
-//                    ->etc()
-//            );
-//    }
+    public function test_as_a_registered_user_i_can_request_password_reset(): void
+    {
+        Notification::fake();
+
+        $user = $this->createUser();
+
+        $this
+            ->actingAs($user, 'sanctum')
+            ->postJson('/api/v1/password/reset-notification', [
+                'email' => $user->getAttribute('email')
+            ])
+            ->assertJson(fn (AssertableJson $json) =>
+                $json
+                    ->where('status', 'success')
+                    ->where('message', 'We have emailed your password reset link!')
+                    ->etc()
+            );
+
+        Notification::assertSentTo(
+            User::query()->first(),
+            ResetPassword::class
+        );
+    }
 }

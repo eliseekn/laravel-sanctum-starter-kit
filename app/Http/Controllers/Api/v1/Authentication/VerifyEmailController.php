@@ -1,36 +1,26 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\v1\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Authentication\EmailRequest;
-use App\Models\User;
+use App\UseCases\v1\Authentication\VerifyEmail\NotifyUseCase;
+use App\UseCases\v1\Authentication\VerifyEmail\VerifyUseCase;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\JsonResponse;
 
 class VerifyEmailController extends Controller
 {
-    public function verify(EmailVerificationRequest $request): JsonResponse
+    public function notify(EmailRequest $request, NotifyUseCase $useCase): JsonResponse
     {
-        $request->fulfill();
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Email verified successfully.'
-        ]);
+        return $useCase->handle(
+            $request->validated()
+        );
     }
 
-    public function notify(EmailRequest $request): JsonResponse
+    public function verify(EmailVerificationRequest $request, VerifyUseCase $useCase): JsonResponse
     {
-        $user = User::query()
-            ->where($request->validated())
-            ->first();
-
-        $user->sendEmailVerificationNotification();
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Email verification notification sent successfully.'
-        ]);
+        return $useCase->handle($request);
     }
 }

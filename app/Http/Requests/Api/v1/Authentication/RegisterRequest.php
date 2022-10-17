@@ -18,7 +18,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email'],
-            'password' => 'required',
+            'password' => ['required', 'min:8'],
             'name' => 'required'
         ];
     }
@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
     {
         throw new HttpResponseException(
             response()->json(
-                $validator->errors()
+                $validator->errors(), 422
             )
         );
     }

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class EmailRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -17,7 +17,9 @@ class EmailRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'token' => 'required',
             'email' => ['required', 'email'],
+            'password' => ['required', 'min:8', 'confirmed'],
         ];
     }
 
