@@ -23,6 +23,11 @@ class UserController extends Controller
         );
     }
 
+    public function show(User $user): JsonResponse
+    {
+        return response()->json($user);
+    }
+
     public function store(StoreRequest $request, StoreUseCase $useCase): JsonResponse
     {
         return $useCase->handle(

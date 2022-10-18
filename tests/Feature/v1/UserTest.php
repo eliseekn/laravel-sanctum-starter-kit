@@ -114,4 +114,18 @@ class UserTest extends AbstractTestCase
                     ->etc()
             );
     }
+
+    public function test_as_an_authenticated_user_with_role_admin_i_can_get_user_item(): void
+    {
+        $admin = $this->createUser([
+            'role' => UserRole::ADMIN->value
+        ]);
+
+        $user = $this->createUser();
+
+        $this
+            ->actingAs($admin, 'sanctum')
+            ->getJson('/api/v1/users/' . $user->getAttribute('id'))
+            ->assertExactJson($user->toArray());
+    }
 }
