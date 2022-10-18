@@ -47,9 +47,7 @@ class UserTest extends AbstractTestCase
 
     public function test_as_an_authenticated_user_with_role_user_i_can_update_same_user(): void
     {
-        $user = $this->createUser([
-            'role' => UserRole::USER->value
-        ]);
+        $user = $this->createUser();
 
         $name = fake()->name();
         $user->setAttribute('name', $name);
@@ -75,12 +73,9 @@ class UserTest extends AbstractTestCase
             'role' => UserRole::ADMIN->value
         ]);
 
-        $user = $this->createUser([
-            'role' => UserRole::USER->value
-        ]);
+        $user = $this->createUser();
 
         $this
-            ->withoutExceptionHandling()
             ->actingAs($admin, 'sanctum')
             ->deleteJson('/api/v1/users/' . $user->getAttribute('id'))
             ->assertJson(fn (AssertableJson $json) =>
@@ -98,5 +93,25 @@ class UserTest extends AbstractTestCase
         $this->assertDatabaseMissing('users', [
             'email' => $user->getAttribute('email')]
         );
+    }
+
+    public function test_as_an_authenticated_user_with_role_admin_i_can_get_user_collection(): void
+    {
+        $admin = $this->createUser([
+            'role' => UserRole::ADMIN->value
+        ]);
+
+        $user = $this->createUser();
+
+        $this
+            ->actingAs($admin, 'sanctum')
+            ->getJson('/api/v1/users')
+            ->assertJson(fn (AssertableJson $json) =>
+                $json
+                    ->has('data', 2)
+                    ->where('data.0.email', $admin->getAttribute('email'))
+                    ->where('data.1.email', $user->getAttribute('email'))
+                    ->etc()
+            );
     }
 }

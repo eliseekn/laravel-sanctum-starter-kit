@@ -27,4 +27,4 @@ Route::prefix('password')
     });
 
 //User routes
-Route::prefix('v1')->resource('users', UserController::class);
+Route::prefix('v1')->apiResource('users', UserController::class);
