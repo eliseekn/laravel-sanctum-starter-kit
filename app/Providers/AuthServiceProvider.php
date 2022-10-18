@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Auth\Notifications\ResetPassword;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -38,11 +38,11 @@ class AuthServiceProvider extends ServiceProvider
                 ]
             );
 
-            return env('FRONT_END_URL', 'http://localhost') . '/email-verification?url=' . urlencode($url);
+            return env('FRONT_END_URL', 'http://localhost').'/email-verification?url='.urlencode($url);
         });
 
         ResetPassword::createUrlUsing(
-            fn ($user, string $token) => env('FRONT_END_URL', 'http://localhost') . '/reset-password?token=' . $token
+            fn ($user, string $token) => env('FRONT_END_URL', 'http://localhost').'/reset-password?token='.$token
         );
     }
 }

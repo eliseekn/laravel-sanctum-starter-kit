@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\User;
@@ -22,7 +23,7 @@ final class StoreUseCase
 
         return response()->json([
             'status' => 'success',
-            'message' => 'User created successfully.'
+            'message' => 'User created successfully.',
         ]);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\Authentication\VerifyEmail;
@@ -18,7 +19,7 @@ final class NotifyUseCase
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Email verification notification sent successfully.'
+            'message' => 'Email verification notification sent successfully.',
         ]);
     }
 }

@@ -19,18 +19,17 @@ class UserTest extends AbstractTestCase
         Notification::fake();
 
         $admin = $this->createUser([
-            'role' => UserRole::ADMIN->value
+            'role' => UserRole::ADMIN->value,
         ]);
 
         $user = $this->makeUser([
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $this
             ->actingAs($admin, 'sanctum')
             ->postJson('/api/v1/users', $user->getAttributes())
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'User created successfully.')
                     ->etc()
@@ -42,7 +41,7 @@ class UserTest extends AbstractTestCase
         );
 
         $this->assertDatabaseHas('users', [
-            'email' => $user->getAttribute('email')]
+            'email' => $user->getAttribute('email'), ]
         );
     }
 
@@ -55,9 +54,8 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($user, 'sanctum')
-            ->patchJson('/api/v1/users/' . $user->getAttribute('id'), $user->attributesToArray())
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->patchJson('/api/v1/users/'.$user->getAttribute('id'), $user->attributesToArray())
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'User updated successfully.')
                     ->etc()
@@ -73,18 +71,17 @@ class UserTest extends AbstractTestCase
         $this
             ->withoutExceptionHandling()
             ->actingAs($user, 'sanctum')
-            ->patchJson('/api/v1/users/' . $user->getAttribute('id') . '/avatar', [
-                'avatar' => UploadedFile::fake()->image('avatar.png')
+            ->patchJson('/api/v1/users/'.$user->getAttribute('id').'/avatar', [
+                'avatar' => UploadedFile::fake()->image('avatar.png'),
             ])
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'Avatar updated successfully.')
                     ->etc()
             );
 
         $user = User::query()->first();
-        $this->assertFileExists(storage_path('app/public') . '/' . $user->getAttribute('avatar'));
+        $this->assertFileExists(storage_path('app/public').'/'.$user->getAttribute('avatar'));
     }
 
     public function test_as_an_authenticated_user_with_role_admin_i_can_delete_user(): void
@@ -92,16 +89,15 @@ class UserTest extends AbstractTestCase
         Notification::fake();
 
         $admin = $this->createUser([
-            'role' => UserRole::ADMIN->value
+            'role' => UserRole::ADMIN->value,
         ]);
 
         $user = $this->createUser();
 
         $this
             ->actingAs($admin, 'sanctum')
-            ->deleteJson('/api/v1/users/' . $user->getAttribute('id'))
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->deleteJson('/api/v1/users/'.$user->getAttribute('id'))
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'User deleted successfully.')
                     ->etc()
@@ -113,14 +109,14 @@ class UserTest extends AbstractTestCase
         );
 
         $this->assertDatabaseMissing('users', [
-            'email' => $user->getAttribute('email')]
+            'email' => $user->getAttribute('email'), ]
         );
     }
 
     public function test_as_an_authenticated_user_with_role_admin_i_can_get_user_collection(): void
     {
         $admin = $this->createUser([
-            'role' => UserRole::ADMIN->value
+            'role' => UserRole::ADMIN->value,
         ]);
 
         $user = $this->createUser();
@@ -128,8 +124,7 @@ class UserTest extends AbstractTestCase
         $this
             ->actingAs($admin, 'sanctum')
             ->getJson('/api/v1/users')
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->has('data', 2)
                     ->where('data.0.email', $admin->getAttribute('email'))
                     ->where('data.1.email', $user->getAttribute('email'))
@@ -140,14 +135,14 @@ class UserTest extends AbstractTestCase
     public function test_as_an_authenticated_user_with_role_admin_i_can_get_user_item(): void
     {
         $admin = $this->createUser([
-            'role' => UserRole::ADMIN->value
+            'role' => UserRole::ADMIN->value,
         ]);
 
         $user = $this->createUser();
 
         $this
             ->actingAs($admin, 'sanctum')
-            ->getJson('/api/v1/users/' . $user->getAttribute('id'))
+            ->getJson('/api/v1/users/'.$user->getAttribute('id'))
             ->assertExactJson($user->toArray());
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Feature\v1;
@@ -19,10 +20,9 @@ final class AuthenticationTest extends AbstractTestCase
         $this
             ->postJson('/api/v1/login', [
                 'email' => $user->getAttribute('email'),
-                'password' => 'password'
+                'password' => 'password',
             ])
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'User logged in successfully.')
                     ->where('user', $user->attributesToArray())
@@ -36,13 +36,12 @@ final class AuthenticationTest extends AbstractTestCase
         Notification::fake();
 
         $user = $this->makeUser([
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $this
             ->postJson('/api/v1/register', $user->getAttributes())
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'User registered successfully.')
                     ->etc()
@@ -54,7 +53,7 @@ final class AuthenticationTest extends AbstractTestCase
         );
 
         $this->assertDatabaseHas('users', [
-            'email' => $user->getAttribute('email')]
+            'email' => $user->getAttribute('email'), ]
         );
     }
 
@@ -65,10 +64,9 @@ final class AuthenticationTest extends AbstractTestCase
         $this
             ->actingAs($user, 'sanctum')
             ->postJson('/api/v1/logout', [
-                'email' => $user->getAttribute('email')
+                'email' => $user->getAttribute('email'),
             ])
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'User logged out successfully.')
                     ->etc()
@@ -84,10 +82,9 @@ final class AuthenticationTest extends AbstractTestCase
         $this
             ->actingAs($user, 'sanctum')
             ->postJson('/api/v1/email/verification-notification', [
-                'email' => $user->getAttribute('email')
+                'email' => $user->getAttribute('email'),
             ])
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'Email verification notification sent successfully.')
                     ->etc()
@@ -108,10 +105,9 @@ final class AuthenticationTest extends AbstractTestCase
         $this
             ->actingAs($user, 'sanctum')
             ->postJson('/api/v1/password/reset-notification', [
-                'email' => $user->getAttribute('email')
+                'email' => $user->getAttribute('email'),
             ])
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
+            ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'We have emailed your password reset link!')
                     ->etc()

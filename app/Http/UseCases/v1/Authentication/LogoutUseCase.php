@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\Authentication;
@@ -14,11 +15,11 @@ final class LogoutUseCase
             ->where('email', $data['email'])
             ->first();
 
-        if (!$user) {
+        if (! $user) {
             return response()
                 ->json([
                     'status' => 'error',
-                    'message' => 'User not found'
+                    'message' => 'User not found',
                 ], 404);
         }
 
@@ -26,7 +27,7 @@ final class LogoutUseCase
 
         return response()->json([
             'status' => 'success',
-            'message' => 'User logged out successfully.'
+            'message' => 'User logged out successfully.',
         ]);
     }
 }

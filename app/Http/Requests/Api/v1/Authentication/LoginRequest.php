@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Requests\Api\v1\Authentication;
@@ -18,7 +19,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email'],
-            'password' => 'required'
+            'password' => 'required',
         ];
     }
 

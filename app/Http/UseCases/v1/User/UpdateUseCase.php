@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\User;
@@ -12,7 +13,8 @@ final class UpdateUseCase
 {
     public function __construct(
         private readonly FileUploadService $service
-    ) {}
+    ) {
+    }
 
     public function handle(array $data, User $user, ?UploadedFile $file = null): JsonResponse
     {
@@ -20,11 +22,11 @@ final class UpdateUseCase
             $data['password'] = bcrypt($data['password']);
         }
 
-        if (!is_null($file)) {
-            if (!$this->service->handle($file, $filename)) {
+        if (! is_null($file)) {
+            if (! $this->service->handle($file, $filename)) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Failed to upload file'
+                    'message' => 'Failed to upload file',
                 ]);
             }
 
@@ -35,7 +37,7 @@ final class UpdateUseCase
 
         return response()->json([
             'status' => 'success',
-            'message' => 'User updated successfully.'
+            'message' => 'User updated successfully.',
         ]);
     }
 }

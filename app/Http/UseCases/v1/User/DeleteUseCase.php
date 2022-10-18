@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\User;
@@ -14,12 +15,12 @@ final class DeleteUseCase
     {
         $user->delete();
 
-        Notification::route('mail', $user->email)
+        Notification::route('mail', $user->getAttribute('email'))
             ->notify(new AccountDeleted());
 
         return response()->json([
             'status' => 'success',
-            'message' => 'User deleted successfully.'
+            'message' => 'User deleted successfully.',
         ]);
     }
 }

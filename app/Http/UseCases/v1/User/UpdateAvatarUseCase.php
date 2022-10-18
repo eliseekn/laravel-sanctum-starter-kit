@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\User;
@@ -13,14 +14,15 @@ final class UpdateAvatarUseCase
 {
     public function __construct(
         private readonly FileUploadService $service
-    ) {}
+    ) {
+    }
 
     public function handle(User $user, UploadedFile $file): JsonResponse
     {
-        if (!$this->service->handle($file, $filename)) {
+        if (! $this->service->handle($file, $filename)) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Failed to upload file'
+                'message' => 'Failed to upload file',
             ]);
         }
 
@@ -34,7 +36,7 @@ final class UpdateAvatarUseCase
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Avatar updated successfully.'
+            'message' => 'Avatar updated successfully.',
         ]);
     }
 }

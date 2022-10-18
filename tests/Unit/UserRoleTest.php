@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\Unit;
@@ -22,7 +23,7 @@ class UserRoleTest extends TestCase
     {
         $this->assertEquals([
             'admin',
-            'user'
+            'user',
         ], UserRole::getValues());
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Notifications;
@@ -19,7 +20,8 @@ class AccountCreated extends Notification implements ShouldQueue
      */
     public function __construct(
         public string $password
-    ) {}
+    ) {
+    }
 
     /**
      * Get the notification's delivery channels.
@@ -43,8 +45,8 @@ class AccountCreated extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Account created')
             ->line('Your account has been created successfully.')
-            ->line('Your password is ' . $this->password . '.')
-            ->action('Log in to my account', env('FRONT_END_URL', 'http://localhost') . '/login')
+            ->line('Your password is '.$this->password.'.')
+            ->action('Log in to my account', env('FRONT_END_URL', 'http://localhost').'/login')
             ->line('Thank you for using our application!');
     }
 

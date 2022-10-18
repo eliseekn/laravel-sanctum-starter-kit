@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\Authentication;
@@ -17,7 +18,7 @@ final class RegisterUseCase
 
         return response()->json([
             'status' => 'success',
-            'message' => 'User registered successfully.'
+            'message' => 'User registered successfully.',
         ]);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\Authentication;
@@ -16,11 +17,11 @@ final class LoginUseCase
             ->where('email', $data['email'])
             ->first();
 
-        if (!$user || !Hash::check($data['password'], $user->password)) {
+        if (! $user || ! Hash::check($data['password'], $user->password)) {
             return response()
                 ->json([
                     'status' => 'error',
-                    'message' => 'Incorrect mail address or password'
+                    'message' => 'Incorrect mail address or password',
                 ], 401);
         }
 
@@ -29,7 +30,7 @@ final class LoginUseCase
                 'status' => 'success',
                 'message' => 'User logged in successfully.',
                 'token' => $user->createToken(Str::random(15))->plainTextToken,
-                'user' => $user
+                'user' => $user,
             ]);
     }
 }

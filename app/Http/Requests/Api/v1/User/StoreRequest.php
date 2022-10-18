@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Requests\Api\v1\User;
@@ -23,7 +24,7 @@ class StoreRequest extends FormRequest
         return [
             'email' => ['required', 'email'],
             'name' => 'required',
-            'role' => ['required', Rule::in(UserRole::getValues())]
+            'role' => ['required', Rule::in(UserRole::getValues())],
         ];
     }
 

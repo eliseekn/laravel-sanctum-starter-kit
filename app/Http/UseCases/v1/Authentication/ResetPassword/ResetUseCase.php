@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\Authentication\ResetPassword;
@@ -29,13 +30,13 @@ final class ResetUseCase
         if ($status !== Password::PASSWORD_RESET) {
             return response()->json([
                 'status' => 'error',
-                'message' => __($status)
+                'message' => __($status),
             ], 400);
         }
 
         return response()->json([
             'status' => 'success',
-            'message' => __($status)
+            'message' => __($status),
         ]);
     }
 }

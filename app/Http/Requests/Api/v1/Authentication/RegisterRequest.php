@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Requests\Api\v1\Authentication;
@@ -19,7 +20,7 @@ class RegisterRequest extends FormRequest
         return [
             'email' => ['required', 'email'],
             'password' => ['required', 'min:8'],
-            'name' => 'required'
+            'name' => 'required',
         ];
     }
 
