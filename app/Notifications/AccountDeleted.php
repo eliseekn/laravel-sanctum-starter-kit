@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AccountCreated extends Notification implements ShouldQueue
+class AccountDeleted extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -17,9 +17,7 @@ class AccountCreated extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(
-        public string $password
-    ) {}
+    public function __construct() {}
 
     /**
      * Get the notification's delivery channels.
@@ -41,10 +39,8 @@ class AccountCreated extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Account created')
-            ->line('Your account has been created successfully.')
-            ->line('Your password is ' . $this->password . '.')
-            ->action('Log in to my account', env('FRONT_END_URL', 'http://localhost') . '/login')
+            ->subject('Account deleted')
+            ->line('Your account has been deleted.')
             ->line('Thank you for using our application!');
     }
 

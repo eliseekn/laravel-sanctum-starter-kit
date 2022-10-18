@@ -5,6 +5,8 @@ namespace Tests\Feature\v1;
 use App\Enums\UserRole;
 use App\Models\User;
 use App\Notifications\AccountCreated;
+use App\Notifications\AccountDeleted;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\Feature\AbstractTestCase;
@@ -63,5 +65,38 @@ class UserTest extends AbstractTestCase
             );
 
         $this->assertDatabaseHas('users', ['name' => $name]);
+    }
+
+    public function test_as_an_authenticated_user_with_role_admin_i_can_delete_user(): void
+    {
+        Notification::fake();
+
+        $admin = $this->createUser([
+            'role' => UserRole::ADMIN->value
+        ]);
+
+        $user = $this->createUser([
+            'role' => UserRole::USER->value
+        ]);
+
+        $this
+            ->withoutExceptionHandling()
+            ->actingAs($admin, 'sanctum')
+            ->deleteJson('/api/v1/users/' . $user->getAttribute('id'))
+            ->assertJson(fn (AssertableJson $json) =>
+                $json
+                    ->where('status', 'success')
+                    ->where('message', 'User deleted successfully.')
+                    ->etc()
+            );
+
+        Notification::assertSentTo(
+            new AnonymousNotifiable(),
+            AccountDeleted::class
+        );
+
+        $this->assertDatabaseMissing('users', [
+            'email' => $user->getAttribute('email')]
+        );
     }
 }
