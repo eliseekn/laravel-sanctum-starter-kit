@@ -42,4 +42,26 @@ class UserTest extends AbstractTestCase
             'email' => $user->getAttribute('email')]
         );
     }
+
+    public function test_as_an_authenticated_user_with_role_user_i_can_update_same_user(): void
+    {
+        $user = $this->createUser([
+            'role' => UserRole::USER->value
+        ]);
+
+        $name = fake()->name();
+        $user->setAttribute('name', $name);
+
+        $this
+            ->actingAs($user, 'sanctum')
+            ->patchJson('/api/v1/users/' . $user->getAttribute('id'), $user->attributesToArray())
+            ->assertJson(fn (AssertableJson $json) =>
+            $json
+                ->where('status', 'success')
+                ->where('message', 'User updated successfully.')
+                ->etc()
+            );
+
+        $this->assertDatabaseHas('users', ['name' => $name]);
+    }
 }
