@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\UseCases\v1\Authentication\ResetPassword;
+namespace App\Http\UseCases\v1\Authentication\ResetPassword;
 
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\JsonResponse;

@@ -27,4 +27,5 @@ Route::prefix('password')
     });
 
 //User routes
-Route::prefix('v1')->apiResource('users', UserController::class);
+Route::patch('/users/{user}/avatar', [UserController::class, 'updateAvatar']);
+Route::apiResource('users', UserController::class);

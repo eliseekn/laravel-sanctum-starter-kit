@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Authentication\LoginRequest;
-use App\UseCases\v1\Authentication\LoginUseCase;
+use App\Http\UseCases\v1\Authentication\LoginUseCase;
 use Illuminate\Http\JsonResponse;
 
 class LoginController extends Controller

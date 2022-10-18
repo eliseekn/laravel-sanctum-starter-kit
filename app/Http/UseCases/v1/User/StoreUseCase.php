@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\UseCases\v1\User;
+namespace App\Http\UseCases\v1\User;
 
 use App\Models\User;
 use App\Notifications\AccountCreated;

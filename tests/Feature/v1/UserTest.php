@@ -6,6 +6,7 @@ use App\Enums\UserRole;
 use App\Models\User;
 use App\Notifications\AccountCreated;
 use App\Notifications\AccountDeleted;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -56,13 +57,34 @@ class UserTest extends AbstractTestCase
             ->actingAs($user, 'sanctum')
             ->patchJson('/api/v1/users/' . $user->getAttribute('id'), $user->attributesToArray())
             ->assertJson(fn (AssertableJson $json) =>
-            $json
-                ->where('status', 'success')
-                ->where('message', 'User updated successfully.')
-                ->etc()
+                $json
+                    ->where('status', 'success')
+                    ->where('message', 'User updated successfully.')
+                    ->etc()
             );
 
         $this->assertDatabaseHas('users', ['name' => $name]);
+    }
+
+    public function test_as_an_authenticated_user_with_role_user_i_can_update_same_user_avatar(): void
+    {
+        $user = $this->createUser();
+
+        $this
+            ->withoutExceptionHandling()
+            ->actingAs($user, 'sanctum')
+            ->patchJson('/api/v1/users/' . $user->getAttribute('id') . '/avatar', [
+                'avatar' => UploadedFile::fake()->image('avatar.png')
+            ])
+            ->assertJson(fn (AssertableJson $json) =>
+                $json
+                    ->where('status', 'success')
+                    ->where('message', 'Avatar updated successfully.')
+                    ->etc()
+            );
+
+        $user = User::query()->first();
+        $this->assertFileExists(storage_path('app/public') . '/' . $user->getAttribute('avatar'));
     }
 
     public function test_as_an_authenticated_user_with_role_admin_i_can_delete_user(): void
