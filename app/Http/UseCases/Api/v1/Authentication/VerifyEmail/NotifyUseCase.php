@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\Http\UseCases\v1\Authentication;
+namespace App\Http\UseCases\Api\v1\Authentication\VerifyEmail;
 
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
-final class RegisterUseCase
+final class NotifyUseCase
 {
     public function handle(array $data): JsonResponse
     {
-        $data['password'] = bcrypt($data['password']);
+        $user = User::query()
+            ->where($data)
+            ->first();
 
-        $user = User::factory()->create($data);
         $user->sendEmailVerificationNotification();
 
         return response()->json([
             'status' => 'success',
-            'message' => 'User registered successfully.',
+            'message' => 'Email verification notification sent successfully.',
         ]);
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\UseCases\v1\User;
+namespace App\Http\UseCases\Api\v1\User;
 
 use App\Models\User;
 use App\Notifications\AccountDeleted;

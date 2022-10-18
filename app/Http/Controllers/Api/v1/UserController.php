@@ -10,10 +10,10 @@ use App\Http\Requests\Api\v1\User\StoreRequest;
 use App\Http\Requests\Api\v1\User\UpdateAvatarRequest;
 use App\Http\Requests\Api\v1\User\UpdateRequest;
 use App\Http\Resources\Api\v1\UserCollection;
-use App\Http\UseCases\v1\User\DeleteUseCase;
-use App\Http\UseCases\v1\User\StoreUseCase;
-use App\Http\UseCases\v1\User\UpdateAvatarUseCase;
-use App\Http\UseCases\v1\User\UpdateUseCase;
+use App\Http\UseCases\Api\v1\User\DeleteUseCase;
+use App\Http\UseCases\Api\v1\User\StoreUseCase;
+use App\Http\UseCases\Api\v1\User\UpdateAvatarUseCase;
+use App\Http\UseCases\Api\v1\User\UpdateUseCase;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 

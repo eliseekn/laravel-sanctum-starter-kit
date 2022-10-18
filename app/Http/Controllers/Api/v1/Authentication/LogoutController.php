@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Api\v1\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\v1\Authentication\EmailRequest;
-use App\Http\UseCases\v1\Authentication\LogoutUseCase;
+use App\Http\UseCases\Api\v1\Authentication\LogoutUseCase;
 use Illuminate\Http\JsonResponse;
 
 class LogoutController extends Controller

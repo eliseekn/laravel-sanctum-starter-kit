@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\UseCases\v1\Authentication;
+namespace App\Http\UseCases\Api\v1\Authentication;
 
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
