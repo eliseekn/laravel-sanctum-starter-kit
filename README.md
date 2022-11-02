@@ -38,8 +38,12 @@ ResetPassword::createUrlUsing(
     fn ($user, string $token) => env('FRONT_END_URL', 'http://localhost').'/reset-password?email=' . $user->email . '&token='.$token
 );
 ```
+3. Setup your mail server
 
 ## Tests
+1. PHPUnit
 ```php
 php artisan test
 ```
+2. Postman
+Import ***./Laravel Sanctum Starter Kit.postman_collection.json*** to postman
