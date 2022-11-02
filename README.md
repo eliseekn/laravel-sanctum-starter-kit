@@ -18,7 +18,7 @@ An opinionated Laravel starter kit for RESTful API development with Sanctum.
 FRONT_END_URL=http://localhost
 ```
 
-2. Edit the ***boot*** method in ***AuthServiceProvider.php*** file to ensure that your front-end endpoint are correct
+2. Edit the ***boot*** method in ***AuthServiceProvider.php*** file to ensure that your front-end endpoints are correct
 ```php
 VerifyEmail::createUrlUsing(function ($notifiable) {
     // $url is directly set as the API endpoint for email verification

@@ -6,6 +6,7 @@ namespace App\Http\UseCases\Api\v1\Authentication;
 
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 
 final class RegisterUseCase
 {
@@ -19,6 +20,7 @@ final class RegisterUseCase
         return response()->json([
             'status' => 'success',
             'message' => 'User registered successfully.',
+            'token' => $user->createToken(Str::random(15))->plainTextToken,
         ]);
     }
 }

@@ -44,7 +44,7 @@ class AccountCreated extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Account created')
-            ->line('Your account has been created successfully.')
+            ->line('Your account was created successfully.')
             ->line('Your password is '.$this->password.'.')
             ->action('Log in to my account', env('FRONT_END_URL', 'http://localhost').'/login')
             ->line('Thank you for using our application!');

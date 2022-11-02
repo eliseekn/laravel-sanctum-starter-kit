@@ -43,7 +43,7 @@ class AccountDeleted extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('Account deleted')
-            ->line('Your account has been deleted.')
+            ->line('Your account was deleted.')
             ->line('Thank you for using our application!');
     }
 

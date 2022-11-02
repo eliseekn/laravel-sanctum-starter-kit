@@ -28,5 +28,8 @@ Route::prefix('password')
     });
 
 //User routes
-Route::patch('/users/{user}/update-avatar', [UserController::class, 'updateAvatar']);
-Route::apiResource('users', UserController::class);
+Route::middleware('auth:sanctum')
+    ->group(function () {
+        Route::patch('/users/{user}/update-avatar', [UserController::class, 'updateAvatar']);
+        Route::apiResource('users', UserController::class);
+    });

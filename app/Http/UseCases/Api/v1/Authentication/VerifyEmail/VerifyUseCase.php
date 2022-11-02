@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\UseCases\Api\v1\Authentication\VerifyEmail;
 
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Requests\Api\v1\Authentication\EmailVerificationRequest;
 use Illuminate\Http\JsonResponse;
 
 final class VerifyUseCase
