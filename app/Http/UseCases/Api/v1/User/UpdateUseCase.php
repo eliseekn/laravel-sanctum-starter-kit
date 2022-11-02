@@ -16,7 +16,7 @@ final class UpdateUseCase
     ) {
     }
 
-    public function handle(array $data, User $user, ?UploadedFile $file = null): JsonResponse
+    public function handle(User $user, array $data, ?UploadedFile $file = null): JsonResponse
     {
         if (isset($data['password'])) {
             $data['password'] = bcrypt($data['password']);

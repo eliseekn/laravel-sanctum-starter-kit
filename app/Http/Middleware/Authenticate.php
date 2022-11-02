@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Symfony\Component\HttpFoundation\Response;
 
 class Authenticate extends Middleware
 {
@@ -15,7 +17,11 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            throw new HttpResponseException(
+                response()->json(
+                    'Unauthorized', Response::HTTP_UNAUTHORIZED
+                )
+            );
         }
     }
 }
