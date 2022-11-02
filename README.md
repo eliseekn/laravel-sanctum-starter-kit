@@ -1,12 +1,18 @@
 # Laravel Sanctum Starter Kit
-An opinionated Laravel stater kit for RESTful API development with Sanctum.
+An opinionated Laravel starter kit for RESTful API development with Sanctum.
 
 ## Requirements
 - Laravel ^9.35.1
 - PHP ^8.1.1
 
 ## Features
-- Authentication
-- Registration with email verification
+- Login
+- Registration
+- Email verification
 - Password reset
-- User CRUD actions
+- Users management
+
+## Tests
+```php
+php artisan test
+```

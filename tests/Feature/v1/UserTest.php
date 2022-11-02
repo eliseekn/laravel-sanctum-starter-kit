@@ -31,7 +31,7 @@ class UserTest extends AbstractTestCase
             );
 
         Notification::assertSentTo(
-            User::query()->find(2),
+            User::query()->where('email', $user->email)->first(),
             AccountCreated::class
         );
 
