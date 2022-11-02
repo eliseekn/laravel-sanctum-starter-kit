@@ -30,6 +30,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         VerifyEmail::createUrlUsing(function ($notifiable) {
+            // $url is directly set as the API endpoint for email verification
+            // see 'verification.verify' route
             $url = URL::temporarySignedRoute(
                 'verification.verify',
                 now()->addMinutes(Config::get('auth.verification.expire', 60)), [
@@ -42,7 +44,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         ResetPassword::createUrlUsing(
-            fn ($user, string $token) => env('FRONT_END_URL', 'http://localhost').'/reset-password?token='.$token
+            fn ($user, string $token) => env('FRONT_END_URL', 'http://localhost').'/reset-password?email=' . $user->email . '&token='.$token
         );
     }
 }
