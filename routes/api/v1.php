@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 //Authentication routes
 Route::post('/login', LoginController::class);
 Route::post('/register', RegisterController::class);
-Route::post('/logout', LogoutController::class);
 
 Route::prefix('email')
     ->group(function () {
@@ -30,6 +29,8 @@ Route::prefix('password')
 //User routes
 Route::middleware('auth:sanctum')
     ->group(function () {
+        Route::post('/logout', LogoutController::class);
+
         Route::patch('/users/{user}/update-avatar', [UserController::class, 'updateAvatar']);
         Route::apiResource('users', UserController::class);
     });

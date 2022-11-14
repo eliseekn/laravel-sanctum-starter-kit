@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\v1\Authentication;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\v1\Controller;
 use App\Http\Requests\Api\v1\Authentication\LoginRequest;
 use App\Http\UseCases\Api\v1\Authentication\LoginUseCase;
 use Illuminate\Http\JsonResponse;

@@ -9,21 +9,31 @@ use PHPUnit\Framework\TestCase;
 
 class UserRoleTest extends TestCase
 {
-    public function test_admin_role_value_is_correct(): void
+    public function test_get_all_keys_is_correct(): void
     {
-        $this->assertEquals('admin', UserRole::ADMIN->value);
+        $this->assertEquals(
+            ['ADMIN', 'USER'], UserRole::getAllKeys()
+        );
     }
 
-    public function test_user_role_value_is_correct(): void
+    public function test_get_keys_is_correct(): void
     {
-        $this->assertEquals('user', UserRole::USER->value);
+        $this->assertEquals(
+            ['ADMIN'], UserRole::getKeys(['ADMIN'])
+        );
     }
 
-    public function test_get_values_method_is_correct(): void
+    public function test_get_all_values_is_correct(): void
     {
-        $this->assertEquals([
-            'admin',
-            'user',
-        ], UserRole::getValues());
+        $this->assertEquals(
+            ['admin', 'user'], UserRole::getAllValues()
+        );
+    }
+
+    public function test_get_values_is_correct(): void
+    {
+        $this->assertEquals(
+            ['admin'], UserRole::getValues(['admin'])
+        );
     }
 }

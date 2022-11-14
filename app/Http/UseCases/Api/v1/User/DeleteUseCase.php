@@ -15,7 +15,7 @@ final class DeleteUseCase
     {
         $user->delete();
 
-        Notification::route('mail', $user->getAttribute('email'))
+        Notification::route('mail', $user->email)
             ->notify(new AccountDeleted());
 
         return response()->json([
