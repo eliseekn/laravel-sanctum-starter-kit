@@ -11,6 +11,9 @@ use App\Http\UseCases\Api\v1\Authentication\VerifyEmail\NotifyUseCase;
 use App\Http\UseCases\Api\v1\Authentication\VerifyEmail\VerifyUseCase;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @group Email verification
+ */
 class VerifyEmailController extends Controller
 {
     public function notify(EmailRequest $request, NotifyUseCase $useCase): JsonResponse

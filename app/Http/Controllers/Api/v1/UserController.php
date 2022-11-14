@@ -16,8 +16,17 @@ use App\Http\UseCases\Api\v1\User\UpdateUseCase;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @group User management
+ *
+ * @authenticated
+ */
 class UserController extends Controller
 {
+    /**
+     * @apiResourceCollection App\Http\Resources\Api\v1\UserCollection
+     * @apiResourceModel App\Models\User paginate=10
+     */
     public function index(): UserCollection
     {
         return new UserCollection(

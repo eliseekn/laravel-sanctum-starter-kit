@@ -9,6 +9,9 @@ use App\Http\Requests\Api\v1\Authentication\LoginRequest;
 use App\Http\UseCases\Api\v1\Authentication\LoginUseCase;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @group Authentication
+ */
 class LoginController extends Controller
 {
     public function __invoke(LoginRequest $request, LoginUseCase $useCase): JsonResponse

@@ -9,6 +9,9 @@ use App\Http\Requests\Api\v1\Authentication\RegisterRequest;
 use App\Http\UseCases\Api\v1\Authentication\RegisterUseCase;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @group Authentication
+ */
 class RegisterController extends Controller
 {
     public function __invoke(RegisterRequest $request, RegisterUseCase $useCase): JsonResponse

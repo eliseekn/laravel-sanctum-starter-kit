@@ -19,7 +19,7 @@ class UpdateAvatarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'avatar' => ['required', File::image()],
+            'avatar' => ['required', File::types(['png', 'jpg', 'jpeg'])],
         ];
     }
 

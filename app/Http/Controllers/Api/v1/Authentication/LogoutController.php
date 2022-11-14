@@ -9,6 +9,11 @@ use App\Http\Requests\Api\v1\Authentication\EmailRequest;
 use App\Http\UseCases\Api\v1\Authentication\LogoutUseCase;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @group Authentication
+ *
+ * @authenticated
+ */
 class LogoutController extends Controller
 {
     public function __invoke(EmailRequest $request, LogoutUseCase $useCase): JsonResponse

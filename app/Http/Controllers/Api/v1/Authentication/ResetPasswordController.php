@@ -11,6 +11,9 @@ use App\Http\UseCases\Api\v1\Authentication\ResetPassword\NotifyUseCase;
 use App\Http\UseCases\Api\v1\Authentication\ResetPassword\ResetUseCase;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @group Password reset
+ */
 class ResetPasswordController extends Controller
 {
     public function notify(EmailRequest $request, NotifyUseCase $useCase): JsonResponse

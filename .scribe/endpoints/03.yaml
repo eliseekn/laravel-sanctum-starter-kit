@@ -1,0 +1,287 @@
+name: 'User management'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/users/{user_id}/update-avatar'
+    metadata:
+      groupName: 'User management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      user_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      avatar:
+        name: avatar
+        description: ''
+        required: true
+        example: nihil
+        type: string
+        custom: []
+    cleanBodyParameters:
+      avatar: nihil
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/users
+    metadata:
+      groupName: 'User management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"name":"Zackary Schulist I","email":"lucie54@example.org","email_verified_at":null,"role":"user","avatar":null,"updated_at":"2022-11-14T12:26:25.000000Z","created_at":"2022-11-14T12:26:25.000000Z","id":10},{"name":"Deonte Jones","email":"jbatz@example.net","email_verified_at":null,"role":"user","avatar":null,"updated_at":"2022-11-14T12:26:25.000000Z","created_at":"2022-11-14T12:26:25.000000Z","id":11}],"links":{"first":"\/?page=1","last":"\/?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"\/?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"\/","per_page":10,"to":2,"total":2}}'
+        headers: []
+        description: '0'
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users
+    metadata:
+      groupName: 'User management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: liana.herman@example.com
+        type: string
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: dolor
+        type: string
+        custom: []
+      role:
+        name: role
+        description: 'Must be one of <code>admin</code> or <code>user</code>.'
+        required: true
+        example: user
+        type: string
+        custom: []
+    cleanBodyParameters:
+      email: liana.herman@example.com
+      name: dolor
+      role: user
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/users/{id}'
+    metadata:
+      groupName: 'User management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/users/{id}'
+    metadata:
+      groupName: 'User management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: elueilwitz@example.net
+        type: string
+        custom: []
+      name:
+        name: name
+        description: ''
+        required: true
+        example: recusandae
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: dezucnwhsyzwicmlyvrllraxotuskbdjiuswiupkbzjxspctjdanlxvchfvqqhopdjyvzahbtvlhtoyxyxtvdgtugarrkggndulzlfbevlvsiynoznmwnkqcxakarxsjddufrsccvxlvtnhcbqcrkoxmpcyjxgpganqhedckyrjosdcnxnkkrlnsrrgpwasuhmhcdmzobeiqnghzhbwxaxqsnwqeuuizvuwqqlndyvjyjdvkhkyfurtdrctrnimyccvitcompjyezfpsesopjzcjcavcvnoxnzxlftnkxouymvngzsgjmsspbmwhxrmizvhjclixxxvirqleqpimifblfozwhsqgtuepmrasjrnwdqozilmepnucuddwutijzfgyfkmsqwxovskgbcgpxvczqjmthdibdujwlseuudwbcibtbymflanavbjlhurptqjaqhzufrtqwjqrjyhdvdyogwowdoumhvtajlnaqdrpprqtqdnpjgwxinblqlmmdpcfehqdcsjmtpxnevbityufvsildupkbbpaaokrvbkkrwyxjcgmfrcvxkuzsxhwhrrgtqqmpryhlphqqjufnxklgipmcrwafgobjsofmoqmwdbvrucngvtfpgcldzruwqqtziplkpsnzcmblgemngmcmogjjyvgtcurzhiavermbthmuvwemhrwmleiwqdwouqpswxffhzaikfvpcrprkqowicqopeaemrnggvxdrchxolhbjwssxkeksgavgftwpxytwccxcocwekrjufhaenwrpdjpuvxogekrzhlrozpjmazhbwwvmpgitijfzzrzetzyidgqvtcoggthkbenuseonbgjxuoonepgquvmuldceiqvpwvnwikchvjwbypsgxvqgmnbalefeiankieuefkjfjdfwjudretpwmgxgygdsptmbgvgxhfzikzxvbazhlszrhzwiztgiwltqqastzjobuxwlibswklidnfgwjnafhwplpicpaalhzbfhfloxpddngsrzhfijdybdoyewwnkcropbmnrozfdmzptmixnqneltjmcbxvcqsvyhtcpdbuwjthercobaplvmziovxzinyaebqozssapqkbmrcxvkinyhjwmuzljolkahsohdqymqajiqkelmytldapvuyfyq
+        type: string
+        custom: []
+    cleanBodyParameters:
+      email: elueilwitz@example.net
+      name: recusandae
+      password: dezucnwhsyzwicmlyvrllraxotuskbdjiuswiupkbzjxspctjdanlxvchfvqqhopdjyvzahbtvlhtoyxyxtvdgtugarrkggndulzlfbevlvsiynoznmwnkqcxakarxsjddufrsccvxlvtnhcbqcrkoxmpcyjxgpganqhedckyrjosdcnxnkkrlnsrrgpwasuhmhcdmzobeiqnghzhbwxaxqsnwqeuuizvuwqqlndyvjyjdvkhkyfurtdrctrnimyccvitcompjyezfpsesopjzcjcavcvnoxnzxlftnkxouymvngzsgjmsspbmwhxrmizvhjclixxxvirqleqpimifblfozwhsqgtuepmrasjrnwdqozilmepnucuddwutijzfgyfkmsqwxovskgbcgpxvczqjmthdibdujwlseuudwbcibtbymflanavbjlhurptqjaqhzufrtqwjqrjyhdvdyogwowdoumhvtajlnaqdrpprqtqdnpjgwxinblqlmmdpcfehqdcsjmtpxnevbityufvsildupkbbpaaokrvbkkrwyxjcgmfrcvxkuzsxhwhrrgtqqmpryhlphqqjufnxklgipmcrwafgobjsofmoqmwdbvrucngvtfpgcldzruwqqtziplkpsnzcmblgemngmcmogjjyvgtcurzhiavermbthmuvwemhrwmleiwqdwouqpswxffhzaikfvpcrprkqowicqopeaemrnggvxdrchxolhbjwssxkeksgavgftwpxytwccxcocwekrjufhaenwrpdjpuvxogekrzhlrozpjmazhbwwvmpgitijfzzrzetzyidgqvtcoggthkbenuseonbgjxuoonepgquvmuldceiqvpwvnwikchvjwbypsgxvqgmnbalefeiankieuefkjfjdfwjudretpwmgxgygdsptmbgvgxhfzikzxvbazhlszrhzwiztgiwltqqastzjobuxwlibswklidnfgwjnafhwplpicpaalhzbfhfloxpddngsrzhfijdybdoyewwnkcropbmnrozfdmzptmixnqneltjmcbxvcqsvyhtcpdbuwjthercobaplvmziovxzinyaebqozssapqkbmrcxvkinyhjwmuzljolkahsohdqymqajiqkelmytldapvuyfyq
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/users/{id}'
+    metadata:
+      groupName: 'User management'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
