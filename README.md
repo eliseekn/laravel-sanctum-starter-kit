@@ -47,3 +47,6 @@ php artisan test
 ```
 2. Postman
 Import ***./Laravel Sanctum Starter Kit.postman_collection.json*** to postman
+
+## Documenation
+Run ```php artisan serve``` and open ```http://127.0.0.1:8000/docs``` in hour browser

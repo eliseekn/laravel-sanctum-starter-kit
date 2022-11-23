@@ -26,8 +26,13 @@ final class UpdateAvatarUseCase
             ]);
         }
 
-        if ($user->getAttribute('avatar') && Storage::disk('public')->exists($user->getAttribute('avatar'))) {
-            Storage::disk('public')->delete($user->getAttribute('avatar'));
+        if (
+            $user->getAttribute('avatar') &&
+            Storage::disk('public')
+                ->exists($user->getAttribute('avatar'))
+        ) {
+            Storage::disk('public')
+                ->delete($user->getAttribute('avatar'));
         }
 
         $data['avatar'] = $filename;

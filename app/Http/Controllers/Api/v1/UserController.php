@@ -49,16 +49,14 @@ class UserController extends Controller
     public function update(UpdateRequest $request, UpdateUseCase $useCase, User $user): JsonResponse
     {
         return $useCase->handle(
-            $user,
-            $request->validated()
+            $user, $request->validated()
         );
     }
 
     public function updateAvatar(UpdateAvatarRequest $request, UpdateAvatarUseCase $useCase, User $user): JsonResponse
     {
         return $useCase->handle(
-            $user,
-            $request->file('avatar')
+            $user, $request->file('avatar')
         );
     }
 
