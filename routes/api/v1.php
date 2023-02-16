@@ -31,6 +31,6 @@ Route::middleware('auth:sanctum')
     ->group(function () {
         Route::post('/logout', LogoutController::class);
 
-        Route::patch('/users/{user}/update-avatar', [UserController::class, 'updateAvatar']);
+        Route::patch('/users/{user}/avatar', [UserController::class, 'updateAvatar']);
         Route::apiResource('users', UserController::class);
     });

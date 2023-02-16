@@ -18,7 +18,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['sometimes', 'required', 'email', 'unique:users,email,'.$this->route('user')],
+            'email' => ['sometimes', 'required', 'email', 'unique:users,email,'.$this->route('user')->id],
             'name' => ['sometimes', 'required'],
             'password' => ['sometimes', 'required', 'min:8'],
         ];

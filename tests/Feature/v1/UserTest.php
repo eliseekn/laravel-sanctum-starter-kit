@@ -49,7 +49,7 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($user, 'sanctum')
-            ->patchJson('/api/v1/users/'.$user->id, $user->attributesToArray())
+            ->putJson('/api/v1/users/'.$user->id, $user->attributesToArray())
             ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'User updated successfully.')
@@ -65,7 +65,7 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($user, 'sanctum')
-            ->patchJson('/api/v1/users/'.$user->id.'/update-avatar', [
+            ->patchJson('/api/v1/users/'.$user->id.'/avatar', [
                 'avatar' => UploadedFile::fake()->image('avatar.png'),
             ])
             ->assertJson(fn (AssertableJson $json) => $json
