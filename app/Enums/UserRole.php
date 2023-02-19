@@ -9,30 +9,30 @@ enum UserRole: string implements EnumInterface
     case ADMIN = 'admin';
     case USER = 'user';
 
-    public static function getAllKeys(): array
+    public static function getKeys(): array
     {
         return array_map(
             fn ($case) => $case->name, self::cases()
         );
     }
 
-    public static function getKeys(array $keys): array
+    public static function getKey(array $keys): array
     {
-        return array_filter(self::getAllKeys(), function ($key) use ($keys) {
+        return array_filter(self::getKeys(), function ($key) use ($keys) {
             return in_array($key, $keys);
         });
     }
 
-    public static function getAllValues(): array
+    public static function getValues(): array
     {
         return array_map(
             fn ($case) => $case->value, self::cases()
         );
     }
 
-    public static function getValues(array $values): array
+    public static function getValue(array $values): array
     {
-        return array_filter(self::getAllValues(), function ($value) use ($values) {
+        return array_filter(self::getValues(), function ($value) use ($values) {
             return in_array($value, $values);
         });
     }

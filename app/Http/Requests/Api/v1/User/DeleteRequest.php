@@ -13,7 +13,7 @@ class DeleteRequest extends FormRequest
     {
         return $this
             ->user('sanctum')
-            ->isRole(UserRole::ADMIN->value);
+            ->hasRole(UserRole::ADMIN->value);
     }
 
     public function rules(): array

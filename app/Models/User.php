@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\UserRole;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,7 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime'
     ];
 
-    public function isRole(string $role): bool
+    public function hasRole(string $role): bool
     {
         return $this->role === $role;
     }

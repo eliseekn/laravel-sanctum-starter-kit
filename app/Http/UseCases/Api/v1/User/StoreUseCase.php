@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Notifications\AccountCreated;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Notification;
 
 final class StoreUseCase
 {
@@ -19,7 +20,7 @@ final class StoreUseCase
         $data['email_verified_at'] = now();
 
         $user = User::factory()->create($data);
-        $user->notify(new AccountCreated($password));
+        Notification::send($user, new AccountCreated($password));
 
         return response()->json([
             'status' => 'success',

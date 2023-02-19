@@ -19,7 +19,7 @@ final class AuthenticationTest extends AbstractTestCase
 
         $this
             ->postJson('/api/v1/login', [
-                'email' => $user->email,
+                'email' => $user->getAttribute('email'),
                 'password' => 'password',
             ])
             ->assertJson(fn (AssertableJson $json) => $json
@@ -53,7 +53,7 @@ final class AuthenticationTest extends AbstractTestCase
         );
 
         $this->assertDatabaseHas('users', [
-            'email' => $user->email, ]
+            'email' => $user->getAttribute('email'), ]
         );
     }
 
@@ -64,7 +64,7 @@ final class AuthenticationTest extends AbstractTestCase
         $this
             ->actingAs($user, 'sanctum')
             ->postJson('/api/v1/logout', [
-                'email' => $user->email,
+                'email' => $user->getAttribute('email'),
             ])
             ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
@@ -82,7 +82,7 @@ final class AuthenticationTest extends AbstractTestCase
         $this
             ->actingAs($user, 'sanctum')
             ->postJson('/api/v1/email/verification-notification', [
-                'email' => $user->email,
+                'email' => $user->getAttribute('email'),
             ])
             ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
@@ -105,7 +105,7 @@ final class AuthenticationTest extends AbstractTestCase
         $this
             ->actingAs($user, 'sanctum')
             ->postJson('/api/v1/password/reset-notification', [
-                'email' => $user->email,
+                'email' => $user->getAttribute('email'),
             ])
             ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')

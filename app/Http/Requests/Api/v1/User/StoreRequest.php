@@ -16,7 +16,7 @@ class StoreRequest extends FormRequest
     {
         return $this
             ->user('sanctum')
-            ->isRole(UserRole::ADMIN->value);
+            ->hasRole(UserRole::ADMIN->value);
     }
 
     public function rules(): array
@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
         return [
             'email' => ['required', 'email', 'unique:users'],
             'name' => 'required',
-            'role' => ['required', Rule::in(UserRole::getAllValues())],
+            'role' => ['required', Rule::in(UserRole::getValues())],
         ];
     }
 

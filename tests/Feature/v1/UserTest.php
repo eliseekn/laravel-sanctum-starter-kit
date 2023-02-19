@@ -31,12 +31,12 @@ class UserTest extends AbstractTestCase
             );
 
         Notification::assertSentTo(
-            User::query()->where('email', $user->email)->first(),
+            User::query()->where('email', $user->getAttribute('email'))->first(),
             AccountCreated::class
         );
 
         $this->assertDatabaseHas('users', [
-            'email' => $user->email, ]
+            'email' => $user->getAttribute('email'), ]
         );
     }
 
@@ -49,7 +49,7 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($user, 'sanctum')
-            ->putJson('/api/v1/users/'.$user->id, $user->attributesToArray())
+            ->putJson('/api/v1/users/'.$user->getAttribute('id'), $user->attributesToArray())
             ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'User updated successfully.')
@@ -65,7 +65,7 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($user, 'sanctum')
-            ->patchJson('/api/v1/users/'.$user->id.'/avatar', [
+            ->patchJson('/api/v1/users/'.$user->getAttribute('id').'/avatar', [
                 'avatar' => UploadedFile::fake()->image('avatar.png'),
             ])
             ->assertJson(fn (AssertableJson $json) => $json
@@ -86,7 +86,7 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($this->createUserWithRoleAdmin(), 'sanctum')
-            ->deleteJson('/api/v1/users/'.$user->id)
+            ->deleteJson('/api/v1/users/'.$user->getAttribute('id'))
             ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')
                     ->where('message', 'User deleted successfully.')
@@ -99,7 +99,7 @@ class UserTest extends AbstractTestCase
         );
 
         $this->assertDatabaseMissing('users', [
-            'email' => $user->email, ]
+            'email' => $user->getAttribute('email'), ]
         );
     }
 
@@ -113,8 +113,8 @@ class UserTest extends AbstractTestCase
             ->getJson('/api/v1/users')
             ->assertJson(fn (AssertableJson $json) => $json
                     ->has('data', 2)
-                    ->where('data.0.email', $admin->email)
-                    ->where('data.1.email', $user->email)
+                    ->where('data.0.email', $admin->getAttribute('email'))
+                    ->where('data.1.email', $user->getAttribute('email'))
                     ->etc()
             );
     }
@@ -125,7 +125,7 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($this->createUserWithRoleAdmin(), 'sanctum')
-            ->getJson('/api/v1/users/'.$user->id)
+            ->getJson('/api/v1/users/'.$user->getAttribute('id'))
             ->assertExactJson($user->toArray());
     }
 }
