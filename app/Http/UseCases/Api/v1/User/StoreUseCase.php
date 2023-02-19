@@ -7,8 +7,8 @@ namespace App\Http\UseCases\Api\v1\User;
 use App\Models\User;
 use App\Notifications\AccountCreated;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 
 final class StoreUseCase
 {
