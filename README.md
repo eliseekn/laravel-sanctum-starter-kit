@@ -2,8 +2,8 @@
 An opinionated Laravel starter kit for RESTful API development with Sanctum.
 
 ## Requirements
-- Laravel ^9.35.1
-- PHP ^8.1.1
+- Laravel ^10
+- PHP ^8.1
 
 ## Features
 - Login
