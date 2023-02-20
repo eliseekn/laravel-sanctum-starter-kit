@@ -14,7 +14,7 @@ final class StoreUseCase
 {
     public function handle(array $data): JsonResponse
     {
-        $password = Str::random(8);
+        $password = Str::password(8);
 
         $data['password'] = bcrypt($password);
         $data['email_verified_at'] = now();
