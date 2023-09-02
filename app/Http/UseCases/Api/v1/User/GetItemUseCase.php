@@ -9,15 +9,8 @@ use Illuminate\Http\JsonResponse;
 
 final class GetItemUseCase
 {
-    public function handle(?User $user): JsonResponse
+    public function handle(User $user): JsonResponse
     {
-        if (! $user) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'User not found.',
-            ]);
-        }
-
         return response()->json($user);
     }
 }

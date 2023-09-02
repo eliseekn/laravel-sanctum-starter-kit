@@ -16,8 +16,6 @@ class RegisterController extends Controller
 {
     public function __invoke(RegisterRequest $request, RegisterUseCase $useCase): JsonResponse
     {
-        return $useCase->handle(
-            $request->validated()
-        );
+        return $useCase->handle($request->validated());
     }
 }

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\Feature\AbstractTestCase;
 
@@ -36,10 +37,11 @@ final class AuthenticationTest extends AbstractTestCase
         Notification::fake();
 
         $user = $this->makeUserWithRoleUser([
-            'password' => 'password',
+            'password' => Str::password(),
         ]);
 
         $this
+            ->withoutExceptionHandling()
             ->postJson('/api/v1/register', $user->getAttributes())
             ->assertJson(fn (AssertableJson $json) => $json
                     ->where('status', 'success')

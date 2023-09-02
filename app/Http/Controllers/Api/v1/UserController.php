@@ -10,12 +10,14 @@ use App\Http\Requests\Api\v1\User\UpdateAvatarRequest;
 use App\Http\Requests\Api\v1\User\UpdateRequest;
 use App\Http\Resources\Api\v1\UserCollection;
 use App\Http\UseCases\Api\v1\User\DeleteUseCase;
+use App\Http\UseCases\Api\v1\User\GetCollectionUseCase;
 use App\Http\UseCases\Api\v1\User\GetItemUseCase;
 use App\Http\UseCases\Api\v1\User\StoreUseCase;
 use App\Http\UseCases\Api\v1\User\UpdateAvatarUseCase;
 use App\Http\UseCases\Api\v1\User\UpdateUseCase;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 /**
  * @group User management
@@ -29,11 +31,9 @@ class UserController extends Controller
      *
      * @apiResourceModel App\Models\User paginate=10
      */
-    public function index(): UserCollection
+    public function index(Request $request, GetCollectionUseCase $useCase): UserCollection
     {
-        return new UserCollection(
-            User::query()->paginate()
-        );
+        return $useCase->handle($request->query() ?? []);
     }
 
     public function show(User $user, GetItemUseCase $useCase): JsonResponse
@@ -43,23 +43,17 @@ class UserController extends Controller
 
     public function store(StoreRequest $request, StoreUseCase $useCase): JsonResponse
     {
-        return $useCase->handle(
-            $request->validated()
-        );
+        return $useCase->handle($request->validated());
     }
 
     public function update(UpdateRequest $request, UpdateUseCase $useCase, User $user): JsonResponse
     {
-        return $useCase->handle(
-            $user, $request->validated()
-        );
+        return $useCase->handle($user, $request->validated());
     }
 
     public function updateAvatar(UpdateAvatarRequest $request, UpdateAvatarUseCase $useCase, User $user): JsonResponse
     {
-        return $useCase->handle(
-            $user, $request->file('avatar')
-        );
+        return $useCase->handle($user, $request->file('avatar'));
     }
 
     public function destroy(DeleteRequest $request, DeleteUseCase $useCase, User $user): JsonResponse

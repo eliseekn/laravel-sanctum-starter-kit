@@ -16,8 +16,6 @@ class LoginController extends Controller
 {
     public function __invoke(LoginRequest $request, LoginUseCase $useCase): JsonResponse
     {
-        return $useCase->handle(
-            $request->validated()
-        );
+        return $useCase->handle($request->validated());
     }
 }

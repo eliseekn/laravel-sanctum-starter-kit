@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\UseCases\Api\v1\Authentication\ResetPassword;
 
+use App\Http\Shared\MakeApiResponse;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Password;
@@ -11,6 +12,8 @@ use Illuminate\Support\Str;
 
 final class ResetUseCase
 {
+    use MakeApiResponse;
+
     public function handle(array $data): JsonResponse
     {
         $status = Password::reset($data,
@@ -20,23 +23,12 @@ final class ResetUseCase
                     ->setRememberToken(Str::random(60));
 
                 $user->save();
-
-                $user->notify(
-                    new ResetPassword($data['token'])
-                );
+                $user->notify(new ResetPassword($data['token']));
             }
         );
 
-        if ($status !== Password::PASSWORD_RESET) {
-            return response()->json([
-                'status' => 'error',
-                'message' => __($status),
-            ], 400);
-        }
-
-        return response()->json([
-            'status' => 'success',
-            'message' => __($status),
-        ]);
+        return $status !== Password::PASSWORD_RESET
+            ? $this->errorResponse(__($status), 400)
+            : $this->successResponse(__($status));
     }
 }

@@ -18,9 +18,7 @@ class VerifyEmailController extends Controller
 {
     public function notify(EmailRequest $request, NotifyUseCase $useCase): JsonResponse
     {
-        return $useCase->handle(
-            $request->validated()
-        );
+        return $useCase->handle($request->validated());
     }
 
     public function verify(EmailVerificationRequest $request, VerifyUseCase $useCase): JsonResponse

@@ -28,7 +28,7 @@ class EmailVerificationRequest extends FormRequest
         ];
     }
 
-    public function fulfill(): void
+    protected function fulfill(): void
     {
         if (! $this->user('sanctum')->hasVerifiedEmail()) {
             $this->user('sanctum')->markEmailAsVerified();

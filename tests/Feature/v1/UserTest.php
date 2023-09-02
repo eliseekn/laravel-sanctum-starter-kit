@@ -8,6 +8,7 @@ use App\Notifications\AccountDeleted;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\Feature\AbstractTestCase;
 
@@ -18,7 +19,7 @@ class UserTest extends AbstractTestCase
         Notification::fake();
 
         $user = $this->makeUserWithRoleUser([
-            'password' => 'password',
+            'password' => Str::password(),
         ]);
 
         $this

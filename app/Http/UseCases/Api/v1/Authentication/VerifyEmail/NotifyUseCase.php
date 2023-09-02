@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\UseCases\Api\v1\Authentication\VerifyEmail;
 
+use App\Http\Shared\MakeApiResponse;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
 final class NotifyUseCase
 {
+    use MakeApiResponse;
+
     public function handle(array $data): JsonResponse
     {
         $user = User::query()
@@ -17,9 +20,6 @@ final class NotifyUseCase
 
         $user->sendEmailVerificationNotification();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Email verification notification sent successfully.',
-        ]);
+        return $this->successResponse('Email verification notification sent successfully.');
     }
 }

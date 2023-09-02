@@ -1,4 +1,4 @@
-# Laravel Sanctum Starter Kit
+# Starter Kit for Laravel Sanctum
 An opinionated Laravel starter kit for RESTful API development with Sanctum.
 
 ## Requirements

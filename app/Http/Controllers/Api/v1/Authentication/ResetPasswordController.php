@@ -18,9 +18,7 @@ class ResetPasswordController extends Controller
 {
     public function notify(EmailRequest $request, NotifyUseCase $useCase): JsonResponse
     {
-        return $useCase->handle(
-            $request->validated()
-        );
+        return $useCase->handle($request->validated());
     }
 
     public function reset(ResetPasswordRequest $request, ResetUseCase $useCase): JsonResponse
