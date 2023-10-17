@@ -31,6 +31,17 @@ Route::middleware('auth:sanctum')
     ->group(function () {
         Route::post('/logout', LogoutController::class);
 
-        Route::patch('/users/{user}/avatar', [UserController::class, 'updateAvatar']);
-        Route::apiResource('users', UserController::class);
+        Route::patch('/users/{user}/avatar', [UserController::class, 'updateAvatar'])->missing(function () {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not found',
+            ], 404);
+        });
+
+        Route::apiResource('users', UserController::class)->missing(function () {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not found',
+            ], 404);
+        });
     });
