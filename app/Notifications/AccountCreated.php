@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Notifications;
 
+use Config;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -20,8 +21,7 @@ class AccountCreated extends Notification implements ShouldQueue
      */
     public function __construct(
         public string $password
-    ) {
-    }
+    ) {}
 
     /**
      * Get the notification's delivery channels.
@@ -46,7 +46,7 @@ class AccountCreated extends Notification implements ShouldQueue
             ->subject('Account created')
             ->line('Your account was created successfully.')
             ->line('Your password is '.$this->password.'.')
-            ->action('Log in to my account', env('FRONT_END_URL', 'http://localhost').'/login')
+            ->action('Log in to my account', Config::get('app.frontend_url').'/login')
             ->line('Thank you for using our application!');
     }
 

@@ -26,19 +26,19 @@ class UserTest extends AbstractTestCase
             ->actingAs($this->createUserWithRoleAdmin(), 'sanctum')
             ->postJson('/api/v1/users', $user->getAttributes())
             ->assertJson(fn (AssertableJson $json) => $json
-                    ->where('status', 'success')
-                    ->where('message', 'User created successfully.')
-                    ->etc()
+                ->where('status', 'success')
+                ->where('message', 'User created successfully.')
+                ->etc()
             );
 
         Notification::assertSentTo(
-            User::query()->where('email', $user->getAttribute('email'))->first(),
+            User::query()->where('email', $user->email)->first(),
             AccountCreated::class
         );
 
         $this->assertDatabaseHas('users', [
-            'email' => $user->getAttribute('email'), ]
-        );
+            'email' => $user->email,
+        ]);
     }
 
     public function test_as_an_authenticated_user_with_role_user_i_can_update_same_user(): void
@@ -50,11 +50,11 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($user, 'sanctum')
-            ->putJson('/api/v1/users/'.$user->getAttribute('id'), $user->attributesToArray())
+            ->putJson('/api/v1/users/'.$user->id, $user->attributesToArray())
             ->assertJson(fn (AssertableJson $json) => $json
-                    ->where('status', 'success')
-                    ->where('message', 'User updated successfully.')
-                    ->etc()
+                ->where('status', 'success')
+                ->where('message', 'User updated successfully.')
+                ->etc()
             );
 
         $this->assertDatabaseHas('users', ['name' => $name]);
@@ -66,13 +66,13 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($user, 'sanctum')
-            ->patchJson('/api/v1/users/'.$user->getAttribute('id').'/avatar', [
+            ->patchJson('/api/v1/users/'.$user->id.'/avatar', [
                 'avatar' => UploadedFile::fake()->image('avatar.png'),
             ])
             ->assertJson(fn (AssertableJson $json) => $json
-                    ->where('status', 'success')
-                    ->where('message', 'Avatar updated successfully.')
-                    ->etc()
+                ->where('status', 'success')
+                ->where('message', 'Avatar updated successfully.')
+                ->etc()
             );
 
         $user = User::query()->first();
@@ -87,21 +87,21 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($this->createUserWithRoleAdmin(), 'sanctum')
-            ->deleteJson('/api/v1/users/'.$user->getAttribute('id'))
+            ->deleteJson('/api/v1/users/'.$user->id)
             ->assertJson(fn (AssertableJson $json) => $json
-                    ->where('status', 'success')
-                    ->where('message', 'User deleted successfully.')
-                    ->etc()
+                ->where('status', 'success')
+                ->where('message', 'User deleted successfully.')
+                ->etc()
             );
 
         Notification::assertSentTo(
-            new AnonymousNotifiable(),
+            new AnonymousNotifiable,
             AccountDeleted::class
         );
 
         $this->assertDatabaseMissing('users', [
-            'email' => $user->getAttribute('email'), ]
-        );
+            'email' => $user->email,
+        ]);
     }
 
     public function test_as_an_authenticated_user_with_role_admin_i_can_get_user_collection(): void
@@ -113,10 +113,10 @@ class UserTest extends AbstractTestCase
             ->actingAs($admin, 'sanctum')
             ->getJson('/api/v1/users')
             ->assertJson(fn (AssertableJson $json) => $json
-                    ->has('data', 2)
-                    ->where('data.0.email', $admin->getAttribute('email'))
-                    ->where('data.1.email', $user->getAttribute('email'))
-                    ->etc()
+                ->has('data', 2)
+                ->where('data.0.email', $admin->getAttribute('email'))
+                ->where('data.1.email', $user->email)
+                ->etc()
             );
     }
 
@@ -126,7 +126,7 @@ class UserTest extends AbstractTestCase
 
         $this
             ->actingAs($this->createUserWithRoleAdmin(), 'sanctum')
-            ->getJson('/api/v1/users/'.$user->getAttribute('id'))
+            ->getJson('/api/v1/users/'.$user->id)
             ->assertExactJson($user->toArray());
     }
 }

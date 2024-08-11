@@ -48,12 +48,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->role === $role;
     }
-
-    public static function findByIdOrEmail(string|int $identifier)
-    {
-        return User::query()
-            ->where('id', $identifier)
-            ->orWhere('email', $identifier)
-            ->first();
-    }
 }

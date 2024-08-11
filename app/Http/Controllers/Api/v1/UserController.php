@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Requests\Api\v1\User\DeleteRequest;
+use App\Enums\UserRole;
 use App\Http\Requests\Api\v1\User\StoreRequest;
 use App\Http\Requests\Api\v1\User\UpdateAvatarRequest;
 use App\Http\Requests\Api\v1\User\UpdateRequest;
 use App\Http\Resources\Api\v1\UserCollection;
 use App\Http\UseCases\Api\v1\User\DeleteUseCase;
 use App\Http\UseCases\Api\v1\User\GetCollectionUseCase;
-use App\Http\UseCases\Api\v1\User\GetItemUseCase;
 use App\Http\UseCases\Api\v1\User\StoreUseCase;
 use App\Http\UseCases\Api\v1\User\UpdateAvatarUseCase;
 use App\Http\UseCases\Api\v1\User\UpdateUseCase;
 use App\Models\User;
+use Gate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -36,9 +36,9 @@ class UserController extends Controller
         return $useCase->handle($request->query() ?? []);
     }
 
-    public function show(User $user, GetItemUseCase $useCase): JsonResponse
+    public function show(User $user): JsonResponse
     {
-        return $useCase->handle($user);
+        return response()->json($user);
     }
 
     public function store(StoreRequest $request, StoreUseCase $useCase): JsonResponse
@@ -56,8 +56,10 @@ class UserController extends Controller
         return $useCase->handle($user, $request->file('avatar'));
     }
 
-    public function destroy(DeleteRequest $request, DeleteUseCase $useCase, User $user): JsonResponse
+    public function destroy(Request $request, DeleteUseCase $useCase, User $user): JsonResponse
     {
+        Gate::allowIf($request->user('sanctum')->hasRole(UserRole::ADMIN));
+
         return $useCase->handle($user);
     }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Api\v1\User;
 
-use App\Http\Shared\MakeApiResponse;
+use Eliseekn\LaravelApiResponse\MakeApiResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -16,7 +16,7 @@ class UpdateAvatarRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return $this->route('user')->id === $this->user('sanctum')->id;
+        return $this->route('user')->id === $this->user('sanctum')->id; // @phpstan-ignore-line
     }
 
     public function rules(): array
@@ -29,7 +29,7 @@ class UpdateAvatarRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            $this->errorResponse($validator->errors()->toArray(), 422)
+            $this->errorResponse($validator->errors()->toArray(), 400)
         );
     }
 }

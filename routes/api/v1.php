@@ -15,15 +15,17 @@ Route::post('/login', LoginController::class);
 Route::post('/register', RegisterController::class);
 
 Route::prefix('email')
+    ->controller(VerifyEmailController::class)
     ->group(function () {
-        Route::post('/verification-notification', [VerifyEmailController::class, 'notify']);
-        Route::get('/verify/{id}/{hash}', [VerifyEmailController::class, 'verify'])->name('verification.verify');
+        Route::post('/verification-notification', 'notify');
+        Route::get('/verify/{id}/{hash}', 'verify')->name('verification.verify');
     });
 
 Route::prefix('password')
+    ->controller(ResetPasswordController::class)
     ->group(function () {
-        Route::post('/reset-notification', [ResetPasswordController::class, 'notify']);
-        Route::post('/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+        Route::post('/reset-notification', 'notify');
+        Route::post('/reset', 'reset')->name('password.update');
     });
 
 //User routes
@@ -31,17 +33,6 @@ Route::middleware('auth:sanctum')
     ->group(function () {
         Route::post('/logout', LogoutController::class);
 
-        Route::patch('/users/{user}/avatar', [UserController::class, 'updateAvatar'])->missing(function () {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'User not found',
-            ], 404);
-        });
-
-        Route::apiResource('users', UserController::class)->missing(function () {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'User not found',
-            ], 404);
-        });
+        Route::patch('/users/{user}/avatar', [UserController::class, 'updateAvatar']);
+        Route::apiResource('users', UserController::class);
     });

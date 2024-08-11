@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\UseCases\Api\v1\Authentication\ResetPassword;
 
-use App\Http\Shared\MakeApiResponse;
+use Eliseekn\LaravelApiResponse\MakeApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Password;
 

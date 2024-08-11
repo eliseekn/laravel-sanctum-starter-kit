@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Api\v1\User;
 
-use App\Http\Shared\MakeApiResponse;
+use Eliseekn\LaravelApiResponse\MakeApiResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -16,13 +16,13 @@ class UpdateRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return $this->route('user')->id === $this->user('sanctum')->id;
+        return $this->route('user')->id === $this->user('sanctum')->id; // @phpstan-ignore-line
     }
 
     public function rules(): array
     {
         return [
-            'email' => ['sometimes', 'required', 'email', 'unique:users,email,'.$this->route('user')->id],
+            'email' => ['sometimes', 'required', 'email', 'unique:users,email,'.$this->route('user')->id], // @phpstan-ignore-line
             'name' => ['sometimes', 'required'],
             'password' => ['sometimes', 'required', Password::min(8)->letters()->numbers()->mixedCase()->symbols()],
         ];
@@ -40,7 +40,7 @@ class UpdateRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            $this->errorResponse($validator->errors()->toArray(), 422)
+            $this->errorResponse($validator->errors()->toArray(), 400)
         );
     }
 }

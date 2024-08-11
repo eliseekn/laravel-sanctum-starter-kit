@@ -17,7 +17,7 @@ abstract class AbstractTestCase extends TestCase
     {
         return User::factory()->make(
             array_merge(
-                $attributes, ['role' => UserRole::USER->value]
+                $attributes, ['role' => UserRole::USER]
             )
         );
     }
@@ -38,7 +38,7 @@ abstract class AbstractTestCase extends TestCase
     {
         return User::factory()->make(
             array_merge(
-                $attributes, ['role' => UserRole::ADMIN->value]
+                $attributes, ['role' => UserRole::ADMIN]
             )
         );
     }

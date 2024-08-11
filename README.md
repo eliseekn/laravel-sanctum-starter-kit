@@ -31,22 +31,19 @@ VerifyEmail::createUrlUsing(function ($notifiable) {
         ]
     );
 
-    return env('FRONT_END_URL', 'http://localhost').'/email-verification?url='.urlencode($url);
+    return Config::get('app.frontend_url').'/email-verification?url='.urlencode($url);
 });
 
 ResetPassword::createUrlUsing(
-    fn ($user, string $token) => env('FRONT_END_URL', 'http://localhost').'/reset-password?email=' . $user->email . '&token='.$token
+    fn ($user, string $token) => Config::get('app.frontend_url').'/reset-password?email=' . $user->email . '&token='.$token
 );
 ```
 3. Setup your mail server
 
-## Tests
-1. PHPUnit
+## Testing
 ```php
 php artisan test
 ```
-2. Postman
-Import ***./Laravel Sanctum Starter Kit.postman_collection.json*** to postman
 
 ## Documenation
 Run ```php artisan serve``` and open ```http://127.0.0.1:8000/docs``` in hour browser

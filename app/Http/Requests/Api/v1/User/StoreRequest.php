@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\Api\v1\User;
 
 use App\Enums\UserRole;
-use App\Http\Shared\MakeApiResponse;
+use Eliseekn\LaravelApiResponse\MakeApiResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -19,7 +19,7 @@ class StoreRequest extends FormRequest
     {
         return $this
             ->user('sanctum')
-            ->hasRole(UserRole::ADMIN->value);
+            ->hasRole(UserRole::ADMIN);
     }
 
     public function rules(): array
@@ -27,14 +27,14 @@ class StoreRequest extends FormRequest
         return [
             'email' => ['required', 'email', 'unique:users'],
             'name' => 'required',
-            'role' => ['required', Rule::in(UserRole::getValues())],
+            'role' => ['required', Rule::in([UserRole::ADMIN, UserRole::USER])],
         ];
     }
 
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            $this->errorResponse($validator->errors()->toArray(), 422)
+            $this->errorResponse($validator->errors()->toArray(), 400)
         );
     }
 }
