@@ -46,4 +46,4 @@ php artisan test
 ```
 
 ## Documenation
-Run ```php artisan serve``` and open ```http://127.0.0.1:8000/docs``` in hour browser
+Run ```php artisan serve``` and open ```http://127.0.0.1:8000/docs``` in your web browser.
