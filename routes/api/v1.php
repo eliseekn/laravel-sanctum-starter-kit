@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Api\v1\Authentication\LoginController;
-use App\Http\Controllers\Api\v1\Authentication\LogoutController;
-use App\Http\Controllers\Api\v1\Authentication\RegisterController;
-use App\Http\Controllers\Api\v1\Authentication\ResetPasswordController;
-use App\Http\Controllers\Api\v1\Authentication\VerifyEmailController;
-use App\Http\Controllers\Api\v1\UserController;
+use App\Http\Controllers\v1\Authentication\LoginController;
+use App\Http\Controllers\v1\Authentication\LogoutController;
+use App\Http\Controllers\v1\Authentication\RegisterController;
+use App\Http\Controllers\v1\Authentication\ResetPasswordController;
+use App\Http\Controllers\v1\Authentication\VerifyEmailController;
+use App\Http\Controllers\v1\UserController;
 use Illuminate\Support\Facades\Route;
 
 //Authentication routes
@@ -32,7 +32,6 @@ Route::prefix('password')
 Route::middleware('auth:sanctum')
     ->group(function () {
         Route::post('/logout', LogoutController::class);
-
-        Route::patch('/users/{user}/avatar', [UserController::class, 'updateAvatar']);
+        Route::patch('/users/{user}/avatar', [UserController::class, 'uploadAvatar']);
         Route::apiResource('users', UserController::class);
     });

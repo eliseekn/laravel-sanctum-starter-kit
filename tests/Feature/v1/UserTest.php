@@ -10,9 +10,9 @@ use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Tests\Feature\AbstractTestCase;
+use Tests\Feature\Fixtures;
 
-class UserTest extends AbstractTestCase
+class UserTest extends Fixtures
 {
     public function test_as_an_authenticated_user_with_role_admin_i_can_create_user(): void
     {
@@ -46,7 +46,7 @@ class UserTest extends AbstractTestCase
         $user = $this->createUserWithRoleUser();
 
         $name = fake()->name();
-        $user->setAttribute('name', $name);
+        $user->name = $name;
 
         $this
             ->actingAs($user, 'sanctum')
@@ -60,7 +60,7 @@ class UserTest extends AbstractTestCase
         $this->assertDatabaseHas('users', ['name' => $name]);
     }
 
-    public function test_as_an_authenticated_user_with_role_user_i_can_update_same_user_avatar(): void
+    public function test_as_an_authenticated_user_with_role_user_i_can_upload_my_avatar(): void
     {
         $user = $this->createUserWithRoleUser();
 
@@ -71,12 +71,11 @@ class UserTest extends AbstractTestCase
             ])
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', 'success')
-                ->where('message', 'Avatar updated successfully.')
+                ->where('message', 'Avatar uploaded successfully.')
                 ->etc()
             );
 
-        $user = User::query()->first();
-        $this->assertFileExists(storage_path('app/public').'/'.$user->avatar);
+        $this->assertFileExists(storage_path('app/public').'/'.User::query()->first('avatar')->avatar);
     }
 
     public function test_as_an_authenticated_user_with_role_admin_i_can_delete_user(): void
@@ -114,7 +113,7 @@ class UserTest extends AbstractTestCase
             ->getJson('/api/v1/users')
             ->assertJson(fn (AssertableJson $json) => $json
                 ->has('data', 2)
-                ->where('data.0.email', $admin->getAttribute('email'))
+                ->where('data.0.email', $admin->email)
                 ->where('data.1.email', $user->email)
                 ->etc()
             );

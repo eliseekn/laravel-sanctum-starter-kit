@@ -10,9 +10,9 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Tests\Feature\AbstractTestCase;
+use Tests\Feature\Fixtures;
 
-final class AuthenticationTest extends AbstractTestCase
+final class AuthenticationTest extends Fixtures
 {
     public function test_as_a_registered_user_i_can_log_in(): void
     {
