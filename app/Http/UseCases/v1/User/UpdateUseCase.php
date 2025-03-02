@@ -14,8 +14,8 @@ final class UpdateUseCase
 
     public function handle(User $user, array $data): JsonResponse
     {
-        $user->update($data);
-
-        return $this->successResponse('User updated successfully.');
+        return $user->update($data)
+            ? $this->successResponse('User updated successfully.')
+            : $this->errorResponse('Failed to update user.');
     }
 }

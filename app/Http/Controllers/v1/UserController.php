@@ -59,7 +59,7 @@ class UserController extends Controller
 
     public function destroy(Request $request, DeleteUseCase $useCase, User $user): JsonResponse
     {
-        Gate::allowIf($request->user('sanctum')->hasRole(UserRole::ADMIN));
+        Gate::allowIf($request->user('sanctum')->isRole(UserRole::ADMIN));
 
         return $useCase->handle($user);
     }

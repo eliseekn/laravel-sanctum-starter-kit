@@ -33,8 +33,9 @@ final class UploadAvatarUseCase
         }
 
         $data['avatar'] = $filename;
-        $user->update($data);
 
-        return $this->successResponse('Avatar uploaded successfully.');
+        return $user->update($data)
+            ? $this->successResponse('Avatar uploaded successfully.')
+            : $this->errorResponse('Failed to upload avatar.');
     }
 }

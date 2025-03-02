@@ -19,7 +19,7 @@ class StoreRequest extends FormRequest
     {
         return $this
             ->user('sanctum')
-            ->hasRole(UserRole::ADMIN);
+            ->isRole(UserRole::ADMIN);
     }
 
     public function rules(): array

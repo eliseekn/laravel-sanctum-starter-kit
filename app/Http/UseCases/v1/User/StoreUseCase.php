@@ -31,7 +31,9 @@ final class StoreUseCase
 
             return $this->successResponse('User created successfully.');
         } catch (Exception $e) {
-            return $this->errorResponse($e->getMessage());
+            report($e);
+
+            return $this->errorResponse('Failed to create user.');
         }
     }
 }

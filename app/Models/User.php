@@ -44,7 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function hasRole(string $role): bool
+    public function isRole(string $role): bool
     {
         return $this->role === $role;
     }
