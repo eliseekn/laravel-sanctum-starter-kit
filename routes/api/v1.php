@@ -1,0 +1,35 @@
+<?php
+
+use App\Http\Controllers\v1\AuthController;
+use App\Http\Controllers\v1\ResetPasswordController;
+use App\Http\Controllers\v1\UserController;
+use App\Http\Controllers\v1\VerifyEmailController;
+use Illuminate\Support\Facades\Route;
+
+Route::prefix('/v1')
+    ->group(function () {
+        Route::controller(AuthController::class)
+            ->group(function () {
+                Route::post('/login', 'login');
+                Route::post('/register', 'register');
+                Route::post('/logout', 'logout')->middleware('auth:sanctum');
+            });
+
+        Route::patch('/users/{user}/update-profile', [UserController::class, 'updateProfile']);
+        Route::patch('/users/{user}/update-password', [UserController::class, 'updatePassword']);
+        Route::apiResource('users', UserController::class)->middleware('auth:sanctum');
+
+        Route::prefix('email')
+            ->controller(VerifyEmailController::class)
+            ->group(function () {
+                Route::post('/verification-notification', 'notify');
+                Route::get('/verify/{id}/{hash}', 'verify')->name('verification.verify');
+            });
+
+        Route::prefix('password')
+            ->controller(ResetPasswordController::class)
+            ->group(function () {
+                Route::post('/reset-notification', 'notify');
+                Route::post('/reset', 'reset')->name('password.update');
+            });
+    });
