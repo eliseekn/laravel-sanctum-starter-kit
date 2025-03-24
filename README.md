@@ -1,6 +1,6 @@
 
 # Starter Kit for Laravel Sanctum
-An opinionated Laravel starter kit for RESTfull API development with Sanctum.
+An opinionated Laravel starter kit for RESTful API development with Sanctum.
 
 ## Requirements
 - Laravel ^12
@@ -27,17 +27,17 @@ VerifyEmail::createUrlUsing(function ($notifiable) {
     // see 'verification.verify' route
     $url = URL::temporarySignedRoute(
         'verification.verify',
-        now()->addMinutes(Config::get('auth.verification.expire', 60)), [
+        now()->addMinutes(config('auth.verification.expire', 60)), [
             'id' => $notifiable->getKey(),
             'hash' => sha1($notifiable->getEmailForVerification()),
         ]
     );
 
-    return Config::get('app.frontend_url').'/email-verification?url='.urlencode($url);
+    return config('app.frontend_url').'/email-verification?url='.urlencode($url);
 });
 
 ResetPassword::createUrlUsing(
-    fn ($user, string $token) => Config::get('app.frontend_url').'/reset-password?email=' . $user->email . '&token='.$token
+    fn ($user, string $token) => config('app.frontend_url').'/reset-password?email=' . $user->email . '&token='.$token
 );
 ```
 3. Setup your mail server
