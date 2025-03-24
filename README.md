@@ -17,7 +17,7 @@ An opinionated Laravel starter kit for RESTfull API development with Sanctum.
 ## To do
 1. Add front-end url in the ***.env*** file
 ```php
-FRONT_END_URL=http://localhost
+FRONTEND_URL=http://localhost
 ```
 
 2. Edit the ***boot*** method in ***AppServiceProvider.php*** file to ensure that your front-end endpoints are correct
