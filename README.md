@@ -1,4 +1,3 @@
-
 # Starter Kit for Laravel Sanctum
 An opinionated Laravel starter kit for RESTful API development with Sanctum.
 
@@ -13,6 +12,13 @@ An opinionated Laravel starter kit for RESTful API development with Sanctum.
 - Password reset
 - Users management
 - API Documentation with Scribe
+
+## Installation
+```bash
+git clone https://github.com/eliseekn/laravel-sanctum-starter-kit.git project-name
+cd project-name && composer install
+cp .env.example .env
+```
 
 ## To do
 1. Add front-end url in the ***.env*** file
