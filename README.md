@@ -1,5 +1,5 @@
 # Starter Kit for Laravel Sanctum
-An opinionated Laravel starter kit for RESTful API development with Sanctum.
+An opinionated starter kit for RESTful API development with Laravel Sanctum.
 
 ## Requirements
 - Laravel ^12
@@ -12,6 +12,7 @@ An opinionated Laravel starter kit for RESTful API development with Sanctum.
 - Password reset
 - Users management
 - API Documentation with Scribe
+- API versioning
 
 ## Installation
 ```bash
