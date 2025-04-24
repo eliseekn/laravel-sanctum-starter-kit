@@ -22,7 +22,7 @@ class ProfileTest extends TestCase
 
         $this
             ->actingAs($user, 'sanctum')
-            ->patchJson('/api/v1/users/'.$user->id.'/update-profile', [
+            ->patchJson('/api/v1/profile/'.$user->id.'/update', [
                 'name' => $name,
             ])
             ->assertStatus(200)
@@ -46,7 +46,7 @@ class ProfileTest extends TestCase
 
         $this
             ->actingAs($user, 'sanctum')
-            ->patchJson('/api/v1/users/'.$user->id.'/update-password', [
+            ->patchJson('/api/v1/profile/'.$user->id.'/update-password', [
                 'old_password' => 'password',
                 'new_password' => 'Pa$$w0rd!',
             ])
