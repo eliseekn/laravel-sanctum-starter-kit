@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\v1\AuthController;
+use App\Http\Controllers\v1\ProfileController;
 use App\Http\Controllers\v1\ResetPasswordController;
 use App\Http\Controllers\v1\UserController;
 use App\Http\Controllers\v1\VerifyEmailController;
@@ -15,8 +16,14 @@ Route::prefix('/v1')
                 Route::post('/logout', 'logout')->middleware('auth:sanctum');
             });
 
-        Route::patch('/users/{user}/update-profile', [UserController::class, 'updateProfile']);
-        Route::patch('/users/{user}/update-password', [UserController::class, 'updatePassword']);
+        Route::prefix('/profile')
+            ->controller(ProfileController::class)
+            ->middleware('auth:sanctum')
+            ->group(function () {
+                Route::patch('/{user}/update', 'update');
+                Route::patch('/{user}/update-password', 'updatePassword');
+            });
+
         Route::apiResource('users', UserController::class)->middleware('auth:sanctum');
 
         Route::prefix('email')

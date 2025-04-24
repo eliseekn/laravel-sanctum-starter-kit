@@ -5,16 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\v1\User\DeleteRequest;
 use App\Http\Requests\v1\User\StoreRequest;
-use App\Http\Requests\v1\User\UpdatePasswordRequest;
-use App\Http\Requests\v1\User\UpdateProfileRequest;
 use App\Http\Requests\v1\User\UpdateRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\UseCases\v1\User\DeleteUseCase;
 use App\Http\UseCases\v1\User\GetCollectionUseCase;
 use App\Http\UseCases\v1\User\StoreUseCase;
-use App\Http\UseCases\v1\User\UpdatePasswordUseCase;
 use App\Http\UseCases\v1\User\UpdateUseCase;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -58,18 +54,12 @@ class UserController extends Controller
         return $useCase->handle($user, $request->validated());
     }
 
-    public function destroy(DeleteRequest $request, User $user, DeleteUseCase $useCase): JsonResponse
+    public function destroy(Request $request, User $user, DeleteUseCase $useCase): JsonResponse
     {
+        if ($request->user('sanctum')->cannot('delete', $user)) {
+            abort(403);
+        }
+
         return $useCase->handle($user);
-    }
-
-    public function updateProfile(UpdateProfileRequest $request, User $user, UpdateUseCase $useCase): JsonResponse
-    {
-        return $useCase->handle($user, $request->validated());
-    }
-
-    public function updatePassword(UpdatePasswordRequest $request, User $user, UpdatePasswordUseCase $useCase): JsonResponse
-    {
-        return $useCase->handle($user, $request->validated());
     }
 }
