@@ -1,9 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
+use App\Models\User;
+use App\Policies\UserPolicy;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,8 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         VerifyEmail::createUrlUsing(function ($notifiable) {
-            // $url is directly set as the API endpoint for email verification
-            // see 'verification.verify' route
             $url = URL::temporarySignedRoute(
                 'verification.verify',
                 now()->addMinutes(config('auth.verification.expire', 60)), [
@@ -39,5 +42,7 @@ class AppServiceProvider extends ServiceProvider
         ResetPassword::createUrlUsing(
             fn ($user, string $token) => config('app.frontend_url').'/reset-password?email='.$user->email.'&token='.$token
         );
+
+        Gate::policy(User::class, UserPolicy::class);
     }
 }
