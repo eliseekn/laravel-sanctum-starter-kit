@@ -1,5 +1,3 @@
-config: config-env config-db storage-link
-
 format:
 	@php ./vendor/bin/pint
 
@@ -12,15 +10,14 @@ serve:
 test:
 	@php artisan test -p
 
-generate-doc:
+doc:
 	@php artisan scribe:generate
 
-config-db:
+reset-db:
 	@php artisan migrate:fresh --seed
 
-config-env:
+init:
 	cp .env.example .env
 	@php artisan key:generate
-
-storage-link:
 	@php artisan storage:link
+	@php artisan migrate --seed

@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return (int) $this->user('sanctum')?->id === (int) $this->route('user')?->id; // @phpstan-ignore-line
+        return (int) $this->user('sanctum')?->id === (int) $this->route('user')?->id;
     }
 
     /**
@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => ['sometimes', 'max:255'],
-            'email' => ['sometimes', 'email', 'max:255', 'unique:users,email,'.$this->route('user')?->id], // @phpstan-ignore-line
+            'email' => ['sometimes', 'email', 'max:255', 'unique:users,email,'.$this->route('user')?->id],
         ];
     }
 

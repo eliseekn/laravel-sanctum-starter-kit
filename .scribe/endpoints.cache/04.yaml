@@ -4,10 +4,12 @@ name: 'Reset password'
 description: ''
 endpoints:
   -
+    custom: []
     httpMethods:
       - POST
     uri: api/v1/password/reset-notification
     metadata:
+      custom: []
       groupName: 'Reset password'
       groupDescription: ''
       subgroup: ''
@@ -15,7 +17,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -25,6 +27,7 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       email:
+        custom: []
         name: email
         description: 'Must be a valid email address.'
         required: true
@@ -33,7 +36,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
       email: gbailey@example.net
     fileParameters: []
@@ -43,12 +46,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
     uri: api/v1/password/reset
     metadata:
+      custom: []
       groupName: 'Reset password'
       groupDescription: ''
       subgroup: ''
@@ -56,7 +60,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -66,6 +70,7 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       token:
+        custom: []
         name: token
         description: ''
         required: true
@@ -74,8 +79,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       email:
+        custom: []
         name: email
         description: 'Must be a valid email address.'
         required: true
@@ -84,8 +90,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       password:
+        custom: []
         name: password
         description: 'Must not be greater than 255 characters.'
         required: true
@@ -94,7 +101,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
       token: architecto
       email: zbailey@example.net
@@ -106,4 +113,3 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []

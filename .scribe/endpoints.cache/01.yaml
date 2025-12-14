@@ -4,10 +4,12 @@ name: Profile
 description: ''
 endpoints:
   -
+    custom: []
     httpMethods:
       - PATCH
     uri: 'api/v1/profile/{user_id}/update'
     metadata:
+      custom: []
       groupName: Profile
       groupDescription: ''
       subgroup: ''
@@ -15,13 +17,14 @@ endpoints:
       title: ''
       description: ''
       authenticated: true
-      custom: []
+      deprecated: false
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       user_id:
+        custom: []
         name: user_id
         description: 'The ID of the user.'
         required: true
@@ -30,13 +33,14 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanUrlParameters:
       user_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       name:
+        custom: []
         name: name
         description: 'Must not be greater than 255 characters.'
         required: false
@@ -45,8 +49,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       email:
+        custom: []
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: false
@@ -55,7 +60,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
       name: b
       email: zbailey@example.net
@@ -69,12 +74,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - PATCH
     uri: 'api/v1/profile/{user_id}/update-password'
     metadata:
+      custom: []
       groupName: Profile
       groupDescription: ''
       subgroup: ''
@@ -82,13 +88,14 @@ endpoints:
       title: ''
       description: ''
       authenticated: true
-      custom: []
+      deprecated: false
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       user_id:
+        custom: []
         name: user_id
         description: 'The ID of the user.'
         required: true
@@ -97,13 +104,14 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanUrlParameters:
       user_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       old_password:
+        custom: []
         name: old_password
         description: ''
         required: true
@@ -112,8 +120,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       new_password:
+        custom: []
         name: new_password
         description: 'Must not be greater than 255 characters.'
         required: true
@@ -122,7 +131,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
       old_password: architecto
       new_password: 'n'
@@ -136,4 +145,3 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []

@@ -15,7 +15,7 @@ class UpdatePasswordRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return (int) $this->user('sanctum')?->id === (int) $this->route('user')?->id; // @phpstan-ignore-line
+        return (int) $this->user('sanctum')?->id === (int) $this->route('user')?->id;
     }
 
     /**
@@ -25,7 +25,15 @@ class UpdatePasswordRequest extends FormRequest
     {
         return [
             'old_password' => ['required', new CorrectPassword],
-            'new_password' => ['required', 'max:255', Password::min(8)->mixedCase()->letters()->numbers()->symbols()],
+            'new_password' => [
+                'required',
+                'max:255',
+                Password::min(8)
+                    ->mixedCase()
+                    ->letters()
+                    ->numbers()
+                    ->symbols(),
+            ],
         ];
     }
 

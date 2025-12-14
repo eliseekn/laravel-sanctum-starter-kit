@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => ['sometimes', 'max:255'],
-            'email' => ['sometimes', 'email', 'max:255', 'unique:users,email,'.$this->route('user')?->id], // @phpstan-ignore-line
+            'email' => ['sometimes', 'email', 'max:255', 'unique:users,email,'.$this->route('user')?->id],
             'role' => ['sometimes', Rule::in([UserRole::ADMIN, UserRole::USER])],
         ];
     }

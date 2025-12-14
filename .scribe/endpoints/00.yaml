@@ -2,10 +2,12 @@ name: Authentication
 description: ''
 endpoints:
   -
+    custom: []
     httpMethods:
       - POST
     uri: api/v1/login
     metadata:
+      custom: []
       groupName: Authentication
       groupDescription: ''
       subgroup: ''
@@ -13,7 +15,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -23,6 +25,7 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       email:
+        custom: []
         name: email
         description: 'Must be a valid email address.'
         required: true
@@ -31,8 +34,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       password:
+        custom: []
         name: password
         description: ''
         required: true
@@ -41,7 +45,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
       email: gbailey@example.net
       password: architecto
@@ -52,12 +56,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
     uri: api/v1/register
     metadata:
+      custom: []
       groupName: Authentication
       groupDescription: ''
       subgroup: ''
@@ -65,7 +70,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -75,6 +80,7 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       name:
+        custom: []
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
@@ -83,8 +89,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       email:
+        custom: []
         name: email
         description: 'Must be a valid email address. Must not be greater than 255 characters.'
         required: true
@@ -93,8 +100,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       password:
+        custom: []
         name: password
         description: 'Must not be greater than 255 characters.'
         required: true
@@ -103,7 +111,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
       name: b
       email: zbailey@example.net
@@ -115,12 +123,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - POST
     uri: api/v1/logout
     metadata:
+      custom: []
       groupName: Authentication
       groupDescription: ''
       subgroup: ''
@@ -128,7 +137,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: true
-      custom: []
+      deprecated: false
     headers:
       Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
@@ -149,4 +158,3 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []

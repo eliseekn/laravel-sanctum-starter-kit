@@ -4,10 +4,12 @@ name: 'Email verification'
 description: ''
 endpoints:
   -
+    custom: []
     httpMethods:
       - POST
     uri: api/v1/email/verification-notification
     metadata:
+      custom: []
       groupName: 'Email verification'
       groupDescription: ''
       subgroup: ''
@@ -15,7 +17,7 @@ endpoints:
       title: ''
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -25,6 +27,7 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       email:
+        custom: []
         name: email
         description: 'Must be a valid email address.'
         required: true
@@ -33,7 +36,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanBodyParameters:
       email: gbailey@example.net
     fileParameters: []
@@ -43,12 +46,13 @@ endpoints:
     controller: null
     method: null
     route: null
-    custom: []
   -
+    custom: []
     httpMethods:
       - GET
     uri: 'api/v1/email/verify/{id}/{hash}'
     metadata:
+      custom: []
       groupName: 'Email verification'
       groupDescription: ''
       subgroup: ''
@@ -56,12 +60,13 @@ endpoints:
       title: ''
       description: ''
       authenticated: false
-      custom: []
+      deprecated: false
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
+        custom: []
         name: id
         description: 'The ID of the verify.'
         required: true
@@ -70,8 +75,9 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
       hash:
+        custom: []
         name: hash
         description: ''
         required: true
@@ -80,7 +86,7 @@ endpoints:
         enumValues: []
         exampleWasSpecified: false
         nullable: false
-        custom: []
+        deprecated: false
     cleanUrlParameters:
       id: architecto
       hash: architecto
@@ -91,6 +97,7 @@ endpoints:
     fileParameters: []
     responses:
       -
+        custom: []
         status: 500
         content: |-
           {
@@ -101,10 +108,8 @@ endpoints:
           content-type: application/json
           access-control-allow-origin: '*'
         description: null
-        custom: []
     responseFields: []
     auth: []
     controller: null
     method: null
     route: null
-    custom: []
