@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\User;
 
-use App\Http\Resources\UserCollection;
+use App\Http\Resources\v1\UserCollection;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
