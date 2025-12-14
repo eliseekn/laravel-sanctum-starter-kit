@@ -7,7 +7,7 @@ namespace App\Http\Controllers\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\User\StoreRequest;
 use App\Http\Requests\v1\User\UpdateRequest;
-use App\Http\Resources\v1\UserCollection;
+use App\Http\Resources\v1\UserResource;
 use App\Http\UseCases\v1\User\DeleteUseCase;
 use App\Http\UseCases\v1\User\GetCollectionUseCase;
 use App\Http\UseCases\v1\User\StoreUseCase;
@@ -15,33 +15,33 @@ use App\Http\UseCases\v1\User\UpdateUseCase;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Knuckles\Scribe\Attributes\Authenticated;
+use Knuckles\Scribe\Attributes\Group;
+use Knuckles\Scribe\Attributes\QueryParam;
+use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
-/**
- * @group User
- *
- * @authenticated
- */
+#[Group('User')]
+#[Authenticated()]
 class UserController extends Controller
 {
-    /**
-     * @apiResourceCollection App\Http\Resources\v1\UserCollection
-     *
-     * @apiResourceModel App\Models\User paginate=10
-     *
-     * @queryParam page integer
-     * @queryParam search string
-     * @queryParam perPage integer
-     * @queryParam startDate string. Example: 2024-01-03
-     * @queryParam endDate string. Example: 2025-01-03
-     */
-    public function index(Request $request, GetCollectionUseCase $useCase): UserCollection
+    #[QueryParam('page', 'int', 'Page number', example: 1)]
+    #[QueryParam('perPage', 'int', 'Number of items per page', example: 15)]
+    #[QueryParam('search', 'string', 'Search query (name, email)', example: 'john doe')]
+    #[QueryParam('startDate', 'string', 'Filter by start date (created_at)', example: '2025-01-01')]
+    #[QueryParam('endDate', 'string', 'Filter by end date (created_at)', example: '2025-12-31')]
+    #[QueryParam('sortBy', 'string', 'Sort by field (name, email, created_at)', example: 'name')]
+    #[QueryParam('sortOrder', 'string', 'Sort order (asc, desc)', example: 'asc')]
+    #[ResponseFromApiResource(UserResource::class, User::class, collection: true, paginate: 15)]
+    public function index(Request $request, GetCollectionUseCase $useCase): AnonymousResourceCollection
     {
         return $useCase->handle($request->query());
     }
 
-    public function show(User $user): JsonResponse
+    #[ResponseFromApiResource(UserResource::class, User::class)]
+    public function show(User $user): UserResource
     {
-        return response()->json($user);
+        return new UserResource($user);
     }
 
     public function store(StoreRequest $request, StoreUseCase $useCase): JsonResponse

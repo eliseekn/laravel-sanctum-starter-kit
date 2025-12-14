@@ -1897,7 +1897,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1:8000/api/v1/users?page=16&amp;search=architecto&amp;perPage=16&amp;startDate=2024-01-03&amp;endDate=2025-01-03" \
+    --get "http://127.0.0.1:8000/api/v1/users?page=1&amp;perPage=15&amp;search=john+doe&amp;startDate=2025-01-01&amp;endDate=2025-12-31&amp;sortBy=name&amp;sortOrder=asc" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1909,11 +1909,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const params = {
-    "page": "16",
-    "search": "architecto",
-    "perPage": "16",
-    "startDate": "2024-01-03",
-    "endDate": "2025-01-03",
+    "page": "1",
+    "perPage": "15",
+    "search": "john doe",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "sortBy": "name",
+    "sortOrder": "asc",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1942,11 +1944,13 @@ $response = $client-&gt;get(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'page' =&gt; '16',
-            'search' =&gt; 'architecto',
-            'perPage' =&gt; '16',
-            'startDate' =&gt; '2024-01-03',
-            'endDate' =&gt; '2025-01-03',
+            'page' =&gt; '1',
+            'perPage' =&gt; '15',
+            'search' =&gt; 'john doe',
+            'startDate' =&gt; '2025-01-01',
+            'endDate' =&gt; '2025-12-31',
+            'sortBy' =&gt; 'name',
+            'sortOrder' =&gt; 'asc',
         ],
     ]
 );
@@ -1960,11 +1964,13 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/users'
 params = {
-  'page': '16',
-  'search': 'architecto',
-  'perPage': '16',
-  'startDate': '2024-01-03',
-  'endDate': '2025-01-03',
+  'page': '1',
+  'perPage': '15',
+  'search': 'john doe',
+  'startDate': '2025-01-01',
+  'endDate': '2025-12-31',
+  'sortBy': 'name',
+  'sortOrder': 'asc',
 }
 headers = {
   'Authorization': 'Bearer {YOUR_AUTH_KEY}',
@@ -1986,22 +1992,18 @@ response.json()</code></pre></div>
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 7,
-            &quot;name&quot;: &quot;Ms. Elisabeth Okuneva&quot;,
-            &quot;email&quot;: &quot;gulgowski.asia@example.com&quot;,
-            &quot;role&quot;: &quot;user&quot;,
-            &quot;email_verified_at&quot;: null,
-            &quot;created_at&quot;: &quot;2025-12-14T16:15:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-12-14T16:15:08.000000Z&quot;
+            &quot;id&quot;: 15,
+            &quot;name&quot;: &quot;Morgan Hirthe&quot;,
+            &quot;email&quot;: &quot;dare.emelie@example.com&quot;,
+            &quot;role&quot;: &quot;$2y$12$e4vAksoXAqySW6z8HLxTJeHTvUDnR2mgqAVKnvM.GwZ7c5Gf4Tw8.&quot;,
+            &quot;email_verified_at&quot;: null
         },
         {
-            &quot;id&quot;: 8,
-            &quot;name&quot;: &quot;Jermaine Tillman&quot;,
-            &quot;email&quot;: &quot;mya96@example.com&quot;,
-            &quot;role&quot;: &quot;user&quot;,
-            &quot;email_verified_at&quot;: null,
-            &quot;created_at&quot;: &quot;2025-12-14T16:15:08.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2025-12-14T16:15:08.000000Z&quot;
+            &quot;id&quot;: 16,
+            &quot;name&quot;: &quot;Prof. Mina Bauch&quot;,
+            &quot;email&quot;: &quot;okeefe.isidro@example.org&quot;,
+            &quot;role&quot;: &quot;$2y$12$e4vAksoXAqySW6z8HLxTJeHTvUDnR2mgqAVKnvM.GwZ7c5Gf4Tw8.&quot;,
+            &quot;email_verified_at&quot;: null
         }
     ],
     &quot;links&quot;: {
@@ -2035,7 +2037,7 @@ response.json()</code></pre></div>
             }
         ],
         &quot;path&quot;: &quot;/&quot;,
-        &quot;per_page&quot;: 10,
+        &quot;per_page&quot;: 15,
         &quot;to&quot;: 2,
         &quot;total&quot;: 2
     }
@@ -2129,62 +2131,86 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="page"                data-endpoint="GETapi-v1-users"
-               value="16"
+               value="1"
                data-component="query">
     <br>
-<p>Example: <code>16</code></p>
-            </div>
-                                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>search</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="search"                data-endpoint="GETapi-v1-users"
-               value="architecto"
-               data-component="query">
-    <br>
-<p>Example: <code>architecto</code></p>
+<p>Page number Example: <code>1</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>perPage</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="perPage"                data-endpoint="GETapi-v1-users"
-               value="16"
+               value="15"
                data-component="query">
     <br>
-<p>Example: <code>16</code></p>
+<p>Number of items per page Example: <code>15</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>search</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="search"                data-endpoint="GETapi-v1-users"
+               value="john doe"
+               data-component="query">
+    <br>
+<p>Search query (name, email) Example: <code>john doe</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>startDate</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="startDate"                data-endpoint="GETapi-v1-users"
-               value="2024-01-03"
+               value="2025-01-01"
                data-component="query">
     <br>
-<p>string. Example: <code>2024-01-03</code></p>
+<p>Filter by start date (created_at) Example: <code>2025-01-01</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>endDate</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
                               name="endDate"                data-endpoint="GETapi-v1-users"
-               value="2025-01-03"
+               value="2025-12-31"
                data-component="query">
     <br>
-<p>string. Example: <code>2025-01-03</code></p>
+<p>Filter by end date (created_at) Example: <code>2025-12-31</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>sortBy</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sortBy"                data-endpoint="GETapi-v1-users"
+               value="name"
+               data-component="query">
+    <br>
+<p>Sort by field (name, email, created_at) Example: <code>name</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>sortOrder</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sortOrder"                data-endpoint="GETapi-v1-users"
+               value="asc"
+               data-component="query">
+    <br>
+<p>Sort order (asc, desc) Example: <code>asc</code></p>
             </div>
                 </form>
 
@@ -2209,7 +2235,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"name\": \"b\",
     \"email\": \"zbailey@example.net\",
-    \"role\": \"user\"
+    \"role\": \"admin\"
 }"
 </code></pre></div>
 
@@ -2228,7 +2254,7 @@ const headers = {
 let body = {
     "name": "b",
     "email": "zbailey@example.net",
-    "role": "user"
+    "role": "admin"
 };
 
 fetch(url, {
@@ -2252,7 +2278,7 @@ $response = $client-&gt;post(
         'json' =&gt; [
             'name' =&gt; 'b',
             'email' =&gt; 'zbailey@example.net',
-            'role' =&gt; 'user',
+            'role' =&gt; 'admin',
         ],
     ]
 );
@@ -2268,7 +2294,7 @@ url = 'http://127.0.0.1:8000/api/v1/users'
 payload = {
     "name": "b",
     "email": "zbailey@example.net",
-    "role": "user"
+    "role": "admin"
 }
 headers = {
   'Authorization': 'Bearer {YOUR_AUTH_KEY}',
@@ -2398,10 +2424,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="role"                data-endpoint="POSTapi-v1-users"
-               value="user"
+               value="admin"
                data-component="body">
     <br>
-<p>Example: <code>user</code></p>
+<p>Example: <code>admin</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>admin</code></li> <li><code>user</code></li></ul>
         </div>
@@ -2479,19 +2505,18 @@ response.json()</code></pre></div>
 
 <span id="example-responses-GETapi-v1-users--id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;data&quot;: {
+        &quot;id&quot;: 17,
+        &quot;name&quot;: &quot;Morgan Hirthe&quot;,
+        &quot;email&quot;: &quot;imclaughlin@example.org&quot;,
+        &quot;role&quot;: &quot;$2y$12$e4vAksoXAqySW6z8HLxTJeHTvUDnR2mgqAVKnvM.GwZ7c5Gf4Tw8.&quot;,
+        &quot;email_verified_at&quot;: null
+    }
 }</code>
  </pre>
     </span>

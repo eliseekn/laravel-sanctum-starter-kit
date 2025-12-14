@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\UseCases\v1\Auth;
 
 use App\Enums\HttpResponseStatus;
+use App\Http\Resources\v1\UserResource;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -21,7 +22,7 @@ final class RegisterUseCase
 
             return response()->json([
                 'status' => HttpResponseStatus::SUCCESS,
-                'user' => $user->attributesToArray(),
+                'user' => new UserResource($user),
                 'message' => 'Registration succeeded',
             ], 201);
         } catch (Exception $e) {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\UseCases\v1\Auth;
 
 use App\Enums\HttpResponseStatus;
+use App\Http\Resources\v1\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +27,7 @@ final class LoginUseCase
 
         return response()->json([
             'status' => HttpResponseStatus::SUCCESS,
-            'user' => $user->attributesToArray(),
+            'user' => new UserResource($user),
             'token' => $user->createToken('pharma-delivery')->plainTextToken,
             'message' => 'Logged in successfully',
         ]);

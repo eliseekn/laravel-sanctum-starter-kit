@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\UseCases\v1\User;
 
 use App\Enums\HttpResponseStatus;
+use App\Http\Resources\v1\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
@@ -16,7 +17,7 @@ final class UpdateUseCase
             return response()->json([
                 'status' => HttpResponseStatus::SUCCESS,
                 'message' => 'User updated successfully',
-                'user' => $user->attributesToArray(),
+                'user' => new UserResource($user),
             ]);
         }
 
