@@ -27,10 +27,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::policy(User::class, UserPolicy::class);
+
+        $this->configureUrlTemplate();
+    }
+
+    private function configureUrlTemplate(): void
+    {
         VerifyEmail::createUrlUsing(function ($notifiable) {
             $url = URL::temporarySignedRoute(
                 'verification.verify',
-                now()->addMinutes(config('auth.verification.expire', 60)), [
+                now()->addMinutes(60), [
                     'id' => $notifiable->getKey(),
                     'hash' => sha1($notifiable->getEmailForVerification()),
                 ]
@@ -42,7 +49,5 @@ class AppServiceProvider extends ServiceProvider
         ResetPassword::createUrlUsing(
             fn ($user, string $token) => config('app.frontend_url').'/reset-password?email='.$user->email.'&token='.$token
         );
-
-        Gate::policy(User::class, UserPolicy::class);
     }
 }
