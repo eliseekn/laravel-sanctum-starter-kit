@@ -144,8 +144,8 @@ class UserTest extends TestCase
             ->getJson('/api/v1/users/'.$user->id)
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('name', $user->name)
-                ->where('email', $user->email)
+                ->where('data.name', $user->name)
+                ->where('data.email', $user->email)
                 ->etc()
             );
     }

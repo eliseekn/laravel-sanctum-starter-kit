@@ -27,7 +27,8 @@ class AuthTest extends TestCase
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', HttpResponseStatus::SUCCESS)
                 ->where('message', 'Logged in successfully')
-                ->where('user', $user->attributesToArray())
+                ->where('user.name', $user->name)
+                ->where('user.email', $user->email)
                 ->has('token')
                 ->etc()
             );
