@@ -1,11 +1,14 @@
 # Starter Kit for Laravel Sanctum
+
 An opinionated starter kit for RESTful API development with Laravel Sanctum.
 
 ## Requirements
+
 - Laravel ^12
 - PHP ^8.2
 
 ## Features
+
 - Login
 - Registration
 - Email verification
@@ -15,6 +18,7 @@ An opinionated starter kit for RESTful API development with Laravel Sanctum.
 - API versioning
 
 ## Installation
+
 ```bash
 git clone https://github.com/eliseekn/laravel-sanctum-starter-kit.git project-name
 cd project-name && composer install
@@ -22,19 +26,22 @@ cp .env.example .env
 ```
 
 ## To do
-1. Add front-end url in the ***.env*** file
+
+1. Add front-end url in the **_.env_** file
+
 ```php
-FRONTEND_URL=http://localhost
+FRONTEND_URL=http://127.0.0.1:3000
 ```
 
-2. Edit the ***boot*** method in ***AppServiceProvider.php*** file to ensure that your front-end endpoints are correct
+2. Edit the **_AppServiceProvider.php_** file to ensure that your front-end endpoints are correct
+
 ```php
 VerifyEmail::createUrlUsing(function ($notifiable) {
     // $url is directly set as the API endpoint for email verification
     // see 'verification.verify' route
     $url = URL::temporarySignedRoute(
         'verification.verify',
-        now()->addMinutes(config('auth.verification.expire', 60)), [
+        now()->addMinutes(60), [
             'id' => $notifiable->getKey(),
             'hash' => sha1($notifiable->getEmailForVerification()),
         ]
@@ -47,12 +54,15 @@ ResetPassword::createUrlUsing(
     fn ($user, string $token) => config('app.frontend_url').'/reset-password?email=' . $user->email . '&token='.$token
 );
 ```
+
 3. Setup your mail server
 
 ## Testing
+
 ```php
 php artisan test
 ```
 
 ## Documentation
-Run ```php artisan serve``` and open ```http://127.0.0.1:8000/docs``` in your web browser.
+
+Run `php artisan serve` and open `http://127.0.0.1:8000/docs` in your web browser.
