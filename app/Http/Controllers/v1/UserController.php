@@ -7,7 +7,7 @@ namespace App\Http\Controllers\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\User\StoreRequest;
 use App\Http\Requests\v1\User\UpdateRequest;
-use App\Http\Resources\v1\UserResource;
+use App\Http\Resources\UserResource;
 use App\Http\UseCases\v1\User\DeleteUseCase;
 use App\Http\UseCases\v1\User\GetCollectionUseCase;
 use App\Http\UseCases\v1\User\StoreUseCase;
@@ -21,7 +21,7 @@ use Knuckles\Scribe\Attributes\Group;
 use Knuckles\Scribe\Attributes\QueryParam;
 use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 
-#[Group('User')]
+#[Group('Users')]
 #[Authenticated()]
 class UserController extends Controller
 {

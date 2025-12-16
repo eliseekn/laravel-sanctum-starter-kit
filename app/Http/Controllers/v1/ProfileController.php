@@ -11,12 +11,11 @@ use App\Http\UseCases\v1\Profile\UpdatePasswordUseCase;
 use App\Http\UseCases\v1\User\UpdateUseCase;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Knuckles\Scribe\Attributes\Authenticated;
+use Knuckles\Scribe\Attributes\Group;
 
-/**
- * @group Profile
- *
- * @authenticated
- */
+#[Group('Profile')]
+#[Authenticated()]
 class ProfileController extends Controller
 {
     public function update(UpdateRequest $request, User $user, UpdateUseCase $useCase): JsonResponse

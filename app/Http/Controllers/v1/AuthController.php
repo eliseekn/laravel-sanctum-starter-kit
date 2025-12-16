@@ -10,10 +10,10 @@ use App\Http\UseCases\v1\Auth\LogoutUseCase;
 use App\Http\UseCases\v1\Auth\RegisterUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Knuckles\Scribe\Attributes\Authenticated;
+use Knuckles\Scribe\Attributes\Group;
 
-/**
- * @group Authentication
- */
+#[Group('Authentication')]
 class AuthController extends Controller
 {
     public function login(LoginRequest $request, LoginUseCase $useCase): JsonResponse
@@ -26,9 +26,7 @@ class AuthController extends Controller
         return $useCase->handle($request->validated());
     }
 
-    /**
-     * @authenticated
-     */
+    #[Authenticated()]
     public function logout(Request $request, LogoutUseCase $useCase): JsonResponse
     {
         return $useCase->handle($request->user('sanctum'));

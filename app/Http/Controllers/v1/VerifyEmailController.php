@@ -10,10 +10,11 @@ use App\Http\Requests\v1\VerifyEmailRequest;
 use App\Http\UseCases\v1\VerifyEmail\NotifyUseCase;
 use App\Http\UseCases\v1\VerifyEmail\VerifyUseCase;
 use Illuminate\Http\JsonResponse;
+use Knuckles\Scribe\Attributes\Authenticated;
+use Knuckles\Scribe\Attributes\Group;
 
-/**
- * @group Email verification
- */
+#[Group('Email verification')]
+#[Authenticated()]
 class VerifyEmailController extends Controller
 {
     public function notify(EmailRequest $request, NotifyUseCase $useCase): JsonResponse

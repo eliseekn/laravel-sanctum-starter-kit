@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\UseCases\v1\User;
 
-use App\Http\Resources\v1\UserResource;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
