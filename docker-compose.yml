@@ -1,0 +1,71 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: laravel-app
+        container_name: laravel-app
+        restart: unless-stopped
+        working_dir: /var/www/html
+        ports:
+            - "8001:80"
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - laravel-network
+        depends_on:
+            - db
+
+    db:
+        image: mysql:8.0
+        container_name: laravel-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+            MYSQL_USER: ${DB_USERNAME:-root}
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - dbdata:/var/lib/mysql
+        ports:
+            - "3307:3306"
+        networks:
+            - laravel-network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: laravel-phpmyadmin
+        restart: unless-stopped
+        platform: linux/amd64
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+            PMA_USER: ${DB_USERNAME:-root}
+            PMA_PASSWORD: ${DB_PASSWORD:-}
+        ports:
+            - "8081:80"
+        networks:
+            - laravel-network
+        depends_on:
+            - db
+
+    mailhog:
+        image: mailhog/mailhog
+        container_name: laravel-mailhog
+        restart: unless-stopped
+        platform: linux/amd64
+        ports:
+            - "1026:1025"
+            - "8026:8025"
+        networks:
+            - laravel-network
+
+networks:
+    laravel-network:
+        driver: bridge
+
+volumes:
+    dbdata:
+        driver: local
