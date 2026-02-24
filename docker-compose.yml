@@ -22,7 +22,7 @@ services:
         restart: unless-stopped
         environment:
             MYSQL_DATABASE: ${DB_DATABASE:-laravel}
-            MYSQL_USER: ${DB_USERNAME:-root}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-}
             MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
             SERVICE_TAGS: dev
             SERVICE_NAME: mysql
