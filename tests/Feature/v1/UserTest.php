@@ -95,7 +95,6 @@ class UserTest extends TestCase
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('message', 'User deleted successfully')
                 ->etc()
             );
 

@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Http\UseCases\v1\Auth;
 
 use App\Enums\HttpResponseStatus;
-use App\Http\Resources\v1\UserResource;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 final class LoginUseCase
 {
@@ -28,7 +29,7 @@ final class LoginUseCase
         return response()->json([
             'status' => HttpResponseStatus::SUCCESS,
             'user' => new UserResource($user),
-            'token' => $user->createToken('pharma-delivery')->plainTextToken,
+            'token' => $user->createToken(Str::uuid()->toString())->plainTextToken,
             'message' => 'Logged in successfully',
         ]);
     }

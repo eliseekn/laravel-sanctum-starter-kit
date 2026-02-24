@@ -10,7 +10,10 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rules\Password;
+use Knuckles\Scribe\Attributes\BodyParam;
 
+#[BodyParam('old_password', 'string', 'Old password.', required: true, example: 'OldP@ss1!')]
+#[BodyParam('new_password', 'string', 'New password (min 8 characters, uppercases, lowercases, numbers, special characters).', required: true, example: 'N3wP@ss!')]
 class UpdatePasswordRequest extends FormRequest
 {
     public function authorize(): bool
@@ -35,6 +38,16 @@ class UpdatePasswordRequest extends FormRequest
                     ->symbols(),
             ],
         ];
+    }
+
+    protected function failedAuthorization(): void
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'status' => HttpResponseStatus::ERROR,
+                'message' => 'Forbidden',
+            ], 403)
+        );
     }
 
     protected function failedValidation(Validator $validator)

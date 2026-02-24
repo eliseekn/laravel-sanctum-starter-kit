@@ -9,7 +9,11 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rules\Password;
+use Knuckles\Scribe\Attributes\BodyParam;
 
+#[BodyParam('name', 'string', 'User full name.', required: true, example: 'Doe')]
+#[BodyParam('email', 'string', 'Email address.', required: true, example: 'john@doe.com')]
+#[BodyParam('password', 'string', 'Password (min 8 characters, uppercases, lowercases, numbers, special characters).', required: true, example: 'P@ssw0rd!')]
 class RegisterRequest extends FormRequest
 {
     public function authorize(): bool
@@ -27,6 +31,16 @@ class RegisterRequest extends FormRequest
             'email' => ['required', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'max:255', Password::min(8)->mixedCase()->letters()->numbers()->symbols()],
         ];
+    }
+
+    protected function failedAuthorization(): void
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'status' => HttpResponseStatus::ERROR,
+                'message' => 'Forbidden',
+            ], 403)
+        );
     }
 
     protected function failedValidation(Validator $validator)

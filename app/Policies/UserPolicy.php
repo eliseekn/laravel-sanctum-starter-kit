@@ -7,8 +7,8 @@ use App\Models\User;
 
 class UserPolicy
 {
-    public function delete(User $user): bool
+    public function delete(?User $user): bool
     {
-        return $user->role === UserRole::ADMIN;
+        return $user?->role === UserRole::ADMIN;
     }
 }

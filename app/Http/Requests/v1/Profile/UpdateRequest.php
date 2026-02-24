@@ -8,7 +8,10 @@ use App\Enums\HttpResponseStatus;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Knuckles\Scribe\Attributes\BodyParam;
 
+#[BodyParam('name', 'string', 'User full name.', required: false, example: 'Doe')]
+#[BodyParam('email', 'string', 'Email address.', required: false, example: 'john@doe.com')]
 class UpdateRequest extends FormRequest
 {
     public function authorize(): bool
@@ -25,6 +28,16 @@ class UpdateRequest extends FormRequest
             'name' => ['sometimes', 'max:255'],
             'email' => ['sometimes', 'email', 'max:255', 'unique:users,email,'.$this->route('user')?->id],
         ];
+    }
+
+    protected function failedAuthorization(): void
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'status' => HttpResponseStatus::ERROR,
+                'message' => 'Forbidden',
+            ], 403)
+        );
     }
 
     protected function failedValidation(Validator $validator)

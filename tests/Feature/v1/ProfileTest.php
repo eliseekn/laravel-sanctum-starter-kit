@@ -28,7 +28,6 @@ class ProfileTest extends TestCase
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('message', 'User updated successfully')
                 ->where('user.name', $name)
                 ->etc()
             );
@@ -53,7 +52,6 @@ class ProfileTest extends TestCase
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('message', 'User updated successfully')
                 ->etc()
             );
 

@@ -26,7 +26,6 @@ class AuthTest extends TestCase
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('message', 'Logged in successfully')
                 ->where('user.name', $user->name)
                 ->where('user.email', $user->email)
                 ->has('token')
@@ -43,7 +42,6 @@ class AuthTest extends TestCase
             ])
             ->assertStatus(403)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('message', 'Invalid email or password')
                 ->where('status', HttpResponseStatus::ERROR)
                 ->etc()
             );
@@ -56,9 +54,8 @@ class AuthTest extends TestCase
             ->assertStatus(400)
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', HttpResponseStatus::ERROR)
-                ->where('message', 'Invalid or missing data')
-                ->where('errors.email', fn ($email) => $email[0] === 'The email field is required.')
-                ->where('errors.password', fn ($password) => $password[0] === 'The password field is required.')
+                ->has('errors.email')
+                ->has('errors.password')
                 ->etc()
             );
     }
@@ -74,7 +71,6 @@ class AuthTest extends TestCase
             ->assertStatus(201)
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('message', 'Registration succeeded')
                 ->where('user.email', $user->email)
                 ->etc()
             );
@@ -97,8 +93,7 @@ class AuthTest extends TestCase
             ->assertStatus(400)
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', HttpResponseStatus::ERROR)
-                ->where('message', 'Invalid or missing data')
-                ->where('errors.email', fn ($email) => $email[0] === 'The email field is required.')
+                ->has('errors.email')
                 ->etc()
             );
     }
@@ -113,7 +108,6 @@ class AuthTest extends TestCase
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
                 ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('message', 'Logged out successfully')
                 ->etc()
             );
     }

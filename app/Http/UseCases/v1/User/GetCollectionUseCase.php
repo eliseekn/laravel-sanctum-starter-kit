@@ -21,18 +21,23 @@ final class GetCollectionUseCase
             ->when(! empty($query['search']), function (Builder $q) use ($query) {
                 return $q->where(function ($subQuery) use ($query) {
                     $subQuery->where('prenoms', 'like', '%'.$query['search'].'%')
-                        ->orWhere('name', 'like', '%'.$query['search'].'%')
+                        ->orWhere('nom', 'like', '%'.$query['search'].'%')
                         ->orWhere('email', 'like', '%'.$query['search'].'%');
                 });
-            })
-            ->orderBy('created_at', 'desc');
+            });
 
-        if (! empty($query['perPage'])) {
-            $users = $result->paginate($query['perPage']);
+        if (! empty($query['sortBy'])) {
+            $result->orderBy($query['sortBy'], $query['sortOrder'] ?? 'desc');
         } else {
-            $users = $result->get();
+            $result->orderBy('created_at', 'desc');
         }
 
-        return UserResource::collection($users);
+        if (! empty($query['perPage'])) {
+            $data = $result->paginate($query['perPage']);
+        } else {
+            $data = $result->get();
+        }
+
+        return UserResource::collection($data);
     }
 }

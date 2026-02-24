@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\v1;
 
+use App\Enums\HttpResponseStatus;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class VerifyEmailRequest extends FormRequest
 {
@@ -26,6 +28,16 @@ class VerifyEmailRequest extends FormRequest
         return [
             //
         ];
+    }
+
+    protected function failedAuthorization(): void
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'status' => HttpResponseStatus::ERROR,
+                'message' => 'Forbidden',
+            ], 403)
+        );
     }
 
     protected function fulfill(): void

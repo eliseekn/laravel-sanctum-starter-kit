@@ -26,6 +26,16 @@ class ResetPasswordRequest extends FormRequest
         ];
     }
 
+    protected function failedAuthorization(): void
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'status' => HttpResponseStatus::ERROR,
+                'message' => 'Forbidden',
+            ], 403)
+        );
+    }
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

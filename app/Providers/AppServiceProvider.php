@@ -27,9 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::policy(User::class, UserPolicy::class);
-
         $this->configureUrlTemplate();
+        $this->configurePolicies();
     }
 
     private function configureUrlTemplate(): void
@@ -49,5 +48,10 @@ class AppServiceProvider extends ServiceProvider
         ResetPassword::createUrlUsing(
             fn ($user, string $token) => config('app.frontend_url').'/reset-password?email='.$user->email.'&token='.$token
         );
+    }
+
+    private function configurePolicies(): void
+    {
+        Gate::policy(User::class, UserPolicy::class);
     }
 }

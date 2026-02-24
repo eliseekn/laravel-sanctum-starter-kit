@@ -17,7 +17,6 @@ reset-db:
 	@php artisan migrate:fresh --seed
 
 init:
-	cp .env.example .env
 	@php artisan key:generate
 	@php artisan storage:link
 	@php artisan migrate --seed
