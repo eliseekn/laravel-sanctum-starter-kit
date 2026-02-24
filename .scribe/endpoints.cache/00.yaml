@@ -29,9 +29,9 @@ endpoints:
       email:
         custom: []
         name: email
-        description: 'Must be a valid email address.'
+        description: 'Email address.'
         required: true
-        example: gbailey@example.net
+        example: john@doe.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -40,17 +40,17 @@ endpoints:
       password:
         custom: []
         name: password
-        description: ''
+        description: Password.
         required: true
-        example: architecto
+        example: P@ssw0rd!
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanBodyParameters:
-      email: gbailey@example.net
-      password: architecto
+      email: john@doe.com
+      password: P@ssw0rd!
     fileParameters: []
     responses: []
     responseFields: []
@@ -84,9 +84,9 @@ endpoints:
       name:
         custom: []
         name: name
-        description: 'Must not be greater than 255 characters.'
+        description: 'User full name.'
         required: true
-        example: b
+        example: Doe
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -95,9 +95,9 @@ endpoints:
       email:
         custom: []
         name: email
-        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        description: 'Email address.'
         required: true
-        example: zbailey@example.net
+        example: john@doe.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -106,18 +106,18 @@ endpoints:
       password:
         custom: []
         name: password
-        description: 'Must not be greater than 255 characters.'
+        description: 'Password (min 8 characters, uppercases, lowercases, numbers, special characters).'
         required: true
-        example: '-0pBNvYgxw'
+        example: P@ssw0rd!
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanBodyParameters:
-      name: b
-      email: zbailey@example.net
-      password: '-0pBNvYgxw'
+      name: Doe
+      email: john@doe.com
+      password: P@ssw0rd!
     fileParameters: []
     responses: []
     responseFields: []

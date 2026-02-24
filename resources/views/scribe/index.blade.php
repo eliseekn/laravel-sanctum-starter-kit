@@ -125,25 +125,25 @@
                             </li>
                                                                         </ul>
                             </ul>
-                    <ul id="tocify-header-user" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="user">
-                    <a href="#user">User</a>
+                    <ul id="tocify-header-users" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="users">
+                    <a href="#users">Users</a>
                 </li>
-                                    <ul id="tocify-subheader-user" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="user-GETapi-v1-users">
-                                <a href="#user-GETapi-v1-users">GET api/v1/users</a>
+                                    <ul id="tocify-subheader-users" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="users-GETapi-v1-users">
+                                <a href="#users-GETapi-v1-users">GET api/v1/users</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="user-POSTapi-v1-users">
-                                <a href="#user-POSTapi-v1-users">POST api/v1/users</a>
+                                                                                <li class="tocify-item level-2" data-unique="users-POSTapi-v1-users">
+                                <a href="#users-POSTapi-v1-users">POST api/v1/users</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="user-GETapi-v1-users--id-">
-                                <a href="#user-GETapi-v1-users--id-">GET api/v1/users/{id}</a>
+                                                                                <li class="tocify-item level-2" data-unique="users-GETapi-v1-users--id-">
+                                <a href="#users-GETapi-v1-users--id-">GET api/v1/users/{id}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="user-PUTapi-v1-users--id-">
-                                <a href="#user-PUTapi-v1-users--id-">PUT api/v1/users/{id}</a>
+                                                                                <li class="tocify-item level-2" data-unique="users-PUTapi-v1-users--id-">
+                                <a href="#users-PUTapi-v1-users--id-">PUT api/v1/users/{id}</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="user-DELETEapi-v1-users--id-">
-                                <a href="#user-DELETEapi-v1-users--id-">DELETE api/v1/users/{id}</a>
+                                                                                <li class="tocify-item level-2" data-unique="users-DELETEapi-v1-users--id-">
+                                <a href="#users-DELETEapi-v1-users--id-">DELETE api/v1/users/{id}</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -156,7 +156,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: December 14, 2025</li>
+        <li>Last updated: February 24, 2026</li>
     </ul>
 </div>
 
@@ -198,8 +198,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"gbailey@example.net\",
-    \"password\": \"architecto\"
+    \"email\": \"john@doe.com\",
+    \"password\": \"P@ssw0rd!\"
 }"
 </code></pre></div>
 
@@ -215,8 +215,8 @@ const headers = {
 };
 
 let body = {
-    "email": "gbailey@example.net",
-    "password": "architecto"
+    "email": "john@doe.com",
+    "password": "P@ssw0rd!"
 };
 
 fetch(url, {
@@ -237,8 +237,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'email' =&gt; 'gbailey@example.net',
-            'password' =&gt; 'architecto',
+            'email' =&gt; 'john@doe.com',
+            'password' =&gt; 'P@ssw0rd!',
         ],
     ]
 );
@@ -252,8 +252,8 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/login'
 payload = {
-    "email": "gbailey@example.net",
-    "password": "architecto"
+    "email": "john@doe.com",
+    "password": "P@ssw0rd!"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -346,10 +346,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-login"
-               value="gbailey@example.net"
+               value="john@doe.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>gbailey@example.net</code></p>
+<p>Email address. Example: <code>john@doe.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -358,10 +358,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-login"
-               value="architecto"
+               value="P@ssw0rd!"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>Password. Example: <code>P@ssw0rd!</code></p>
         </div>
         </form>
 
@@ -382,9 +382,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
-    \"email\": \"zbailey@example.net\",
-    \"password\": \"-0pBNvYgxw\"
+    \"name\": \"Doe\",
+    \"email\": \"john@doe.com\",
+    \"password\": \"P@ssw0rd!\"
 }"
 </code></pre></div>
 
@@ -400,9 +400,9 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "email": "zbailey@example.net",
-    "password": "-0pBNvYgxw"
+    "name": "Doe",
+    "email": "john@doe.com",
+    "password": "P@ssw0rd!"
 };
 
 fetch(url, {
@@ -423,9 +423,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'b',
-            'email' =&gt; 'zbailey@example.net',
-            'password' =&gt; '-0pBNvYgxw',
+            'name' =&gt; 'Doe',
+            'email' =&gt; 'john@doe.com',
+            'password' =&gt; 'P@ssw0rd!',
         ],
     ]
 );
@@ -439,9 +439,9 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/register'
 payload = {
-    "name": "b",
-    "email": "zbailey@example.net",
-    "password": "-0pBNvYgxw"
+    "name": "Doe",
+    "email": "john@doe.com",
+    "password": "P@ssw0rd!"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -534,10 +534,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-register"
-               value="b"
+               value="Doe"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+<p>User full name. Example: <code>Doe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -546,10 +546,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-register"
-               value="zbailey@example.net"
+               value="john@doe.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>zbailey@example.net</code></p>
+<p>Email address. Example: <code>john@doe.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -558,10 +558,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-register"
-               value="-0pBNvYgxw"
+               value="P@ssw0rd!"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>-0pBNvYgxw</code></p>
+<p>Password (min 8 characters, uppercases, lowercases, numbers, special characters). Example: <code>P@ssw0rd!</code></p>
         </div>
         </form>
 
@@ -729,6 +729,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="email-verification-POSTapi-v1-email-verification-notification">POST api/v1/email/verification-notification</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -740,10 +741,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://127.0.0.1:8000/api/v1/email/verification-notification" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"gbailey@example.net\"
+    \"email\": \"john@doe.com\"
 }"
 </code></pre></div>
 
@@ -754,12 +756,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "email": "gbailey@example.net"
+    "email": "john@doe.com"
 };
 
 fetch(url, {
@@ -776,11 +779,12 @@ $response = $client-&gt;post(
     $url,
     [
         'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'email' =&gt; 'gbailey@example.net',
+            'email' =&gt; 'john@doe.com',
         ],
     ]
 );
@@ -794,9 +798,10 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/email/verification-notification'
 payload = {
-    "email": "gbailey@example.net"
+    "email": "john@doe.com"
 }
 headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
@@ -825,7 +830,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-email-verification-notification" data-method="POST"
       data-path="api/v1/email/verification-notification"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -855,6 +860,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v1/email/verification-notification</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-email-verification-notification"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -887,16 +904,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-email-verification-notification"
-               value="gbailey@example.net"
+               value="john@doe.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>gbailey@example.net</code></p>
+<p>Email address. Example: <code>john@doe.com</code></p>
         </div>
         </form>
 
                     <h2 id="email-verification-GETapi-v1-email-verify--id---hash-">GET api/v1/email/verify/{id}/{hash}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -908,6 +926,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://127.0.0.1:8000/api/v1/email/verify/architecto/architecto" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -918,6 +937,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -935,6 +955,7 @@ $response = $client-&gt;get(
     $url,
     [
         'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
@@ -950,6 +971,7 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/email/verify/architecto/architecto'
 headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
@@ -994,7 +1016,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-email-verify--id---hash-" data-method="GET"
       data-path="api/v1/email/verify/{id}/{hash}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -1024,6 +1046,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v1/email/verify/{id}/{hash}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-email-verify--id---hash-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1098,8 +1132,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
-    \"email\": \"zbailey@example.net\"
+    \"name\": \"Doe\",
+    \"email\": \"john@doe.com\"
 }"
 </code></pre></div>
 
@@ -1116,8 +1150,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "email": "zbailey@example.net"
+    "name": "Doe",
+    "email": "john@doe.com"
 };
 
 fetch(url, {
@@ -1139,8 +1173,8 @@ $response = $client-&gt;patch(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'b',
-            'email' =&gt; 'zbailey@example.net',
+            'name' =&gt; 'Doe',
+            'email' =&gt; 'john@doe.com',
         ],
     ]
 );
@@ -1154,8 +1188,8 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/profile/1/update'
 payload = {
-    "name": "b",
-    "email": "zbailey@example.net"
+    "name": "Doe",
+    "email": "john@doe.com"
 }
 headers = {
   'Authorization': 'Bearer {YOUR_AUTH_KEY}',
@@ -1274,10 +1308,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PATCHapi-v1-profile--user_id--update"
-               value="b"
+               value="Doe"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+<p>User full name. Example: <code>Doe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -1286,10 +1320,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PATCHapi-v1-profile--user_id--update"
-               value="zbailey@example.net"
+               value="john@doe.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>zbailey@example.net</code></p>
+<p>Email address. Example: <code>john@doe.com</code></p>
         </div>
         </form>
 
@@ -1312,8 +1346,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"architecto\",
-    \"new_password\": \"n\"
+    \"old_password\": \"OldP@ss1!\",
+    \"new_password\": \"N3wP@ss!\"
 }"
 </code></pre></div>
 
@@ -1330,8 +1364,8 @@ const headers = {
 };
 
 let body = {
-    "old_password": "architecto",
-    "new_password": "n"
+    "old_password": "OldP@ss1!",
+    "new_password": "N3wP@ss!"
 };
 
 fetch(url, {
@@ -1353,8 +1387,8 @@ $response = $client-&gt;patch(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'old_password' =&gt; 'architecto',
-            'new_password' =&gt; 'n',
+            'old_password' =&gt; 'OldP@ss1!',
+            'new_password' =&gt; 'N3wP@ss!',
         ],
     ]
 );
@@ -1368,8 +1402,8 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/profile/1/update-password'
 payload = {
-    "old_password": "architecto",
-    "new_password": "n"
+    "old_password": "OldP@ss1!",
+    "new_password": "N3wP@ss!"
 }
 headers = {
   'Authorization': 'Bearer {YOUR_AUTH_KEY}',
@@ -1488,10 +1522,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="old_password"                data-endpoint="PATCHapi-v1-profile--user_id--update-password"
-               value="architecto"
+               value="OldP@ss1!"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>Old password. Example: <code>OldP@ss1!</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -1500,10 +1534,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="new_password"                data-endpoint="PATCHapi-v1-profile--user_id--update-password"
-               value="n"
+               value="N3wP@ss!"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>n</code></p>
+<p>New password (min 8 characters, uppercases, lowercases, numbers, special characters). Example: <code>N3wP@ss!</code></p>
         </div>
         </form>
 
@@ -1514,6 +1548,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="reset-password-POSTapi-v1-password-reset-notification">POST api/v1/password/reset-notification</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1525,10 +1560,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://127.0.0.1:8000/api/v1/password/reset-notification" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"gbailey@example.net\"
+    \"email\": \"john@doe.com\"
 }"
 </code></pre></div>
 
@@ -1539,12 +1575,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "email": "gbailey@example.net"
+    "email": "john@doe.com"
 };
 
 fetch(url, {
@@ -1561,11 +1598,12 @@ $response = $client-&gt;post(
     $url,
     [
         'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'email' =&gt; 'gbailey@example.net',
+            'email' =&gt; 'john@doe.com',
         ],
     ]
 );
@@ -1579,9 +1617,10 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/password/reset-notification'
 payload = {
-    "email": "gbailey@example.net"
+    "email": "john@doe.com"
 }
 headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
@@ -1610,7 +1649,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-password-reset-notification" data-method="POST"
       data-path="api/v1/password/reset-notification"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -1640,6 +1679,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v1/password/reset-notification</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-password-reset-notification"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1672,16 +1723,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-password-reset-notification"
-               value="gbailey@example.net"
+               value="john@doe.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>gbailey@example.net</code></p>
+<p>Email address. Example: <code>john@doe.com</code></p>
         </div>
         </form>
 
                     <h2 id="reset-password-POSTapi-v1-password-reset">POST api/v1/password/reset</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1693,6 +1745,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://127.0.0.1:8000/api/v1/password/reset" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1709,6 +1762,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1733,6 +1787,7 @@ $response = $client-&gt;post(
     $url,
     [
         'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
@@ -1758,6 +1813,7 @@ payload = {
     "password": "-0pBNvYgxw"
 }
 headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
@@ -1786,7 +1842,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-password-reset" data-method="POST"
       data-path="api/v1/password/reset"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -1816,6 +1872,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v1/password/reset</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-password-reset"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1879,11 +1947,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                <h1 id="user">User</h1>
+                <h1 id="users">Users</h1>
 
     
 
-                                <h2 id="user-GETapi-v1-users">GET api/v1/users</h2>
+                                <h2 id="users-GETapi-v1-users">GET api/v1/users</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1992,18 +2060,18 @@ response.json()</code></pre></div>
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 15,
+            &quot;id&quot;: 18,
             &quot;name&quot;: &quot;Morgan Hirthe&quot;,
             &quot;email&quot;: &quot;dare.emelie@example.com&quot;,
-            &quot;role&quot;: &quot;$2y$12$e4vAksoXAqySW6z8HLxTJeHTvUDnR2mgqAVKnvM.GwZ7c5Gf4Tw8.&quot;,
-            &quot;email_verified_at&quot;: null
+            &quot;role&quot;: &quot;user&quot;,
+            &quot;created_at&quot;: &quot;2026-02-24T11:24:05.000000Z&quot;
         },
         {
-            &quot;id&quot;: 16,
+            &quot;id&quot;: 19,
             &quot;name&quot;: &quot;Prof. Mina Bauch&quot;,
             &quot;email&quot;: &quot;okeefe.isidro@example.org&quot;,
-            &quot;role&quot;: &quot;$2y$12$e4vAksoXAqySW6z8HLxTJeHTvUDnR2mgqAVKnvM.GwZ7c5Gf4Tw8.&quot;,
-            &quot;email_verified_at&quot;: null
+            &quot;role&quot;: &quot;user&quot;,
+            &quot;created_at&quot;: &quot;2026-02-24T11:24:05.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -2214,7 +2282,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                 </form>
 
-                    <h2 id="user-POSTapi-v1-users">POST api/v1/users</h2>
+                    <h2 id="users-POSTapi-v1-users">POST api/v1/users</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2233,8 +2301,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
-    \"email\": \"zbailey@example.net\",
+    \"name\": \"Doe\",
+    \"email\": \"john@doe.com\",
     \"role\": \"admin\"
 }"
 </code></pre></div>
@@ -2252,8 +2320,8 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "email": "zbailey@example.net",
+    "name": "Doe",
+    "email": "john@doe.com",
     "role": "admin"
 };
 
@@ -2276,8 +2344,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'b',
-            'email' =&gt; 'zbailey@example.net',
+            'name' =&gt; 'Doe',
+            'email' =&gt; 'john@doe.com',
             'role' =&gt; 'admin',
         ],
     ]
@@ -2292,8 +2360,8 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/users'
 payload = {
-    "name": "b",
-    "email": "zbailey@example.net",
+    "name": "Doe",
+    "email": "john@doe.com",
     "role": "admin"
 }
 headers = {
@@ -2400,10 +2468,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-users"
-               value="b"
+               value="Doe"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+<p>User full name. Example: <code>Doe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -2412,10 +2480,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-users"
-               value="zbailey@example.net"
+               value="john@doe.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>zbailey@example.net</code></p>
+<p>Email address. Example: <code>john@doe.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
@@ -2427,13 +2495,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="admin"
                data-component="body">
     <br>
-<p>Example: <code>admin</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>admin</code></li> <li><code>user</code></li></ul>
+<p>User role. Example: <code>admin</code></p>
         </div>
         </form>
 
-                    <h2 id="user-GETapi-v1-users--id-">GET api/v1/users/{id}</h2>
+                    <h2 id="users-GETapi-v1-users--id-">GET api/v1/users/{id}</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2511,11 +2577,11 @@ response.json()</code></pre></div>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 17,
+        &quot;id&quot;: 20,
         &quot;name&quot;: &quot;Morgan Hirthe&quot;,
         &quot;email&quot;: &quot;imclaughlin@example.org&quot;,
-        &quot;role&quot;: &quot;$2y$12$e4vAksoXAqySW6z8HLxTJeHTvUDnR2mgqAVKnvM.GwZ7c5Gf4Tw8.&quot;,
-        &quot;email_verified_at&quot;: null
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;created_at&quot;: &quot;2026-02-24T11:24:05.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2618,7 +2684,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="user-PUTapi-v1-users--id-">PUT api/v1/users/{id}</h2>
+                    <h2 id="users-PUTapi-v1-users--id-">PUT api/v1/users/{id}</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2637,9 +2703,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
-    \"email\": \"zbailey@example.net\",
-    \"role\": \"user\"
+    \"name\": \"Doe\",
+    \"email\": \"john@doe.com\",
+    \"role\": \"admin\"
 }"
 </code></pre></div>
 
@@ -2656,9 +2722,9 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "email": "zbailey@example.net",
-    "role": "user"
+    "name": "Doe",
+    "email": "john@doe.com",
+    "role": "admin"
 };
 
 fetch(url, {
@@ -2680,9 +2746,9 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'b',
-            'email' =&gt; 'zbailey@example.net',
-            'role' =&gt; 'user',
+            'name' =&gt; 'Doe',
+            'email' =&gt; 'john@doe.com',
+            'role' =&gt; 'admin',
         ],
     ]
 );
@@ -2696,9 +2762,9 @@ import json
 
 url = 'http://127.0.0.1:8000/api/v1/users/1'
 payload = {
-    "name": "b",
-    "email": "zbailey@example.net",
-    "role": "user"
+    "name": "Doe",
+    "email": "john@doe.com",
+    "role": "admin"
 }
 headers = {
   'Authorization': 'Bearer {YOUR_AUTH_KEY}',
@@ -2821,10 +2887,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="PUTapi-v1-users--id-"
-               value="b"
+               value="Doe"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+<p>User full name. Example: <code>Doe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -2833,10 +2899,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="PUTapi-v1-users--id-"
-               value="zbailey@example.net"
+               value="john@doe.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>zbailey@example.net</code></p>
+<p>Email address. Example: <code>john@doe.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>role</code></b>&nbsp;&nbsp;
@@ -2845,16 +2911,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="role"                data-endpoint="PUTapi-v1-users--id-"
-               value="user"
+               value="admin"
                data-component="body">
     <br>
-<p>Example: <code>user</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>admin</code></li> <li><code>user</code></li></ul>
+<p>User role. Example: <code>admin</code></p>
         </div>
         </form>
 
-                    <h2 id="user-DELETEapi-v1-users--id-">DELETE api/v1/users/{id}</h2>
+                    <h2 id="users-DELETEapi-v1-users--id-">DELETE api/v1/users/{id}</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>

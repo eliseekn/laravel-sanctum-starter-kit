@@ -40,9 +40,9 @@ endpoints:
       name:
         custom: []
         name: name
-        description: 'Must not be greater than 255 characters.'
+        description: 'User full name.'
         required: false
-        example: b
+        example: Doe
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -51,17 +51,17 @@ endpoints:
       email:
         custom: []
         name: email
-        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        description: 'Email address.'
         required: false
-        example: zbailey@example.net
+        example: john@doe.com
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanBodyParameters:
-      name: b
-      email: zbailey@example.net
+      name: Doe
+      email: john@doe.com
     fileParameters: []
     responses: []
     responseFields: []
@@ -111,9 +111,9 @@ endpoints:
       old_password:
         custom: []
         name: old_password
-        description: ''
+        description: 'Old password.'
         required: true
-        example: architecto
+        example: OldP@ss1!
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -122,17 +122,17 @@ endpoints:
       new_password:
         custom: []
         name: new_password
-        description: 'Must not be greater than 255 characters.'
+        description: 'New password (min 8 characters, uppercases, lowercases, numbers, special characters).'
         required: true
-        example: 'n'
+        example: N3wP@ss!
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
     cleanBodyParameters:
-      old_password: architecto
-      new_password: 'n'
+      old_password: OldP@ss1!
+      new_password: N3wP@ss!
     fileParameters: []
     responses: []
     responseFields: []
