@@ -35,8 +35,8 @@ class LoginRequest extends FormRequest
         throw new HttpResponseException(
             response()->json([
                 'status' => HttpResponseStatus::ERROR,
-                'message' => 'Forbidden',
-            ], 403)
+                'message' => 'Unauthaurized',
+            ], 401)
         );
     }
 
