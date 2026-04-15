@@ -15,9 +15,7 @@ final class StoreUseCase
 {
     public function handle(array $data): JsonResponse
     {
-        $password = app()->environment() === 'local'
-            ? 'password'
-            : Str::password(8);
+        $password = app()->environment('local') ? 'password' : Str::password(8);
 
         $data['password'] = bcrypt($password);
 

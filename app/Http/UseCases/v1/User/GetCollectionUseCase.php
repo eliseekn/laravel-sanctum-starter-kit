@@ -15,8 +15,8 @@ final class GetCollectionUseCase
     public function handle(array $query): AnonymousResourceCollection
     {
         $result = User::query()
-            ->when(! empty($query['startDate']) && ! empty($query['endDate']), function (Builder $q) use ($query) {
-                return $q->whereBetween(DB::raw('date(created_at)'), [$query['startDate'], $query['endDate']]);
+            ->when(! empty($query['start_date']) && ! empty($query['end_date']), function (Builder $q) use ($query) {
+                return $q->whereBetween(DB::raw('date(created_at)'), [$query['start_date'], $query['end_date']]);
             })
             ->when(! empty($query['search']), function (Builder $q) use ($query) {
                 return $q->where(function ($subQuery) use ($query) {
@@ -26,14 +26,14 @@ final class GetCollectionUseCase
                 });
             });
 
-        if (! empty($query['sortBy'])) {
-            $result->orderBy($query['sortBy'], $query['sortOrder'] ?? 'desc');
+        if (! empty($query['sort_by'])) {
+            $result->orderBy($query['sort_by'], $query['sort_order'] ?? 'desc');
         } else {
             $result->orderBy('created_at', 'desc');
         }
 
-        if (! empty($query['perPage'])) {
-            $data = $result->paginate($query['perPage']);
+        if (! empty($query['per_page'])) {
+            $data = $result->paginate($query['per_page']);
         } else {
             $data = $result->get();
         }
