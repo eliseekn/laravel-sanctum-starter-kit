@@ -26,12 +26,12 @@ use Knuckles\Scribe\Attributes\ResponseFromApiResource;
 class UserController extends Controller
 {
     #[QueryParam('page', 'int', 'Page number', example: 1)]
-    #[QueryParam('perPage', 'int', 'Number of items per page', example: 15)]
+    #[QueryParam('per_page', 'int', 'Number of items per page', example: 15)]
     #[QueryParam('search', 'string', 'Search query (name, email)', example: 'john doe')]
-    #[QueryParam('startDate', 'string', 'Filter by start date (created_at)', example: '2025-01-01')]
-    #[QueryParam('endDate', 'string', 'Filter by end date (created_at)', example: '2025-12-31')]
-    #[QueryParam('sortBy', 'string', 'Sort by field (name, email, created_at)', example: 'name')]
-    #[QueryParam('sortOrder', 'string', 'Sort order (asc, desc)', example: 'asc')]
+    #[QueryParam('start_date', 'string', 'Filter by start date (created_at)', example: '2025-01-01')]
+    #[QueryParam('end_date', 'string', 'Filter by end date (created_at)', example: '2025-12-31')]
+    #[QueryParam('sort_by', 'string', 'Sort by field (name, email, created_at)', example: 'name')]
+    #[QueryParam('sort_order', 'string', 'Sort order (asc, desc)', example: 'asc')]
     #[ResponseFromApiResource(UserResource::class, User::class, collection: true, paginate: 15)]
     public function index(Request $request, GetCollectionUseCase $useCase): AnonymousResourceCollection
     {
