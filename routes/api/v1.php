@@ -16,16 +16,6 @@ Route::prefix('v1')
                 Route::post('/logout', 'logout')->middleware('auth:sanctum');
             });
 
-        Route::prefix('/profile')
-            ->controller(ProfileController::class)
-            ->middleware('auth:sanctum')
-            ->group(function () {
-                Route::patch('/{user}/update', 'update');
-                Route::patch('/{user}/update-password', 'updatePassword');
-            });
-
-        Route::apiResource('users', UserController::class)->middleware('auth:sanctum');
-
         Route::prefix('email')
             ->controller(VerifyEmailController::class)
             ->group(function () {
@@ -39,4 +29,17 @@ Route::prefix('v1')
                 Route::post('/reset-notification', 'notify');
                 Route::post('/reset', 'reset')->name('password.update');
             });
+
+        Route::middleware('auth:sanctum')
+            ->group(function () {
+                Route::prefix('/profile')
+                    ->controller(ProfileController::class)
+                    ->group(function () {
+                        Route::patch('/{user}/update', 'update');
+                        Route::patch('/{user}/update-password', 'updatePassword');
+                    });
+
+                Route::apiResource('users', UserController::class);
+            });
+
     });
