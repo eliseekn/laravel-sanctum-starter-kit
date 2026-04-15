@@ -1,10 +1,10 @@
 services:
-    app:
+    laravel-api:
         build:
             context: .
             dockerfile: Dockerfile
-        image: laravel-app
-        container_name: laravel-app
+        image: laravel-api
+        container_name: laravel-api
         restart: unless-stopped
         working_dir: /var/www/html
         ports:
@@ -14,9 +14,10 @@ services:
         networks:
             - laravel-network
         depends_on:
-            - db
+            laravel-db:
+                condition: service_healthy
 
-    db:
+    laravel-db:
         image: mysql:8.0
         container_name: laravel-db
         restart: unless-stopped
@@ -32,14 +33,19 @@ services:
             - "3307:3306"
         networks:
             - laravel-network
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            interval: 5s
+            timeout: 5s
+            retries: 10
 
-    phpmyadmin:
+    laravel-phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: laravel-phpmyadmin
         restart: unless-stopped
         platform: linux/amd64
         environment:
-            PMA_HOST: db
+            PMA_HOST: laravel-db
             PMA_PORT: 3306
             PMA_ARBITRARY: 1
             PMA_USER: ${DB_USERNAME:-root}
@@ -49,9 +55,9 @@ services:
         networks:
             - laravel-network
         depends_on:
-            - db
+            - laravel-db
 
-    mailhog:
+    laravel-mailhog:
         image: mailhog/mailhog
         container_name: laravel-mailhog
         restart: unless-stopped
