@@ -7,12 +7,11 @@ namespace App\Http\Controllers\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\Auth\LoginRequest;
 use App\Http\Requests\v1\Auth\RegisterRequest;
-use App\Http\UseCases\v1\Auth\LoginUseCase;
-use App\Http\UseCases\v1\Auth\LogoutUseCase;
-use App\Http\UseCases\v1\Auth\RegisterUseCase;
+use App\Http\Resources\UserResource;
+use App\UseCases\v1\Auth\LoginUseCase;
+use App\UseCases\v1\Auth\RegisterUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Knuckles\Scribe\Attributes\Authenticated;
 use Knuckles\Scribe\Attributes\Group;
 
 #[Group('Authentication')]
@@ -20,17 +19,32 @@ class AuthController extends Controller
 {
     public function login(LoginRequest $request, LoginUseCase $useCase): JsonResponse
     {
-        return $useCase->handle($request->validated());
+        $data = $useCase->handle($request->validated());
+
+        return $this->successJsonResponse([
+            'message' => 'Logged in successfully',
+            'data' => [
+                'user' => new UserResource($data['user']),
+                'access_token' => $data['access_token'],
+            ],
+        ]);
+
     }
 
     public function register(RegisterRequest $request, RegisterUseCase $useCase): JsonResponse
     {
-        return $useCase->handle($request->validated());
+        $data = $useCase->handle($request->validated());
+
+        return $this->successJsonResponse([
+            'message' => 'Registered successfully',
+            'data' => new UserResource($data),
+        ], 201);
     }
 
-    #[Authenticated()]
-    public function logout(Request $request, LogoutUseCase $useCase): JsonResponse
+    public function logout(Request $request): JsonResponse
     {
-        return $useCase->handle($request->user('sanctum'));
+        $request->user('sanctum')?->tokens()->delete();
+
+        return $this->successJsonResponse('Logged out successfully');
     }
 }

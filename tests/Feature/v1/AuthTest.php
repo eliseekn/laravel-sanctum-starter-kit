@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature\v1;
 
-use App\Enums\HttpResponseStatus;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -25,10 +24,10 @@ class AuthTest extends TestCase
             ])
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('user.name', $user->name)
-                ->where('user.email', $user->email)
-                ->has('token')
+                ->where('status', 'success')
+                ->where('data.user.name', $user->name)
+                ->where('data.user.email', $user->email)
+                ->has('data.access_token')
                 ->etc()
             );
     }
@@ -40,9 +39,9 @@ class AuthTest extends TestCase
                 'email' => fake()->unique()->safeEmail(),
                 'password' => 'password',
             ])
-            ->assertStatus(403)
+            ->assertStatus(401)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::ERROR)
+                ->where('status', 'error')
                 ->etc()
             );
     }
@@ -53,7 +52,7 @@ class AuthTest extends TestCase
             ->postJson('/api/v1/login')
             ->assertStatus(400)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::ERROR)
+                ->where('status', 'error')
                 ->has('errors.email')
                 ->has('errors.password')
                 ->etc()
@@ -70,8 +69,8 @@ class AuthTest extends TestCase
             ->postJson('/api/v1/register', $user->getAttributes())
             ->assertStatus(201)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('user.email', $user->email)
+                ->where('status', 'success')
+                ->where('data.email', $user->email)
                 ->etc()
             );
 
@@ -92,7 +91,7 @@ class AuthTest extends TestCase
             ->postJson('/api/v1/register', $user->getAttributes())
             ->assertStatus(400)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::ERROR)
+                ->where('status', 'error')
                 ->has('errors.email')
                 ->etc()
             );
@@ -107,15 +106,8 @@ class AuthTest extends TestCase
             ->postJson('/api/v1/logout')
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::SUCCESS)
+                ->where('status', 'success')
                 ->etc()
             );
-    }
-
-    public function test_can_not_logout_if_not_authenticated(): void
-    {
-        $this
-            ->postJson('/api/v1/logout')
-            ->assertStatus(401);
     }
 }

@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\UseCases\v1\User;
+
+use App\Exceptions\ModelPersistenceException;
+use App\Models\User;
+use Exception;
+use Illuminate\Support\Str;
+
+final class StoreUseCase
+{
+    public function handle(array $data): User
+    {
+        $password = app()->environment('local') ? 'password' : Str::password(8);
+
+        $data['password'] = bcrypt($password);
+
+        try {
+            $user = User::create($data);
+        } catch (Exception $e) {
+            report($e);
+
+            throw new ModelPersistenceException;
+        }
+
+        return $user;
+    }
+}

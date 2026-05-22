@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Http\UseCases\v1\Profile;
+namespace App\UseCases\v1\Profile;
 
-use App\Http\UseCases\v1\User\UpdateUseCase;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
+use App\UseCases\v1\User\UpdateUseCase;
 
 final class UpdatePasswordUseCase
 {
-    public function __construct(public UpdateUseCase $useCase) {}
+    public function __construct(private readonly UpdateUseCase $useCase) {}
 
-    public function handle(User $user, array $data): JsonResponse
+    public function handle(User $user, array $data): User
     {
         $data['password'] = bcrypt($data['new_password']);
         unset($data['new_password']);

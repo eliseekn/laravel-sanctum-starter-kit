@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Feature\v1;
 
-use App\Enums\HttpResponseStatus;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
@@ -27,8 +26,8 @@ class ProfileTest extends TestCase
             ])
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('user.name', $name)
+                ->where('status', 'success')
+                ->where('data.name', $name)
                 ->etc()
             );
 
@@ -51,7 +50,7 @@ class ProfileTest extends TestCase
             ])
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::SUCCESS)
+                ->where('status', 'success')
                 ->etc()
             );
 

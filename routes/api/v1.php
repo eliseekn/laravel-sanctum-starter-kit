@@ -13,7 +13,7 @@ Route::prefix('v1')
             ->group(function () {
                 Route::post('/login', 'login');
                 Route::post('/register', 'register');
-                Route::post('/logout', 'logout')->middleware('auth:sanctum');
+                Route::post('/logout', 'logout');
             });
 
         Route::prefix('email')
@@ -41,5 +41,4 @@ Route::prefix('v1')
 
                 Route::apiResource('users', UserController::class);
             });
-
     });

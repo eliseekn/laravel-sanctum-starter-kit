@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\v1;
 
-use App\Enums\HttpResponseStatus;
+use App\Exceptions\ForbiddenException;
+use Eliseekn\LaravelApiResponse\MakeApiResponse;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class VerifyEmailRequest extends FormRequest
 {
+    use MakeApiResponse;
+
     public function authorize(): bool
     {
         if (! hash_equals((string) $this->route('id'), (string) $this->user('sanctum')->getKey())) {
@@ -25,19 +27,12 @@ class VerifyEmailRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     protected function failedAuthorization(): void
     {
-        throw new HttpResponseException(
-            response()->json([
-                'status' => HttpResponseStatus::ERROR,
-                'message' => 'Unauthaurized',
-            ], 401)
-        );
+        throw new ForbiddenException;
     }
 
     protected function fulfill(): void

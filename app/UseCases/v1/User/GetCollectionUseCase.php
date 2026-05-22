@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Http\UseCases\v1\User;
+namespace App\UseCases\v1\User;
 
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
 final class GetCollectionUseCase
 {
-    public function handle(array $query): AnonymousResourceCollection
+    public function handle(array $query): LengthAwarePaginator|Collection
     {
         $result = User::query()
             ->when(! empty($query['start_date']) && ! empty($query['end_date']), function (Builder $q) use ($query) {
@@ -32,12 +32,8 @@ final class GetCollectionUseCase
             $result->orderBy('created_at', 'desc');
         }
 
-        if (! empty($query['per_page'])) {
-            $data = $result->paginate($query['per_page']);
-        } else {
-            $data = $result->get();
-        }
-
-        return UserResource::collection($data);
+        return ! empty($query['per_page'])
+            ? $result->paginate($query['per_page'])
+            : $result->get();
     }
 }

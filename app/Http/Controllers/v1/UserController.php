@@ -8,11 +8,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\User\StoreRequest;
 use App\Http\Requests\v1\User\UpdateRequest;
 use App\Http\Resources\UserResource;
-use App\Http\UseCases\v1\User\DeleteUseCase;
-use App\Http\UseCases\v1\User\GetCollectionUseCase;
-use App\Http\UseCases\v1\User\StoreUseCase;
-use App\Http\UseCases\v1\User\UpdateUseCase;
 use App\Models\User;
+use App\UseCases\v1\User\DeleteUseCase;
+use App\UseCases\v1\User\GetCollectionUseCase;
+use App\UseCases\v1\User\StoreUseCase;
+use App\UseCases\v1\User\UpdateUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -35,7 +35,9 @@ class UserController extends Controller
     #[ResponseFromApiResource(UserResource::class, User::class, collection: true, paginate: 15)]
     public function index(Request $request, GetCollectionUseCase $useCase): AnonymousResourceCollection
     {
-        return $useCase->handle($request->query());
+        return UserResource::collection(
+            $useCase->handle($request->query())
+        );
     }
 
     #[ResponseFromApiResource(UserResource::class, User::class)]
@@ -46,20 +48,28 @@ class UserController extends Controller
 
     public function store(StoreRequest $request, StoreUseCase $useCase): JsonResponse
     {
-        return $useCase->handle($request->validated());
+        $data = $useCase->handle($request->validated());
+
+        return $this->successJsonResponse([
+            'message' => 'User created successfully',
+            'data' => new UserResource($data),
+        ], 201);
     }
 
     public function update(UpdateRequest $request, User $user, UpdateUseCase $useCase): JsonResponse
     {
-        return $useCase->handle($user, $request->validated());
+        $data = $useCase->handle($user, $request->validated());
+
+        return $this->successJsonResponse([
+            'message' => 'User updated successfully',
+            'data' => new UserResource($data),
+        ]);
     }
 
     public function destroy(Request $request, User $user, DeleteUseCase $useCase): JsonResponse
     {
-        if ($request->user('sanctum')->cannot('delete', $user)) {
-            abort(403);
-        }
+        $useCase->handle($request, $user);
 
-        return $useCase->handle($user);
+        return $this->successJsonResponse('User deleted successfully');
     }
 }

@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Http\UseCases\v1\ResetPassword;
+namespace App\UseCases\v1\ResetPassword;
 
-use App\Enums\HttpResponseStatus;
+use App\Exceptions\ResetPasswordException;
 use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 
 final class ResetUseCase
 {
-    public function handle(array $data): JsonResponse
+    public function handle(array $data): string
     {
-        $status = Password::reset($data,
+        $status = Password::reset(
+            $data,
             function ($user, $password) use ($data) {
                 $user
                     ->forceFill(['password' => bcrypt($password)])
@@ -26,15 +26,9 @@ final class ResetUseCase
         );
 
         if ($status !== Password::PASSWORD_RESET) {
-            return response()->json([
-                'status' => HttpResponseStatus::ERROR,
-                'message' => __($status),
-            ], 400);
+            throw new ResetPasswordException(__($status));
         }
 
-        return response()->json([
-            'status' => HttpResponseStatus::SUCCESS,
-            'message' => __($status),
-        ]);
+        return __($status);
     }
 }

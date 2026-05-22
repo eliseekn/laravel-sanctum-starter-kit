@@ -7,8 +7,7 @@ namespace App\Http\Controllers\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\EmailRequest;
 use App\Http\Requests\v1\VerifyEmailRequest;
-use App\Http\UseCases\v1\VerifyEmail\NotifyUseCase;
-use App\Http\UseCases\v1\VerifyEmail\VerifyUseCase;
+use App\UseCases\v1\VerifyEmail\NotifyUseCase;
 use Illuminate\Http\JsonResponse;
 use Knuckles\Scribe\Attributes\Group;
 
@@ -17,11 +16,15 @@ class VerifyEmailController extends Controller
 {
     public function notify(EmailRequest $request, NotifyUseCase $useCase): JsonResponse
     {
-        return $useCase->handle($request->validated());
+        $useCase->handle($request->validated());
+
+        return $this->successJsonResponse('Email verification notification sent successfully.');
     }
 
-    public function verify(VerifyEmailRequest $request, VerifyUseCase $useCase): JsonResponse
+    public function verify(VerifyEmailRequest $request): JsonResponse
     {
-        return $useCase->handle($request);
+        $request->fulfill(); // @phpstan-ignore-line
+
+        return $this->successJsonResponse('Email verified successfully.');
     }
 }

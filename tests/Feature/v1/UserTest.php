@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\v1;
 
-use App\Enums\HttpResponseStatus;
 use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -25,8 +24,8 @@ class UserTest extends TestCase
             ->postJson('/api/v1/users', $user->getAttributes())
             ->assertStatus(201)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('user.email', $user->email)
+                ->where('status', 'success')
+                ->where('data.email', $user->email)
                 ->etc()
             );
 
@@ -60,8 +59,8 @@ class UserTest extends TestCase
             ])
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::SUCCESS)
-                ->where('user.name', $name)
+                ->where('status', 'success')
+                ->where('data.name', $name)
                 ->etc()
             );
 
@@ -94,7 +93,7 @@ class UserTest extends TestCase
             ->deleteJson('/api/v1/users/'.$user->id)
             ->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) => $json
-                ->where('status', HttpResponseStatus::SUCCESS)
+                ->where('status', 'success')
                 ->etc()
             );
 
