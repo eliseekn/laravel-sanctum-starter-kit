@@ -1,22 +1,12 @@
 format:
-	@php ./vendor/bin/pint
+	docker-compose exec laravel-api php ./vendor/bin/pint
 
 lint:
-	@php -d memory_limit=2G ./vendor/bin/phpstan analyse
-
-serve:
-	@php artisan serve
+	docker-compose exec laravel-api php -d memory_limit=2G ./vendor/bin/phpstan analyse
 
 test:
-	@php artisan test -p
+	docker-compose exec laravel-api php artisan test -p
 
 doc:
-	@php artisan scribe:generate
+	docker-compose exec laravel-api php artisan scribe:generate --verbose
 
-reset-db:
-	@php artisan migrate:fresh --seed
-
-init:
-	@php artisan key:generate
-	@php artisan storage:link
-	@php artisan migrate --seed
