@@ -28,13 +28,13 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://127.0.0.1:8000";
+        var tryItOutBaseUrl = "http://127.0.0.1:8001";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
-    <script src="{{ asset("/vendor/scribe/js/tryitout-5.6.0.js") }}"></script>
+    <script src="{{ asset("/vendor/scribe/js/tryitout-5.10.0.js") }}"></script>
 
-    <script src="{{ asset("/vendor/scribe/js/theme-default-5.6.0.js") }}"></script>
+    <script src="{{ asset("/vendor/scribe/js/theme-default-5.10.0.js") }}"></script>
 
 </head>
 
@@ -86,6 +86,19 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-compte" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="compte">
+                    <a href="#compte">Compte</a>
+                </li>
+                                    <ul id="tocify-subheader-compte" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="compte-PATCHapi-v1-profile--user_id--update">
+                                <a href="#compte-PATCHapi-v1-profile--user_id--update">PATCH api/v1/profile/{user_id}/update</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="compte-PATCHapi-v1-profile--user_id--update-password">
+                                <a href="#compte-PATCHapi-v1-profile--user_id--update-password">PATCH api/v1/profile/{user_id}/update-password</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-email-verification" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="email-verification">
                     <a href="#email-verification">Email verification</a>
@@ -96,19 +109,6 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="email-verification-GETapi-v1-email-verify--id---hash-">
                                 <a href="#email-verification-GETapi-v1-email-verify--id---hash-">GET api/v1/email/verify/{id}/{hash}</a>
-                            </li>
-                                                                        </ul>
-                            </ul>
-                    <ul id="tocify-header-profile" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="profile">
-                    <a href="#profile">Profile</a>
-                </li>
-                                    <ul id="tocify-subheader-profile" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="profile-PATCHapi-v1-profile--user_id--update">
-                                <a href="#profile-PATCHapi-v1-profile--user_id--update">PATCH api/v1/profile/{user_id}/update</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="profile-PATCHapi-v1-profile--user_id--update-password">
-                                <a href="#profile-PATCHapi-v1-profile--user_id--update-password">PATCH api/v1/profile/{user_id}/update-password</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -156,7 +156,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: February 24, 2026</li>
+        <li>Last updated: May 22, 2026</li>
     </ul>
 </div>
 
@@ -165,7 +165,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://127.0.0.1:8000</code>
+    <strong>Base URL</strong>: <code>http://127.0.0.1:8001</code>
 </aside>
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
@@ -194,7 +194,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1:8000/api/v1/login" \
+    "http://127.0.0.1:8001/api/v1/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -206,7 +206,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/login"
+    "http://127.0.0.1:8001/api/v1/login"
 );
 
 const headers = {
@@ -228,7 +228,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/login';
+$url = 'http://127.0.0.1:8001/api/v1/login';
 $response = $client-&gt;post(
     $url,
     [
@@ -250,7 +250,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/login'
+url = 'http://127.0.0.1:8001/api/v1/login'
 payload = {
     "email": "john@doe.com",
     "password": "P@ssw0rd!"
@@ -378,7 +378,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1:8000/api/v1/register" \
+    "http://127.0.0.1:8001/api/v1/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -391,7 +391,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/register"
+    "http://127.0.0.1:8001/api/v1/register"
 );
 
 const headers = {
@@ -414,7 +414,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/register';
+$url = 'http://127.0.0.1:8001/api/v1/register';
 $response = $client-&gt;post(
     $url,
     [
@@ -437,7 +437,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/register'
+url = 'http://127.0.0.1:8001/api/v1/register'
 payload = {
     "name": "Doe",
     "email": "john@doe.com",
@@ -568,7 +568,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="authentication-POSTapi-v1-logout">POST api/v1/logout</h2>
 
 <p>
-<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -579,22 +578,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1:8000/api/v1/logout" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    "http://127.0.0.1:8001/api/v1/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/logout"
+    "http://127.0.0.1:8001/api/v1/logout"
 );
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
+
 
 fetch(url, {
     method: "POST",
@@ -604,12 +602,11 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/logout';
+$url = 'http://127.0.0.1:8001/api/v1/logout';
 $response = $client-&gt;post(
     $url,
     [
         'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
@@ -623,9 +620,8 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/logout'
+url = 'http://127.0.0.1:8001/api/v1/logout'
 headers = {
-  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
@@ -654,7 +650,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-logout" data-method="POST"
       data-path="api/v1/logout"
-      data-authed="1"
+      data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -685,18 +681,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-logout"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
@@ -722,398 +706,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                <h1 id="email-verification">Email verification</h1>
+                <h1 id="compte">Compte</h1>
 
     
 
-                                <h2 id="email-verification-POSTapi-v1-email-verification-notification">POST api/v1/email/verification-notification</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-email-verification-notification">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1:8000/api/v1/email/verification-notification" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"email\": \"john@doe.com\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/email/verification-notification"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "email": "john@doe.com"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/email/verification-notification';
-$response = $client-&gt;post(
-    $url,
-    [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-        'json' =&gt; [
-            'email' =&gt; 'john@doe.com',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-
-<div class="python-example">
-    <pre><code class="language-python">import requests
-import json
-
-url = 'http://127.0.0.1:8000/api/v1/email/verification-notification'
-payload = {
-    "email": "john@doe.com"
-}
-headers = {
-  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('POST', url, headers=headers, json=payload)
-response.json()</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-email-verification-notification">
-</span>
-<span id="execution-results-POSTapi-v1-email-verification-notification" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-email-verification-notification"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-email-verification-notification"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-email-verification-notification" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-email-verification-notification">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-email-verification-notification" data-method="POST"
-      data-path="api/v1/email/verification-notification"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-email-verification-notification', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-email-verification-notification"
-                    onclick="tryItOut('POSTapi-v1-email-verification-notification');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-email-verification-notification"
-                    onclick="cancelTryOut('POSTapi-v1-email-verification-notification');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-email-verification-notification"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/email/verification-notification</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-email-verification-notification"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-email-verification-notification"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-email-verification-notification"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="email"                data-endpoint="POSTapi-v1-email-verification-notification"
-               value="john@doe.com"
-               data-component="body">
-    <br>
-<p>Email address. Example: <code>john@doe.com</code></p>
-        </div>
-        </form>
-
-                    <h2 id="email-verification-GETapi-v1-email-verify--id---hash-">GET api/v1/email/verify/{id}/{hash}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-v1-email-verify--id---hash-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1:8000/api/v1/email/verify/architecto/architecto" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/email/verify/architecto/architecto"
-);
-
-const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/email/verify/architecto/architecto';
-$response = $client-&gt;get(
-    $url,
-    [
-        'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-
-<div class="python-example">
-    <pre><code class="language-python">import requests
-import json
-
-url = 'http://127.0.0.1:8000/api/v1/email/verify/architecto/architecto'
-headers = {
-  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('GET', url, headers=headers)
-response.json()</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-email-verify--id---hash-">
-            <blockquote>
-            <p>Example response (500):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Server Error&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-email-verify--id---hash-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-email-verify--id---hash-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-email-verify--id---hash-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-email-verify--id---hash-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-email-verify--id---hash-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-email-verify--id---hash-" data-method="GET"
-      data-path="api/v1/email/verify/{id}/{hash}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-email-verify--id---hash-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-email-verify--id---hash-"
-                    onclick="tryItOut('GETapi-v1-email-verify--id---hash-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-email-verify--id---hash-"
-                    onclick="cancelTryOut('GETapi-v1-email-verify--id---hash-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-email-verify--id---hash-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/email/verify/{id}/{hash}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-email-verify--id---hash-"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-email-verify--id---hash-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-email-verify--id---hash-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="GETapi-v1-email-verify--id---hash-"
-               value="architecto"
-               data-component="url">
-    <br>
-<p>The ID of the verify. Example: <code>architecto</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>hash</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="hash"                data-endpoint="GETapi-v1-email-verify--id---hash-"
-               value="architecto"
-               data-component="url">
-    <br>
-<p>Example: <code>architecto</code></p>
-            </div>
-                    </form>
-
-                <h1 id="profile">Profile</h1>
-
-    
-
-                                <h2 id="profile-PATCHapi-v1-profile--user_id--update">PATCH api/v1/profile/{user_id}/update</h2>
+                                <h2 id="compte-PATCHapi-v1-profile--user_id--update">PATCH api/v1/profile/{user_id}/update</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1127,7 +724,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://127.0.0.1:8000/api/v1/profile/1/update" \
+    "http://127.0.0.1:8001/api/v1/profile/1/update" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1140,7 +737,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/profile/1/update"
+    "http://127.0.0.1:8001/api/v1/profile/1/update"
 );
 
 const headers = {
@@ -1163,7 +760,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/profile/1/update';
+$url = 'http://127.0.0.1:8001/api/v1/profile/1/update';
 $response = $client-&gt;patch(
     $url,
     [
@@ -1186,7 +783,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/profile/1/update'
+url = 'http://127.0.0.1:8001/api/v1/profile/1/update'
 payload = {
     "name": "Doe",
     "email": "john@doe.com"
@@ -1327,7 +924,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="profile-PATCHapi-v1-profile--user_id--update-password">PATCH api/v1/profile/{user_id}/update-password</h2>
+                    <h2 id="compte-PATCHapi-v1-profile--user_id--update-password">PATCH api/v1/profile/{user_id}/update-password</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1341,7 +938,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://127.0.0.1:8000/api/v1/profile/1/update-password" \
+    "http://127.0.0.1:8001/api/v1/profile/1/update-password" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1354,7 +951,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/profile/1/update-password"
+    "http://127.0.0.1:8001/api/v1/profile/1/update-password"
 );
 
 const headers = {
@@ -1377,7 +974,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/profile/1/update-password';
+$url = 'http://127.0.0.1:8001/api/v1/profile/1/update-password';
 $response = $client-&gt;patch(
     $url,
     [
@@ -1400,7 +997,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/profile/1/update-password'
+url = 'http://127.0.0.1:8001/api/v1/profile/1/update-password'
 payload = {
     "old_password": "OldP@ss1!",
     "new_password": "N3wP@ss!"
@@ -1541,26 +1138,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                <h1 id="reset-password">Reset password</h1>
+                <h1 id="email-verification">Email verification</h1>
 
     
 
-                                <h2 id="reset-password-POSTapi-v1-password-reset-notification">POST api/v1/password/reset-notification</h2>
+                                <h2 id="email-verification-POSTapi-v1-email-verification-notification">POST api/v1/email/verification-notification</h2>
 
 <p>
-<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
 
-<span id="example-requests-POSTapi-v1-password-reset-notification">
+<span id="example-requests-POSTapi-v1-email-verification-notification">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1:8000/api/v1/password/reset-notification" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    "http://127.0.0.1:8001/api/v1/email/verification-notification" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1571,11 +1166,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/password/reset-notification"
+    "http://127.0.0.1:8001/api/v1/email/verification-notification"
 );
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1593,12 +1187,11 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/password/reset-notification';
+$url = 'http://127.0.0.1:8001/api/v1/email/verification-notification';
 $response = $client-&gt;post(
     $url,
     [
         'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
@@ -1615,12 +1208,365 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/password/reset-notification'
+url = 'http://127.0.0.1:8001/api/v1/email/verification-notification'
 payload = {
     "email": "john@doe.com"
 }
 headers = {
-  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-email-verification-notification">
+</span>
+<span id="execution-results-POSTapi-v1-email-verification-notification" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-email-verification-notification"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-email-verification-notification"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-email-verification-notification" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-email-verification-notification">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-email-verification-notification" data-method="POST"
+      data-path="api/v1/email/verification-notification"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-email-verification-notification', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-email-verification-notification"
+                    onclick="tryItOut('POSTapi-v1-email-verification-notification');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-email-verification-notification"
+                    onclick="cancelTryOut('POSTapi-v1-email-verification-notification');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-email-verification-notification"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/email/verification-notification</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-email-verification-notification"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-email-verification-notification"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-v1-email-verification-notification"
+               value="john@doe.com"
+               data-component="body">
+    <br>
+<p>Email address. Example: <code>john@doe.com</code></p>
+        </div>
+        </form>
+
+                    <h2 id="email-verification-GETapi-v1-email-verify--id---hash-">GET api/v1/email/verify/{id}/{hash}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-email-verify--id---hash-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8001/api/v1/email/verify/architecto/architecto" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8001/api/v1/email/verify/architecto/architecto"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://127.0.0.1:8001/api/v1/email/verify/architecto/architecto';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://127.0.0.1:8001/api/v1/email/verify/architecto/architecto'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-email-verify--id---hash-">
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Server Error&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-email-verify--id---hash-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-email-verify--id---hash-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-email-verify--id---hash-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-email-verify--id---hash-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-email-verify--id---hash-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-email-verify--id---hash-" data-method="GET"
+      data-path="api/v1/email/verify/{id}/{hash}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-email-verify--id---hash-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-email-verify--id---hash-"
+                    onclick="tryItOut('GETapi-v1-email-verify--id---hash-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-email-verify--id---hash-"
+                    onclick="cancelTryOut('GETapi-v1-email-verify--id---hash-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-email-verify--id---hash-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/email/verify/{id}/{hash}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-email-verify--id---hash-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-email-verify--id---hash-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="GETapi-v1-email-verify--id---hash-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>The ID of the verify. Example: <code>architecto</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>hash</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="hash"                data-endpoint="GETapi-v1-email-verify--id---hash-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                <h1 id="reset-password">Reset password</h1>
+
+    
+
+                                <h2 id="reset-password-POSTapi-v1-password-reset-notification">POST api/v1/password/reset-notification</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-password-reset-notification">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8001/api/v1/password/reset-notification" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"john@doe.com\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8001/api/v1/password/reset-notification"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "john@doe.com"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://127.0.0.1:8001/api/v1/password/reset-notification';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'email' =&gt; 'john@doe.com',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://127.0.0.1:8001/api/v1/password/reset-notification'
+payload = {
+    "email": "john@doe.com"
+}
+headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
@@ -1649,7 +1595,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-password-reset-notification" data-method="POST"
       data-path="api/v1/password/reset-notification"
-      data-authed="1"
+      data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -1679,18 +1625,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v1/password/reset-notification</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-password-reset-notification"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1733,7 +1667,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="reset-password-POSTapi-v1-password-reset">POST api/v1/password/reset</h2>
 
 <p>
-<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1744,8 +1677,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1:8000/api/v1/password/reset" \
-    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    "http://127.0.0.1:8001/api/v1/password/reset" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1758,11 +1690,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/password/reset"
+    "http://127.0.0.1:8001/api/v1/password/reset"
 );
 
 const headers = {
-    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1782,12 +1713,11 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/password/reset';
+$url = 'http://127.0.0.1:8001/api/v1/password/reset';
 $response = $client-&gt;post(
     $url,
     [
         'headers' =&gt; [
-            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
@@ -1806,14 +1736,13 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/password/reset'
+url = 'http://127.0.0.1:8001/api/v1/password/reset'
 payload = {
     "token": "architecto",
     "email": "zbailey@example.net",
     "password": "-0pBNvYgxw"
 }
 headers = {
-  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
@@ -1842,7 +1771,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-password-reset" data-method="POST"
       data-path="api/v1/password/reset"
-      data-authed="1"
+      data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -1872,18 +1801,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v1/password/reset</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-password-reset"
-               value="Bearer {YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
-            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1965,7 +1882,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1:8000/api/v1/users?page=1&amp;perPage=15&amp;search=john+doe&amp;startDate=2025-01-01&amp;endDate=2025-12-31&amp;sortBy=name&amp;sortOrder=asc" \
+    --get "http://127.0.0.1:8001/api/v1/users?page=1&amp;per_page=15&amp;search=john+doe&amp;start_date=2025-01-01&amp;end_date=2025-12-31&amp;sort_by=name&amp;sort_order=asc" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1973,17 +1890,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/users"
+    "http://127.0.0.1:8001/api/v1/users"
 );
 
 const params = {
     "page": "1",
-    "perPage": "15",
+    "per_page": "15",
     "search": "john doe",
-    "startDate": "2025-01-01",
-    "endDate": "2025-12-31",
-    "sortBy": "name",
-    "sortOrder": "asc",
+    "start_date": "2025-01-01",
+    "end_date": "2025-12-31",
+    "sort_by": "name",
+    "sort_order": "asc",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1994,6 +1911,7 @@ const headers = {
     "Accept": "application/json",
 };
 
+
 fetch(url, {
     method: "GET",
     headers,
@@ -2002,7 +1920,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/users';
+$url = 'http://127.0.0.1:8001/api/v1/users';
 $response = $client-&gt;get(
     $url,
     [
@@ -2013,12 +1931,12 @@ $response = $client-&gt;get(
         ],
         'query' =&gt; [
             'page' =&gt; '1',
-            'perPage' =&gt; '15',
+            'per_page' =&gt; '15',
             'search' =&gt; 'john doe',
-            'startDate' =&gt; '2025-01-01',
-            'endDate' =&gt; '2025-12-31',
-            'sortBy' =&gt; 'name',
-            'sortOrder' =&gt; 'asc',
+            'start_date' =&gt; '2025-01-01',
+            'end_date' =&gt; '2025-12-31',
+            'sort_by' =&gt; 'name',
+            'sort_order' =&gt; 'asc',
         ],
     ]
 );
@@ -2030,15 +1948,15 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/users'
+url = 'http://127.0.0.1:8001/api/v1/users'
 params = {
   'page': '1',
-  'perPage': '15',
+  'per_page': '15',
   'search': 'john doe',
-  'startDate': '2025-01-01',
-  'endDate': '2025-12-31',
-  'sortBy': 'name',
-  'sortOrder': 'asc',
+  'start_date': '2025-01-01',
+  'end_date': '2025-12-31',
+  'sort_by': 'name',
+  'sort_order': 'asc',
 }
 headers = {
   'Authorization': 'Bearer {YOUR_AUTH_KEY}',
@@ -2060,18 +1978,18 @@ response.json()</code></pre></div>
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 18,
+            &quot;id&quot;: 7,
             &quot;name&quot;: &quot;Morgan Hirthe&quot;,
             &quot;email&quot;: &quot;dare.emelie@example.com&quot;,
             &quot;role&quot;: &quot;user&quot;,
-            &quot;created_at&quot;: &quot;2026-02-24T11:24:05.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-05-22T10:39:40.000000Z&quot;
         },
         {
-            &quot;id&quot;: 19,
+            &quot;id&quot;: 8,
             &quot;name&quot;: &quot;Prof. Mina Bauch&quot;,
             &quot;email&quot;: &quot;okeefe.isidro@example.org&quot;,
             &quot;role&quot;: &quot;user&quot;,
-            &quot;created_at&quot;: &quot;2026-02-24T11:24:05.000000Z&quot;
+            &quot;created_at&quot;: &quot;2026-05-22T10:39:40.000000Z&quot;
         }
     ],
     &quot;links&quot;: {
@@ -2209,12 +2127,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Page number Example: <code>1</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>perPage</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="perPage"                data-endpoint="GETapi-v1-users"
+               step="any"               name="per_page"                data-endpoint="GETapi-v1-users"
                value="15"
                data-component="query">
     <br>
@@ -2233,48 +2151,48 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Search query (name, email) Example: <code>john doe</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>startDate</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>start_date</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="startDate"                data-endpoint="GETapi-v1-users"
+                              name="start_date"                data-endpoint="GETapi-v1-users"
                value="2025-01-01"
                data-component="query">
     <br>
 <p>Filter by start date (created_at) Example: <code>2025-01-01</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>endDate</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>end_date</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="endDate"                data-endpoint="GETapi-v1-users"
+                              name="end_date"                data-endpoint="GETapi-v1-users"
                value="2025-12-31"
                data-component="query">
     <br>
 <p>Filter by end date (created_at) Example: <code>2025-12-31</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>sortBy</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>sort_by</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="sortBy"                data-endpoint="GETapi-v1-users"
+                              name="sort_by"                data-endpoint="GETapi-v1-users"
                value="name"
                data-component="query">
     <br>
 <p>Sort by field (name, email, created_at) Example: <code>name</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>sortOrder</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>sort_order</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="sortOrder"                data-endpoint="GETapi-v1-users"
+                              name="sort_order"                data-endpoint="GETapi-v1-users"
                value="asc"
                data-component="query">
     <br>
@@ -2296,7 +2214,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1:8000/api/v1/users" \
+    "http://127.0.0.1:8001/api/v1/users" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2310,7 +2228,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/users"
+    "http://127.0.0.1:8001/api/v1/users"
 );
 
 const headers = {
@@ -2334,7 +2252,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/users';
+$url = 'http://127.0.0.1:8001/api/v1/users';
 $response = $client-&gt;post(
     $url,
     [
@@ -2358,7 +2276,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/users'
+url = 'http://127.0.0.1:8001/api/v1/users'
 payload = {
     "name": "Doe",
     "email": "john@doe.com",
@@ -2513,7 +2431,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1:8000/api/v1/users/1" \
+    --get "http://127.0.0.1:8001/api/v1/users/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2521,7 +2439,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/users/1"
+    "http://127.0.0.1:8001/api/v1/users/1"
 );
 
 const headers = {
@@ -2529,6 +2447,7 @@ const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
+
 
 fetch(url, {
     method: "GET",
@@ -2538,7 +2457,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/users/1';
+$url = 'http://127.0.0.1:8001/api/v1/users/1';
 $response = $client-&gt;get(
     $url,
     [
@@ -2557,7 +2476,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/users/1'
+url = 'http://127.0.0.1:8001/api/v1/users/1'
 headers = {
   'Authorization': 'Bearer {YOUR_AUTH_KEY}',
   'Content-Type': 'application/json',
@@ -2577,11 +2496,11 @@ response.json()</code></pre></div>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;data&quot;: {
-        &quot;id&quot;: 20,
+        &quot;id&quot;: 9,
         &quot;name&quot;: &quot;Morgan Hirthe&quot;,
         &quot;email&quot;: &quot;imclaughlin@example.org&quot;,
         &quot;role&quot;: &quot;user&quot;,
-        &quot;created_at&quot;: &quot;2026-02-24T11:24:05.000000Z&quot;
+        &quot;created_at&quot;: &quot;2026-05-22T10:39:40.000000Z&quot;
     }
 }</code>
  </pre>
@@ -2698,7 +2617,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://127.0.0.1:8000/api/v1/users/1" \
+    "http://127.0.0.1:8001/api/v1/users/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2712,7 +2631,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/users/1"
+    "http://127.0.0.1:8001/api/v1/users/1"
 );
 
 const headers = {
@@ -2736,7 +2655,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/users/1';
+$url = 'http://127.0.0.1:8001/api/v1/users/1';
 $response = $client-&gt;put(
     $url,
     [
@@ -2760,7 +2679,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/users/1'
+url = 'http://127.0.0.1:8001/api/v1/users/1'
 payload = {
     "name": "Doe",
     "email": "john@doe.com",
@@ -2932,7 +2851,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://127.0.0.1:8000/api/v1/users/1" \
+    "http://127.0.0.1:8001/api/v1/users/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2940,7 +2859,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1:8000/api/v1/users/1"
+    "http://127.0.0.1:8001/api/v1/users/1"
 );
 
 const headers = {
@@ -2948,6 +2867,7 @@ const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
+
 
 fetch(url, {
     method: "DELETE",
@@ -2957,7 +2877,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://127.0.0.1:8000/api/v1/users/1';
+$url = 'http://127.0.0.1:8001/api/v1/users/1';
 $response = $client-&gt;delete(
     $url,
     [
@@ -2976,7 +2896,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://127.0.0.1:8000/api/v1/users/1'
+url = 'http://127.0.0.1:8001/api/v1/users/1'
 headers = {
   'Authorization': 'Bearer {YOUR_AUTH_KEY}',
   'Content-Type': 'application/json',
