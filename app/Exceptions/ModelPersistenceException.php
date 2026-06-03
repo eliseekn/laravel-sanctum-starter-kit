@@ -14,7 +14,7 @@ class ModelPersistenceException extends Exception
 
     public function __construct(?string $message = null)
     {
-        parent::__construct($message ?? "Echec de l'enregistrement.");
+        parent::__construct($message ?? 'Failed to store data');
     }
 
     public function render(): JsonResponse
