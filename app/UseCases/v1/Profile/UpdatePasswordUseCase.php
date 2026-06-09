@@ -13,7 +13,7 @@ final class UpdatePasswordUseCase
 
     public function handle(User $user, array $data): User
     {
-        $data['password'] = bcrypt($data['new_password']);
+        $data['password'] = $data['new_password'];
         unset($data['new_password']);
 
         return $this->useCase->handle($user, $data);

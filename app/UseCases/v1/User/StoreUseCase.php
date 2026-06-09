@@ -13,9 +13,7 @@ final class StoreUseCase
 {
     public function handle(array $data): User
     {
-        $password = app()->environment('local') ? 'password' : Str::password(8);
-
-        $data['password'] = bcrypt($password);
+        $data['password'] = app()->environment('local') ? 'password' : Str::password(8);
 
         try {
             $user = User::create($data);

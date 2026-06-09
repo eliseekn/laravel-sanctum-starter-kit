@@ -12,8 +12,6 @@ final class RegisterUseCase
 {
     public function handle(array $data): User
     {
-        $data['password'] = bcrypt($data['password']);
-
         try {
             $user = User::create($data);
         } catch (Exception $e) {
