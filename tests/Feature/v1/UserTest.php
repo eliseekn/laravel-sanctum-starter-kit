@@ -16,7 +16,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->make();
         $admin = User::factory()->create([
-            'role' => UserRole::ADMIN,
+            'role' => UserRole::ADMIN->value,
         ]);
 
         $this
@@ -48,7 +48,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create();
         $admin = User::factory()->create([
-            'role' => UserRole::ADMIN,
+            'role' => UserRole::ADMIN->value,
         ]);
         $name = fake()->name();
 
@@ -85,7 +85,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create();
         $admin = User::factory()->create([
-            'role' => UserRole::ADMIN,
+            'role' => UserRole::ADMIN->value,
         ]);
 
         $this
@@ -116,7 +116,7 @@ class UserTest extends TestCase
     {
         $users = User::factory(5)->create();
         $admin = User::factory()->create([
-            'role' => UserRole::ADMIN,
+            'role' => UserRole::ADMIN->value,
         ]);
 
         $this
@@ -134,7 +134,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create();
         $admin = User::factory()->create([
-            'role' => UserRole::ADMIN,
+            'role' => UserRole::ADMIN->value,
         ]);
 
         $this

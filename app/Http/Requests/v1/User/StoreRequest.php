@@ -16,14 +16,14 @@ use Knuckles\Scribe\Attributes\BodyParam;
 
 #[BodyParam('name', 'string', 'User full name.', required: true, example: 'Doe')]
 #[BodyParam('email', 'string', 'Email address.', required: true, example: 'john@doe.com')]
-#[BodyParam('role', 'string', 'User role.', required: true, example: UserRole::ADMIN, enum: UserRole::class)]
+#[BodyParam('role', 'string', 'User role.', required: true, example: UserRole::ADMIN->value, enum: UserRole::class)]
 class StoreRequest extends FormRequest
 {
     use MakeApiResponse;
 
     public function authorize(): bool
     {
-        return $this->user('sanctum')?->role === UserRole::ADMIN;
+        return $this->user('sanctum')?->role === UserRole::ADMIN->value;
     }
 
     /**
@@ -34,7 +34,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users'],
-            'role' => ['required', Rule::in([UserRole::ADMIN, UserRole::USER])],
+            'role' => ['required', Rule::enum(UserRole::class)],
         ];
     }
 
