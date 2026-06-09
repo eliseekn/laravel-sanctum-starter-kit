@@ -20,8 +20,7 @@ final class GetCollectionUseCase
             })
             ->when(! empty($query['search']), function (Builder $q) use ($query) {
                 return $q->where(function ($subQuery) use ($query) {
-                    $subQuery->where('prenoms', 'like', '%'.$query['search'].'%')
-                        ->orWhere('nom', 'like', '%'.$query['search'].'%')
+                    $subQuery->where('name', 'like', '%'.$query['search'].'%')
                         ->orWhere('email', 'like', '%'.$query['search'].'%');
                 });
             });
