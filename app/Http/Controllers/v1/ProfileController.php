@@ -15,7 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Knuckles\Scribe\Attributes\Authenticated;
 use Knuckles\Scribe\Attributes\Group;
 
-#[Group('Compte')]
+#[Group('Profile')]
 #[Authenticated()]
 class ProfileController extends Controller
 {
