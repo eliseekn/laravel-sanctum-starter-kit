@@ -4,7 +4,7 @@ An opinionated starter kit for RESTful API development with Laravel Sanctum.
 
 ## Requirements
 
-- Laravel ^12
+- Laravel ^13
 - PHP ^8.2
 
 ## Features
