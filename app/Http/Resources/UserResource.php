@@ -10,8 +10,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class UserResource extends JsonResource
 {
     /**
-     * Transform the resource collection into an array.
-     *
      * @return array<int|string, mixed>
      */
     public function toArray(Request $request): array
